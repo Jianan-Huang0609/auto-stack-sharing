@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>个人 AI 自动化分层体系</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #FAFAF7;
+    padding: 40px 50px;
+    color: #1a1a1a;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .header { margin-bottom: 32px; }
+  .header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+  }
+  .header .bar {
+    width: 60px; height: 4px; background: #E87722; margin-top: 14px;
+  }
+
+  /* 三层主区域 */
+  .layers { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
+  .layer {
+    display: grid;
+    grid-template-columns: 180px 1fr 340px;
+    gap: 24px;
+    align-items: stretch;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: white;
+    border: 2px solid #ECECEC;
+    position: relative;
+  }
+  .layer.agent { border-left: 6px solid #E87722; }
+  .layer.skill { border-left: 6px solid #2B9B9E; }
+  .layer.n8n   { border-left: 6px solid #555; }
+
+  .layer-label {
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .layer-label .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+    width: fit-content;
+    margin-bottom: 8px;
+  }
+  .agent .tag { background: #E87722; }
+  .skill .tag { background: #2B9B9E; }
+  .n8n .tag { background: #555; }
+
+  .layer-label h2 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .layer-label .en {
+    font-size: 11px;
+    color: #888;
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+  }
+  .layer-label .role {
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+
+  .layer-body {
+    display: flex; flex-direction: column; gap: 10px;
+    padding-left: 20px; border-left: 1px solid #EEE;
+  }
+  .layer-body .essence {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .layer-body .essence strong { color: #1a1a1a; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .chip {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    background: #F3F3F0;
+    color: #444;
+    border: 1px solid #E5E5E0;
+  }
+  .agent .chip { background: #FEF3EA; color: #A05010; border-color: #FBD7B8; }
+  .skill .chip { background: #E9F5F5; color: #0F6366; border-color: #BFDFDF; }
+  .n8n   .chip { background: #EFEFEF; color: #333;    border-color: #D8D8D8; }
+
+  .layer-lazy {
+    background: #FAFAF7;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 11.5px;
+    line-height: 1.55;
+  }
+  .layer-lazy .lazy-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .layer-lazy .lazy-item {
+    display: flex;
+    gap: 8px;
+    padding: 3px 0;
+    color: #555;
+  }
+  .layer-lazy .lazy-item .dot {
+    color: #E87722; font-weight: 700; flex-shrink: 0;
+  }
+  .skill .layer-lazy .lazy-item .dot { color: #2B9B9E; }
+  .n8n .layer-lazy .lazy-item .dot { color: #555; }
+
+  /* 判断公式 */
+  .decision {
+    margin-top: 36px;
+    background: white;
+    border: 2px solid #ECECEC;
+    border-radius: 14px;
+    padding: 24px 28px;
+  }
+  .decision h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .decision h3::before {
+    content: "→"; color: #E87722;
+  }
+  .decision-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .decision-node {
+    flex: 1;
+    background: #FAFAF7;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid #E8E8E0;
+  }
+  .decision-node .q {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .decision-node .a {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .decision-node.yes-n8n .a { color: #555; }
+  .decision-node.yes-skill .a { color: #2B9B9E; }
+  .decision-node.yes-agent .a { color: #E87722; }
+  .decision-arrow {
+    display: flex; align-items: center;
+    color: #CCC; font-size: 18px;
+  }
+
+  /* 案例区 */
+  .cases {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .case {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 2px solid #ECECEC;
+    position: relative;
+  }
+  .case .case-num {
+    position: absolute; top: -10px; left: 16px;
+    background: #1a1a1a; color: white;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 10px;
+    letter-spacing: 1px;
+  }
+  .case h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    margin-top: 6px;
+  }
+  .case .lead {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  .case .lead .main-tag {
+    display: inline-block;
+    background: #1a1a1a; color: white;
+    padding: 1px 8px; border-radius: 3px;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.5px; margin-left: 6px;
+  }
+  .case .steps { font-size: 12px; line-height: 1.7; color: #444; }
+  .case .steps .step {
+    display: flex; gap: 8px; padding: 3px 0;
+  }
+  .case .steps .role-tag {
+    display: inline-block;
+    font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 3px;
+    flex-shrink: 0;
+    min-width: 46px; text-align: center;
+    height: fit-content;
+    margin-top: 3px;
+  }
+  .role-agent { background: #FEF3EA; color: #A05010; }
+  .role-skill { background: #E9F5F5; color: #0F6366; }
+  .role-n8n   { background: #EFEFEF; color: #333; }
+
+  /* 底部金句 */
+  .footer {
+    margin-top: 30px;
+    padding: 20px 24px;
+    background: #1a1a1a;
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer .quote {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .footer .quote strong { color: #E87722; }
+  .footer .by {
+    font-size: 11px;
+    color: #888;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>个人 AI 自动化的分层体系</h1>
+    <div class="subtitle">n8n × Skill × Agent：按"确定性"分工，不同工具做不同的事</div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- 三层主体 -->
+  <div class="layers">
+
+    <!-- Agent 层 -->
+    <div class="layer agent">
+      <div class="layer-label">
+        <span class="tag">LAYER 03</span>
+        <h2>Agent</h2>
+        <div class="en">Dynamic Multi-Step Executor</div>
+        <div class="role">大脑 · 做判断、做决策、做调度</div>
+      </div>
+      <div class="layer-body">
+        <div class="essence">
+          <strong>本质：</strong>图一边跑一边画。每一步根据上一步结果决定下一步做什么。
+          <br>
+          <strong>判据：</strong>不是"步骤多"，而是"<strong>运行时决策</strong>"。
+        </div>
+        <div class="chips">
+          <span class="chip">深度文稿写作</span>
+          <span class="chip">复杂任务分解</span>
+          <span class="chip">多工具协同</span>
+          <span class="chip">LangGraph / Claude Agent SDK</span>
+        </div>
+      </div>
+      <div class="layer-lazy">
+        <div class="lazy-title">偷懒路径</div>
+        <div class="lazy-item"><span class="dot">01</span><span>直接用 Agent 框架，不从零写</span></div>
+        <div class="lazy-item"><span class="dot">02</span><span>Agent 自主调度 skill / n8n</span></div>
+        <div class="lazy-item"><span class="dot">03</span><span>Evaluator agent 打分 + 自动重试</span></div>
+      </div>
+    </div>
+
+    <!-- Skill 层 -->
+    <div class="layer skill">
+      <div class="layer-label">
+        <span class="tag">LAYER 02</span>
+        <h2>Skill</h2>
+        <div class="en">Domain Knowledge Capsule</div>
+        <div class="role">肌肉记忆 · 固化专业技能</div>
+      </div>
+      <div class="layer-body">
+        <div class="essence">
+          <strong>本质：</strong>把某类任务的最佳实践封装成上下文，让模型每次调用都调出"专家模式"。
+          <br>
+          <strong>判据：</strong>任务边界清晰、<strong>单次可完成</strong>、需要领域 know-how。
+        </div>
+        <div class="chips">
+          <span class="chip">PPT 生成</span>
+          <span class="chip">视频风格化</span>
+          <span class="chip">海报 / 文案</span>
+          <span class="chip">代码模板</span>
+        </div>
+      </div>
+      <div class="layer-lazy">
+        <div class="lazy-title">偷懒路径</div>
+        <div class="lazy-item"><span class="dot">01</span><span>任务完成后模型反思并追加到 SKILL.md</span></div>
+        <div class="lazy-item"><span class="dot">02</span><span>Meta-agent 定期合并 / 拆分 / 删除 skill</span></div>
+        <div class="lazy-item"><span class="dot">03</span><span>从成熟 skill 派生变体（主题保留 / 口吻变化）</span></div>
+      </div>
+    </div>
+
+    <!-- n8n 层 -->
+    <div class="layer n8n">
+      <div class="layer-label">
+        <span class="tag">LAYER 01</span>
+        <h2>n8n / Dify</h2>
+        <div class="en">Deterministic Pipeline</div>
+        <div class="role">神经系统 · 传递信号、触发动作</div>
+      </div>
+      <div class="layer-body">
+        <div class="essence">
+          <strong>本质：</strong>事件触发 + 固定路径。<strong>流程图画完就定了。</strong>
+          <br>
+          <strong>判据：</strong>路径<strong>预先可画</strong>、流程不需要"思考"、只需要"可靠"。
+        </div>
+        <div class="chips">
+          <span class="chip">定时抓取 (cron)</span>
+          <span class="chip">Webhook 响应</span>
+          <span class="chip">跨系统同步</span>
+          <span class="chip">通知分发</span>
+        </div>
+      </div>
+      <div class="layer-lazy">
+        <div class="lazy-title">偷懒路径</div>
+        <div class="lazy-item"><span class="dot">01</span><span>用 AI Agent 节点替代 IF/Switch 判断</span></div>
+        <div class="lazy-item"><span class="dot">02</span><span>Vibe 描述 → LLM 生成 workflow JSON</span></div>
+        <div class="lazy-item"><span class="dot">03</span><span>运行日志回流，让 LLM 自动优化流程</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 判断公式 -->
+  <div class="decision">
+    <h3>一个简单的判断公式</h3>
+    <div class="decision-flow">
+      <div class="decision-node yes-n8n">
+        <div class="q">路径是否预先可画？</div>
+        <div class="a">是 → n8n / Dify</div>
+      </div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-node yes-skill">
+        <div class="q">是否是单次高质量输出？</div>
+        <div class="a">是 → Skill</div>
+      </div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-node yes-agent">
+        <div class="q">是否需要运行时决策？</div>
+        <div class="a">是 → Agent</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个案例 -->
+  <div class="cases">
+
+    <div class="case">
+      <div class="case-num">CASE 01</div>
+      <h4>做 PPT</h4>
+      <div class="lead">审美密集型单次输出<span class="main-tag">SKILL 主导</span></div>
+      <div class="steps">
+        <div class="step"><span class="role-tag role-agent">Agent</span><span>需求澄清对话，确定章节结构</span></div>
+        <div class="step"><span class="role-tag role-skill">Skill</span><span>调用 skill 生成视觉 + 内容 + 脚本</span></div>
+        <div class="step"><span class="role-tag role-n8n">n8n</span><span>自动推送飞书 + 邮件给 reviewer</span></div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-num">CASE 02</div>
+      <h4>写内容文稿</h4>
+      <div class="lead">多轮决策密集型<span class="main-tag">AGENT 主导</span></div>
+      <div class="steps">
+        <div class="step"><span class="role-tag role-agent">Agent</span><span>规划大纲 → 过程中动态决策</span></div>
+        <div class="step"><span class="role-tag role-n8n">n8n</span><span>需要数据时触发资料抓取</span></div>
+        <div class="step"><span class="role-tag role-skill">Skill</span><span>结构化写作 + 润色</span></div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-num">CASE 03</div>
+      <h4>视频 idea 全流程</h4>
+      <div class="lead">三层深度协作闭环<span class="main-tag">三者协作</span></div>
+      <div class="steps">
+        <div class="step"><span class="role-tag role-n8n">n8n</span><span>cron 抓 YouTube/X/小红书 热点</span></div>
+        <div class="step"><span class="role-tag role-agent">Agent</span><span>筛选 idea + 生成脚本大纲</span></div>
+        <div class="step"><span class="role-tag role-skill">Skill</span><span>风格化 prompt 调 Kling/Runway</span></div>
+        <div class="step"><span class="role-tag role-n8n">n8n</span><span>分发各平台 + 通知</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="quote">
+      <strong>n8n 是神经系统、Skill 是肌肉记忆、Agent 是大脑</strong><br>
+      三者不是三个工具，而是一套分层协作的<strong>个人自动化操作系统</strong>
+    </div>
+    <div class="by">
+      分享 / Jianan<br>
+      2026
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
