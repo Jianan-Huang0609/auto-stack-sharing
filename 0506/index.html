@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人 AI 自动化的分层体系 · Jianan · 2026.05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   AUTO-STACK SHARING · Session Presentation
+   Design: Anthropic-inspired, data-dense, functional
+   ============================================================ */
+
+:root {
+  --bg-primary: #0a0a0b;
+  --bg-secondary: #111113;
+  --bg-elevated: #18181b;
+  --bg-hover: #1f1f23;
+  --border: #27272a;
+  --border-light: #333338;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent: #d97706;
+  --accent-soft: rgba(217,119,6,0.15);
+  --accent-muted: #92400e;
+  --n8n-color: #a1a1aa;
+  --skill-color: #2dd4bf;
+  --agent-color: #f59e0b;
+  --success: #22c55e;
+  --font-mono: "DM Mono", "SF Mono", "Cascadia Code", monospace;
+  --font-sans: "Plus Jakarta Sans", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --sidebar-w: 260px;
+  --content-max: 820px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 15px; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+.sidebar-logo {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sidebar-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+.sidebar-nav { list-style: none; flex: 1; }
+.sidebar-nav li { margin-bottom: 2px; }
+.sidebar-nav a {
+  display: block;
+  padding: 7px 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+.sidebar-nav a:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+  border-left-color: var(--border-light);
+}
+.sidebar-nav a.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+.sidebar-nav .nav-section {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 16px 12px 4px;
+  opacity: 0.6;
+}
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ========== MAIN ========== */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+}
+
+/* ========== SECTIONS ========== */
+.session {
+  min-height: 100vh;
+  padding: 80px 64px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+.session-inner { max-width: var(--content-max); width: 100%; }
+
+.session-header { margin-bottom: 40px; }
+.session-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+.session-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.session-subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 600px;
+}
+
+/* ========== COVER ========== */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  padding: 80px 64px;
+  position: relative;
+}
+.cover-inner { max-width: var(--content-max); width: 100%; text-align: left; }
+.cover-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.cover-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  max-width: 700px;
+}
+.cover-title .hl { color: var(--accent); }
+.cover-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 40px;
+}
+.cover-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.cover-meta span { margin-right: 24px; }
+
+/* ========== TYPOGRAPHY ========== */
+p { margin-bottom: 16px; color: var(--text-secondary); }
+p.lead { font-size: 17px; color: var(--text-primary); margin-bottom: 24px; }
+strong { color: var(--text-primary); font-weight: 600; }
+
+/* ========== DATA TABLE ========== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0 32px;
+  font-size: 14px;
+}
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+.data-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.data-table tbody tr:hover { background: var(--bg-hover); }
+.data-table tbody td:first-child {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.data-table .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+}
+.tag-n8n { background: rgba(161,161,170,0.12); color: var(--n8n-color); }
+.tag-skill { background: rgba(45,212,191,0.12); color: var(--skill-color); }
+.tag-agent { background: rgba(245,158,11,0.12); color: var(--agent-color); }
+
+/* ========== LAYER CARDS ========== */
+.layer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0 32px;
+}
+.layer-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.layer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.layer-card.n8n::before { background: var(--n8n-color); }
+.layer-card.skill::before { background: var(--skill-color); }
+.layer-card.agent::before { background: var(--agent-color); }
+.layer-card .lc-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.layer-card.n8n .lc-label { color: var(--n8n-color); }
+.layer-card.skill .lc-label { color: var(--skill-color); }
+.layer-card.agent .lc-label { color: var(--agent-color); }
+.layer-card .lc-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.layer-card .lc-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.layer-card .lc-list {
+  list-style: none;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.layer-card .lc-list li {
+  padding: 3px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.layer-card .lc-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* ========== MEDIA PLACEHOLDER ========== */
+.media-frame {
+  border: 2px dashed var(--border-light);
+  border-radius: 8px;
+  padding: 48px 24px;
+  text-align: center;
+  margin: 24px 0 32px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.media-frame-inline {
+  border: 1px dashed var(--border-light);
+  border-radius: 6px;
+  padding: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ========== FLOW ========== */
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+.flow-step {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-size: 13px;
+  min-width: 120px;
+}
+.flow-step .fs-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.flow-arrow {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+/* ========== CALL-OUT ========== */
+.callout {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  border-radius: 0 6px 6px 0;
+  margin: 24px 0;
+}
+.callout p { color: var(--text-primary); font-size: 15px; margin: 0; }
+.callout .callout-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+/* ========== NUMBERED LIST ========== */
+.insight-list { list-style: none; counter-reset: insight; margin: 24px 0 32px; }
+.insight-list li {
+  counter-increment: insight;
+  padding: 12px 0 12px 36px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.insight-list li::before {
+  content: counter(insight, decimal-leading-zero);
+  position: absolute;
+  left: 0; top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.insight-list li strong { display: block; margin-bottom: 2px; }
+
+/* ========== FOOTER ========== */
+.footer-section {
+  min-height: 60vh;
+  padding: 80px 64px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+.footer-inner { max-width: var(--content-max); width: 100%; }
+.footer-rule {
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: 40px;
+}
+.footer-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.footer-role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+}
+.footer-links {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.15s;
+}
+.footer-links a:hover { color: var(--text-primary); border-bottom-color: var(--text-muted); }
+.footer-note {
+  margin-top: 40px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ========== MOBILE ========== */
+.mobile-nav-btn {
+  display: none;
+  position: fixed;
+  top: 16px; right: 16px;
+  z-index: 200;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.2s; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .session, .cover, .footer-section { padding: 48px 24px; }
+  .mobile-nav-btn { display: block; }
+  .layer-grid { grid-template-columns: 1fr; }
+  .flow-row { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<button class="mobile-nav-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">NAV</button>
+
+<!-- ========== SIDEBAR ========== -->
+<aside class="sidebar">
+  <div class="sidebar-logo">Auto-Stack</div>
+  <div class="sidebar-title">个人 AI 自动化的<br>分层体系</div>
+  <ul class="sidebar-nav">
+    <li class="nav-section">Overview</li>
+    <li><a href="#cover">Cover</a></li>
+    <li><a href="#why">Why This Matters</a></li>
+    <li class="nav-section">Framework</li>
+    <li><a href="#architecture">The Architecture</a></li>
+    <li><a href="#layer-n8n">Layer 1 · n8n/Dify</a></li>
+    <li><a href="#layer-skill">Layer 2 · Skill</a></li>
+    <li><a href="#layer-agent">Layer 3 · Agent</a></li>
+    <li class="nav-section">Cases</li>
+    <li><a href="#case-ppt">Case · PPT</a></li>
+    <li><a href="#case-writing">Case · Writing</a></li>
+    <li><a href="#case-video">Case · Video Pipeline</a></li>
+    <li class="nav-section">Practice</li>
+    <li><a href="#laziness">How to Be Lazy</a></li>
+    <li><a href="#implement">Implementation</a></li>
+    <li><a href="#takeaways">Takeaways</a></li>
+    <li class="nav-section">—</li>
+    <li><a href="#author">Author</a></li>
+  </ul>
+  <div class="sidebar-footer">2026.05 · Internal<br>Jianan</div>
+</aside>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main class="main">
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <div class="cover-inner">
+    <div class="cover-label">Internal Sharing · 2026.05</div>
+    <h1 class="cover-title">个人 AI 自动化的<span class="hl">分层体系</span></h1>
+    <p class="cover-desc">
+      n8n / Dify + Skill + Agent：怎么分工、怎么偷懒、怎么结合。<br>
+      一个不依赖单一工具、按确定性分层的个人基础设施框架。
+    </p>
+    <div class="cover-meta">
+      <span>Jianan</span>
+      <span>~45 min</span>
+      <span>v1.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="session" id="why">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">01 · Context</span>
+      <h2 class="session-title">Why This Matters</h2>
+      <p class="session-subtitle">过去半年对 AI 自动化的理解，经历了三次迭代。</p>
+    </div>
+
+    <table class="data-table">
+      <thead><tr><th>Phase</th><th>Approach</th><th>Problem</th></tr></thead>
+      <tbody>
+        <tr><td>Wave 1</td><td>All-in on LLM chat</td><td>Not automated enough. Every task requires a new conversation.</td></tr>
+        <tr><td>Wave 2</td><td>All-in on n8n / Dify</td><td>Flowcharts become spaghetti. Complex logic resists visual programming.</td></tr>
+        <tr><td>Wave 3 (now)</td><td>Layered by determinism</td><td>Right tool for the right job. Each layer owns its strength.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">Core Principle</div>
+      <p>The question is not "which tool is best?" but "how deterministic is this sub-task?" — and the answer determines the layer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="session" id="architecture">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">02 · Architecture</span>
+      <h2 class="session-title">The Decision Matrix</h2>
+      <p class="session-subtitle">Three questions determine which layer owns the work.</p>
+    </div>
+
+    <table class="data-table">
+      <thead><tr><th>Question</th><th>Answer</th><th>Layer</th></tr></thead>
+      <tbody>
+        <tr><td>Is the execution path pre-defined?</td><td>Yes</td><td><span class="tag tag-n8n">n8n / Dify</span></td></tr>
+        <tr><td>Is it a single-shot high-quality output?</td><td>Yes</td><td><span class="tag tag-skill">Skill</span></td></tr>
+        <tr><td>Does it require runtime decisions?</td><td>Yes</td><td><span class="tag tag-agent">Agent</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="layer-grid">
+      <div class="layer-card n8n">
+        <div class="lc-label">Layer 1</div>
+        <div class="lc-title">n8n / Dify</div>
+        <div class="lc-desc">Deterministic pipelines. Event trigger + fixed path. The flowchart is drawn once and runs forever.</div>
+        <ul class="lc-list">
+          <li>Scheduled scraping (cron → YouTube/X)</li>
+          <li>Webhook responses</li>
+          <li>Cross-system sync (Airtable/Feishu/Discord)</li>
+          <li>Notification routing</li>
+        </ul>
+      </div>
+      <div class="layer-card skill">
+        <div class="lc-label">Layer 2</div>
+        <div class="lc-title">Skill</div>
+        <div class="lc-desc">Domain expertise crystallized as context. Each invocation triggers expert-mode output.</div>
+        <ul class="lc-list">
+          <li>Presentation decks (design + logic + script)</li>
+          <li>Video styling (camera params + style prompt)</li>
+          <li>High-aesthetic deliverables</li>
+        </ul>
+      </div>
+      <div class="layer-card agent">
+        <div class="lc-label">Layer 3</div>
+        <div class="lc-title">Agent</div>
+        <div class="lc-desc">Runtime decision engine. Each step depends on the previous result. The map is drawn as you walk.</div>
+        <ul class="lc-list">
+          <li>Deep writing (dynamic research)</li>
+          <li>Complex task decomposition</li>
+          <li>Multi-tool orchestration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYER 1: N8N -->
+<section class="session" id="layer-n8n">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">03 · Layer 1</span>
+      <h2 class="session-title">n8n / Dify: The Pipeline</h2>
+      <p class="session-subtitle">For everything where the path is known in advance.</p>
+    </div>
+
+    <p class="lead">n8n is the nervous system. It transmits signals and triggers actions. No thinking required.</p>
+
+    <table class="data-table">
+      <thead><tr><th>What It Does</th><th>What It Doesn't</th></tr></thead>
+      <tbody>
+        <tr><td>Cron-triggered data collection</td><td>Deciding what to do next</td></tr>
+        <tr><td>Webhook → process → notify</td><td>High-creativity single outputs</td></tr>
+        <tr><td>Multi-system state sync</td><td>Multi-turn reasoning</td></tr>
+        <tr><td>Scheduled digest generation</td><td>Complex decision trees (use Agent node instead)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="media-frame">
+      [ Diagram: n8n workflow example — cron trigger → data fetch → Airtable write → Discord notify ]<br>
+      Add screenshot or live demo here
+    </div>
+  </div>
+</section>
+
+<!-- LAYER 2: SKILL -->
+<section class="session" id="layer-skill">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">04 · Layer 2</span>
+      <h2 class="session-title">Skill: The Craftsman</h2>
+      <p class="session-subtitle">Domain expertise encoded as reusable context. Each call produces expert-level output.</p>
+    </div>
+
+    <p class="lead">A Skill is best-practice knowledge crystallized into a prompt + toolset. The model enters "expert mode" on every invocation.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Skill Type</th><th>Example</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td>Presentation System</td><td>jianan-presentation-system</td><td>Visual design + content logic + oral script</td></tr>
+        <tr><td>Frontend Design</td><td>open-design (this page)</td><td>Production-grade HTML with design system</td></tr>
+        <tr><td>Codebase to Course</td><td>codebase-to-course</td><td>Framework breakdown → teachable curriculum</td></tr>
+        <tr><td>Video Production</td><td>hifly-clone-studio</td><td>Voice clone + avatar + video pipeline</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">Key Insight</div>
+      <p>Skills evolve. A meta-agent periodically reviews all skills, merging redundant ones, splitting bloated ones, and deriving variants. The skill library is a living asset.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LAYER 3: AGENT -->
+<section class="session" id="layer-agent">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">05 · Layer 3</span>
+      <h2 class="session-title">Agent: The Decision Engine</h2>
+      <p class="session-subtitle">Every step is a runtime decision. The map is drawn as you walk.</p>
+    </div>
+
+    <p class="lead">The difference between n8n and Agent is not "number of steps" — it's who decides the next step.</p>
+
+    <table class="data-table">
+      <thead><tr><th></th><th>n8n / Dify</th><th>Agent</th></tr></thead>
+      <tbody>
+        <tr><td>Path</td><td>Pre-defined</td><td>Runtime-determined</td></tr>
+        <tr><td>Decision maker</td><td>Human (at design time)</td><td>Model (at execution time)</td></tr>
+        <tr><td>Best for</td><td>Known workflows</td><td>Open-ended exploration</td></tr>
+        <tr><td>Example</td><td>"Every morning, scrape 3 sources"</td><td>"Research this topic and decide what to include"</td></tr>
+      </tbody>
+    </table>
+
+    <p>The "multi-step" property alone does not define an agent. <strong>Runtime decision-making</strong> is the defining characteristic.</p>
+  </div>
+</section>
+
+<!-- CASE 1: PPT -->
+<section class="session" id="case-ppt">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">06 · Case Study</span>
+      <h2 class="session-title">Case 1: Building a Presentation Deck</h2>
+      <p class="session-subtitle">Skill-led, Agent-assisted, n8n-delivered.</p>
+    </div>
+
+    <div class="flow-row">
+      <div class="flow-step"><div class="fs-label">Agent</div>Clarify requirements &amp; decide chapter structure</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs-label">Skill</div>Generate visuals + content + oral script</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs-label">n8n</div>Push to Feishu, notify reviewer</div>
+    </div>
+
+    <div class="media-frame">
+      [ Screenshot / Video: Presentation generation workflow in action ]<br>
+      Add media content here
+    </div>
+
+    <table class="data-table">
+      <thead><tr><th>Layer</th><th>Role</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Skill</td><td>Primary</td><td>Presentation is a single-shot high-quality output — the domain knowledge lives in the skill</td></tr>
+        <tr><td>Agent</td><td>Support</td><td>Pre-generation: clarify scope, decide structure. Post-generation: quality review</td></tr>
+        <tr><td>n8n</td><td>Delivery</td><td>Distribution is deterministic — push to target channel, notify stakeholders</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CASE 2: WRITING -->
+<section class="session" id="case-writing">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">07 · Case Study</span>
+      <h2 class="session-title">Case 2: Deep Content Writing</h2>
+      <p class="session-subtitle">Agent-led, Skill-borrowed, n8n-on-demand.</p>
+    </div>
+
+    <p class="lead">Writing a deep article requires multi-turn decisions: what to research, what structure to use, which cases to cite, where to add original insight. The path cannot be pre-drawn.</p>
+
+    <div class="flow-row">
+      <div class="flow-step"><div class="fs-label">Agent</div>Receive topic → plan outline → dynamic research decisions</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs-label">Skill</div>Structured writing &amp; polishing (borrowed expertise)</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs-label">n8n</div>On-demand: fetch data when section needs stats</div>
+    </div>
+
+    <div class="media-frame">
+      [ Screenshot / Video: Agent writing workflow example ]<br>
+      Add media content here
+    </div>
+  </div>
+</section>
+
+<!-- CASE 3: VIDEO -->
+<section class="session" id="case-video">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">08 · Case Study</span>
+      <h2 class="session-title">Case 3: Video Idea-to-Publish Pipeline</h2>
+      <p class="session-subtitle">All three layers in a single closed loop. This is the reference architecture.</p>
+    </div>
+
+    <table class="data-table">
+      <thead><tr><th>Phase</th><th>Layer</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>1. Idea capture</td><td><span class="tag tag-n8n">n8n</span></td><td>Cron scrapes YouTube/X trending AI content → writes to Airtable</td></tr>
+        <tr><td>2. Idea evaluation</td><td><span class="tag tag-agent">Agent</span></td><td>Judges which ideas are worth pursuing → generates script outline → decides visual style</td></tr>
+        <tr><td>3. Video generation</td><td><span class="tag tag-skill">Skill</span></td><td>Style prompt template → calls Kling/Runway API → local assembly</td></tr>
+        <tr><td>4. Distribution</td><td><span class="tag tag-n8n">n8n</span></td><td>Uploads to platforms → sends notification to Discord/Feishu</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">Reference Pattern</div>
+      <p>n8n starts the loop, Agent decides, Skill executes, n8n closes the loop. This is the complete layered automation pattern.</p>
+    </div>
+
+    <div class="media-frame">
+      [ Video demo: End-to-end pipeline walkthrough ]<br>
+      Add video or screen recording here
+    </div>
+  </div>
+</section>
+
+<!-- LAZINESS -->
+<section class="session" id="laziness">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">09 · Practice</span>
+      <h2 class="session-title">How to Be Lazy: Automation Levels</h2>
+      <p class="session-subtitle">The essence of automation is shifting human work to the system itself.</p>
+    </div>
+
+    <table class="data-table">
+      <thead><tr><th>Layer</th><th>Level 1</th><th>Level 2</th><th>Level 3</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-n8n">n8n</span></td>
+          <td>AI Agent node replaces IF/Switch logic</td>
+          <td>Natural language → LLM generates workflow JSON</td>
+          <td>Runtime logs feed back to LLM for self-optimization</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-skill">Skill</span></td>
+          <td>Post-task reflection appends to SKILL.md</td>
+          <td>Meta-agent reviews all skills: merge, split, delete</td>
+          <td>Template derivation (80% shared logic, different tone/scenario)</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-agent">Agent</span></td>
+          <td>Use LangGraph / CrewAI / Claude Agent SDK</td>
+          <td>Agent decides which skill to invoke, which n8n workflow to trigger</td>
+          <td>Evaluator agent scores output; auto-retry on fail</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Start at Level 1 for each layer. Don't optimize prematurely. Each level has immediate, standalone value.</p>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION -->
+<section class="session" id="implement">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">10 · Getting Started</span>
+      <h2 class="session-title">Implementation Guide</h2>
+      <p class="session-subtitle">Where to start and in what order.</p>
+    </div>
+
+    <ol class="insight-list">
+      <li>
+        <strong>Run one n8n workflow first.</strong>
+        Start simple: a cron trigger that scrapes one information source daily. Build the "pipeline as code" intuition.
+      </li>
+      <li>
+        <strong>Encapsulate one Skill.</strong>
+        Pick your most frequent report or deliverable. Encode its best practices into a reusable skill. Experience the value of crystallized domain knowledge.
+      </li>
+      <li>
+        <strong>Introduce an Agent last.</strong>
+        Let it orchestrate the first two. Feel the difference between static and dynamic multi-step execution.
+      </li>
+    </ol>
+
+    <div class="callout">
+      <div class="callout-label">Don't Chase Perfection</div>
+      <p>Each step delivers standalone value. You don't need the full architecture to benefit. Start with one layer, get value, then add the next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAYS -->
+<section class="session" id="takeaways">
+  <div class="session-inner">
+    <div class="session-header">
+      <span class="session-num">11 · Takeaways</span>
+      <h2 class="session-title">What to Remember</h2>
+    </div>
+
+    <ol class="insight-list">
+      <li>
+        <strong>These are not three separate tools.</strong>
+        They are a layered infrastructure: n8n is the nervous system, Skill is muscle memory, Agent is the brain.
+      </li>
+      <li>
+        <strong>Cognitive leverage.</strong>
+        Design once, reuse indefinitely. The architecture compounds.
+      </li>
+      <li>
+        <strong>Capability sedimentation.</strong>
+        Experience doesn't dissipate when a project ends. It crystallizes into skills and workflows.
+      </li>
+      <li>
+        <strong>Attention protection.</strong>
+        Delegate repetition to the system. Reserve creativity for yourself.
+      </li>
+    </ol>
+
+    <table class="data-table" style="margin-top:32px;">
+      <thead><tr><th>Layer</th><th>Metaphor</th><th>Core Function</th></tr></thead>
+      <tbody>
+        <tr><td>n8n / Dify</td><td>Nervous System</td><td>Signal transmission, trigger actions</td></tr>
+        <tr><td>Skill</td><td>Muscle Memory</td><td>Crystallized professional capability</td></tr>
+        <tr><td>Agent</td><td>Brain</td><td>Judgment, decision-making, orchestration</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="footer-section" id="author">
+  <div class="footer-inner">
+    <div class="footer-rule"></div>
+    <div class="footer-name">Jianan</div>
+    <div class="footer-role">AI Automation · Layered Infrastructure</div>
+    <div class="footer-links">
+      <a href="https://github.com/Jianan-Huang0609">GitHub</a>
+      <a href="https://github.com/Jianan-Huang0609/auto-stack-sharing">This Project</a>
+      <span>Internal Sharing · 2026.05</span>
+    </div>
+    <div class="footer-note">
+      Built with the open-design skill.<br>
+      Anthropic-inspired aesthetic. Zero emojis. Data-forward.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Active nav tracking
+const sections = document.querySelectorAll('.session, .cover, .footer-section');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// Close sidebar on mobile when link clicked
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
