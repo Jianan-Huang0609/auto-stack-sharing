@@ -37,6 +37,7 @@ body{
   font-family:var(--font-sans);background:var(--bg);color:var(--text);
   line-height:1.72;-webkit-font-smoothing:antialiased;
   display:flex;min-height:100vh;position:relative;
+  overflow-x:hidden;
 }
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -48,7 +49,7 @@ body::after{
   background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   opacity:0.4;
 }
-.main{z-index:1;position:relative}
+.main{margin-left:var(--sidebar-w);flex:1;position:relative;z-index:1;min-width:0}
 
 /* Scroll progress */
 .scroll-bar{
@@ -76,11 +77,13 @@ body::after{
 .sidebar-footer{border-top:1px solid var(--border);padding-top:16px;font-family:var(--font-mono);font-size:11px;color:var(--text-3);line-height:1.6}
 
 /* ===== REVEAL ANIMATIONS ===== */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1)}
-.reveal.in-view{opacity:1;transform:translateY(0)}
-.reveal-l{transform:translateX(-28px)}.reveal-l.in-view{transform:translateX(0)}
-.reveal-r{transform:translateX(28px)}.reveal-r.in-view{transform:translateX(0)}
-.reveal-up{transform:translateY(40px)}.reveal-up.in-view{transform:translateY(0)}
+/* Safe default: content always visible. JS adds .reveal-active after observer init. */
+.reveal{opacity:1;transform:none;transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1)}
+.reveal-active .reveal{opacity:0;transform:translateY(28px)}
+.reveal-active .reveal.in-view{opacity:1;transform:translateY(0)}
+.reveal-active .reveal-l{transform:translateX(-28px)}.reveal-active .reveal-l.in-view{transform:translateX(0)}
+.reveal-active .reveal-r{transform:translateX(28px)}.reveal-active .reveal-r.in-view{transform:translateX(0)}
+.reveal-active .reveal-up{transform:translateY(40px)}.reveal-active .reveal-up.in-view{transform:translateY(0)}
 .d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}
 .d5{transition-delay:.25s}.d6{transition-delay:.3s}.d7{transition-delay:.35s}.d8{transition-delay:.4s}
 .d9{transition-delay:.45s}.d10{transition-delay:.5s}
@@ -147,6 +150,8 @@ p.lead{font-size:17px;color:var(--text);margin-bottom:24px}
 
 /* ===== PATH CARDS (interactive hover) ===== */
 .path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:32px 0}
+@media(max-width:1100px){.path-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.path-grid{grid-template-columns:1fr}}
 .path-card{
   background:var(--surface);border:1px solid var(--border);
   border-radius:12px;padding:32px 24px;
@@ -309,6 +314,9 @@ p.lead{font-size:17px;color:var(--text);margin-bottom:24px}
   .flow-row{flex-direction:column;align-items:flex-start}
   .interact-diagram{flex-direction:column}
   .interact-arrow{transform:rotate(90deg)}
+  .interact-node{min-width:auto;width:100%}
+  .cover-inner{max-width:100%}
+  .session-inner{max-width:100%}
 }
 </style>
 </head>
@@ -753,6 +761,9 @@ p.lead{font-size:17px;color:var(--text);margin-bottom:24px}
 </main>
 
 <script>
+// Activate reveal animations after a short delay (ensures observer is ready)
+document.body.classList.add('reveal-active');
+
 // Scroll progress bar
 window.addEventListener('scroll', () => {
   const h = document.documentElement.scrollHeight - window.innerHeight;
