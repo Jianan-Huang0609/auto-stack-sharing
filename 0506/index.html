@@ -8,28 +8,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   AUTO-STACK SLIDES
-   frontend-slides framework · Anthropic light theme
-   ============================================================ */
-
 :root {
-  --bg: #faf9f5;
-  --bg-alt: #f3f2ed;
-  --surface: #ffffff;
-  --border: #e8e6de;
-  --border-strong: #d4d2c8;
-  --text: #141413;
-  --text-2: #5f5e58;
-  --text-3: #8b8a82;
-  --accent: #d97706;
-  --accent-soft: rgba(217,119,6,0.06);
+  --bg: #faf9f5; --bg-alt: #f3f2ed; --surface: #ffffff;
+  --border: #e8e6de; --border-strong: #d4d2c8;
+  --text: #141413; --text-2: #5f5e58; --text-3: #8b8a82;
+  --accent: #d97706; --accent-soft: rgba(217,119,6,0.06);
   --n8n: #6b7280; --skill: #0d9488; --agent: #d97706;
   --font-mono: "DM Mono","SF Mono",monospace;
   --font-sans: "Plus Jakarta Sans",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
   --ease: cubic-bezier(0.16,1,0.3,1);
 }
-
 html,body{height:100%;overflow-x:hidden}
 html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
 body{
@@ -39,173 +27,138 @@ body{
   background-size:22px 22px;
 }
 
-/* ===== SLIDE BASE ===== */
-.slide{
-  width:100vw;height:100vh;height:100dvh;overflow:hidden;
-  scroll-snap-align:start;
-  display:flex;flex-direction:column;position:relative;
-}
-.slide-content{
-  flex:1;display:flex;flex-direction:column;justify-content:center;
-  max-height:100%;overflow:hidden;
-  padding:clamp(2rem,5vw,5rem) clamp(1.5rem,5vw,5rem);
-  max-width:min(92vw,960px);margin:0 auto;width:100%;
-}
+/* SLIDE BASE */
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative}
+.slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow-y:auto;padding:clamp(1.5rem,4vw,4rem) clamp(1.2rem,4vw,4rem);max-width:min(95vw,1000px);margin:0 auto;width:100%}
 
-/* ===== NAVIGATION ===== */
-.slide-nav{
-  position:fixed;bottom:clamp(1rem,3vh,2rem);right:clamp(1rem,3vw,2rem);
-  z-index:100;display:flex;align-items:center;gap:10px;
-  font-family:var(--font-mono);font-size:13px;color:var(--text-3);
-  background:var(--surface);border:1px solid var(--border);
-  padding:8px 16px;border-radius:20px;
-}
-.slide-nav span{user-select:none}
-.nav-arrow{
-  cursor:pointer;padding:4px 8px;border-radius:4px;transition:all .15s;
-  color:var(--text-3);user-select:none;
-}
-.nav-arrow:hover{color:var(--accent);background:var(--accent-soft)}
-.key-hint{font-size:11px;color:var(--text-3);opacity:.5;margin-top:4px;text-align:center}
+/* BOTTOM NAV BAR */
+.slide-nav-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--surface);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:6px;padding:clamp(6px,1vh,10px) clamp(10px,2vw,20px);overflow-x:auto}
+.nav-dot{width:clamp(28px,4vw,40px);height:clamp(4px,0.8vh,6px);border-radius:3px;background:var(--border-strong);cursor:pointer;transition:all .2s;position:relative;flex-shrink:0}
+.nav-dot.active{background:var(--accent);width:clamp(40px,6vw,56px)}
+.nav-dot:hover{background:var(--accent);opacity:0.7}
+.nav-dot .nav-tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);font-size:10px;white-space:nowrap;padding:4px 8px;border-radius:4px;font-family:var(--font-mono)}
+.nav-dot:hover .nav-tooltip{display:block}
+.nav-arrows{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.nav-arr{font-size:clamp(11px,1.2vw,14px);color:var(--text-3);cursor:pointer;padding:4px 6px;border-radius:4px;transition:all .15s;font-family:var(--font-mono)}
+.nav-arr:hover{color:var(--accent);background:var(--accent-soft)}
 
-/* ===== ANIMATIONS (from frontend-slides patterns) ===== */
-.slide:not(.active) .reveal{opacity:0;transform:translateY(28px)}
-.slide.active .reveal{opacity:1;transform:translateY(0)}
-.reveal{transition:opacity 0.6s var(--ease),transform 0.6s var(--ease)}
-.reveal-l{transform:translateX(-30px)!important}.slide.active .reveal-l{transform:translateX(0)!important}
-.reveal-r{transform:translateX(30px)!important}.slide.active .reveal-r{transform:translateX(0)!important}
-.reveal-up{transform:translateY(40px)!important}.slide.active .reveal-up{transform:translateY(0)!important}
-.reveal-scale{transform:scale(0.92)!important;opacity:0}.slide.active .reveal-scale{transform:scale(1)!important;opacity:1}
-.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}
-.d5{transition-delay:.25s}.d6{transition-delay:.3s}.d7{transition-delay:.35s}.d8{transition-delay:.4s}
-
-/* ===== COVER (Cinematic) ===== */
-.slide-cover{
-  background:linear-gradient(135deg,var(--bg) 0%,var(--bg-alt) 60%,var(--accent-soft) 100%);
-  justify-content:center;align-items:center;text-align:center;
-}
-.cover-float{
-  position:absolute;border-radius:50%;opacity:.05;background:var(--accent);pointer-events:none;
-}
+/* COVER */
+.slide-cover{justify-content:center;align-items:center;text-align:center}
+.cover-float{position:absolute;border-radius:50%;opacity:.05;background:var(--accent);pointer-events:none}
 .cover-float.a{width:clamp(200px,30vw,400px);height:clamp(200px,30vw,400px);top:-10%;right:-5%;animation:drift 22s ease-in-out infinite}
 .cover-float.b{width:clamp(120px,20vw,220px);height:clamp(120px,20vw,220px);bottom:10%;left:-5%;animation:drift 28s ease-in-out infinite}
 @keyframes drift{0%,100%{transform:translate(0,0)scale(1)}50%{transform:translate(-2%,3%)scale(1.06)}}
-.cover-hook{font-family:var(--font-mono);font-size:clamp(10px,1vw,12px);color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:clamp(12px,2vh,20px)}
-.cover-title{font-size:clamp(1.8rem,6vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:clamp(12px,2vh,20px);max-width:min(90vw,700px)}
+.cover-hook{font-family:var(--font-mono);font-size:clamp(10px,1vw,12px);color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:clamp(10px,2vh,18px)}
+.cover-title{font-size:clamp(1.8rem,6vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:clamp(10px,2vh,18px);max-width:min(90vw,700px)}
 .cover-title .hl{color:var(--accent)}
-.cover-subtitle{font-size:clamp(14px,1.5vw,17px);color:var(--text-2);max-width:min(85vw,520px);margin:0 auto clamp(32px,4vh,48px)}
-.cover-stats{display:flex;justify-content:center;gap:clamp(24px,6vw,56px);flex-wrap:wrap}
+.cover-subtitle{font-size:clamp(13px,1.4vw,16px);color:var(--text-2);max-width:min(85vw,500px);margin:0 auto clamp(24px,3vh,40px)}
+.cover-stats{display:flex;justify-content:center;gap:clamp(20px,5vw,48px);flex-wrap:wrap}
 .cover-stat{text-align:center}
-.cover-stat .n{font-family:var(--font-mono);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:500;color:var(--accent);line-height:1.1}
-.cover-stat .l{font-size:clamp(10px,1vw,12px);color:var(--text-3);margin-top:4px}
+.cover-stat .n{font-family:var(--font-mono);font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:500;color:var(--accent);line-height:1.1}
+.cover-stat .l{font-size:clamp(10px,0.9vw,12px);color:var(--text-3);margin-top:4px}
 
-/* ===== SLIDE TYPES ===== */
-.slide-label{font-family:var(--font-mono);font-size:clamp(9px,0.9vw,11px);color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:clamp(8px,1.5vh,14px)}
-.slide-title{font-size:clamp(1.3rem,4vw,2.2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.25;margin-bottom:clamp(4px,1vh,8px)}
-.slide-subtitle{font-size:clamp(12px,1.3vw,15px);color:var(--text-2);max-width:min(85vw,560px);margin-bottom:clamp(16px,3vh,28px)}
-p{color:var(--text-2);font-size:clamp(12px,1.2vw,15px);line-height:1.65;margin-bottom:clamp(8px,1.5vh,14px)}
+/* TYPOGRAPHY */
+.slide-label{font-family:var(--font-mono);font-size:clamp(9px,0.8vw,10px);color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:clamp(6px,1vh,10px)}
+.slide-title{font-size:clamp(1.2rem,3.5vw,1.9rem);font-weight:700;letter-spacing:-0.02em;line-height:1.25;margin-bottom:clamp(3px,0.8vh,6px)}
+.slide-subtitle{font-size:clamp(11px,1.1vw,14px);color:var(--text-2);margin-bottom:clamp(12px,2vh,22px);line-height:1.5}
+p{color:var(--text-2);font-size:clamp(10px,1vw,13px);line-height:1.6;margin-bottom:clamp(6px,1vh,10px)}
 strong{color:var(--text)}
 
-/* ===== TABLES ===== */
-.table-wrap{overflow-x:auto;max-width:100%;margin-bottom:clamp(8px,2vh,16px)}
-.data-table{width:100%;border-collapse:collapse;font-size:clamp(11px,1.1vw,13px)}
-.data-table th{font-family:var(--font-mono);font-size:clamp(9px,0.8vw,10px);font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;text-align:left;padding:clamp(6px,1vh,10px) clamp(8px,1.5vw,14px);border-bottom:1px solid var(--border-strong);background:var(--bg-alt)}
-.data-table td{padding:clamp(5px,1vh,10px) clamp(8px,1.5vw,14px);border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.5}
-.data-table tr:first-child td{font-weight:600;color:var(--text);white-space:nowrap}
-.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-family:var(--font-mono);font-size:10px;font-weight:500}
+/* ANIMATIONS */
+.reveal{transition:opacity 0.5s var(--ease),transform 0.5s var(--ease)}
+.slide:not(.active) .reveal{opacity:0;transform:translateY(20px)}
+.slide.active .reveal{opacity:1;transform:translateY(0)}
+.reveal-l{transform:translateX(-20px)!important}.slide.active .reveal-l{transform:translateX(0)!important}
+.reveal-r{transform:translateX(20px)!important}.slide.active .reveal-r{transform:translateX(0)!important}
+.d1{transition-delay:.03s}.d2{transition-delay:.07s}.d3{transition-delay:.11s}.d4{transition-delay:.15s}.d5{transition-delay:.19s}.d6{transition-delay:.23s}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;margin-bottom:clamp(6px,1.5vh,12px);max-width:100%}
+.data-table{width:100%;border-collapse:collapse;font-size:clamp(10px,1vw,12px)}
+.data-table th{font-family:var(--font-mono);font-size:9px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;text-align:left;padding:clamp(5px,0.8vh,8px) clamp(6px,1vw,12px);border-bottom:1px solid var(--border-strong);background:var(--bg-alt)}
+.data-table td{padding:clamp(4px,0.8vh,8px) clamp(6px,1vw,12px);border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.45}
+.data-table td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
+.tag{display:inline-block;padding:1px 6px;border-radius:3px;font-family:var(--font-mono);font-size:9px;font-weight:500}
 .tn{background:rgba(107,114,128,0.1);color:var(--n8n)}.ts{background:rgba(13,148,136,0.1);color:var(--skill)}.ta{background:rgba(217,119,6,0.1);color:var(--agent)}
 
-/* ===== CARDS ===== */
-.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.5vw,16px);max-width:100%}
-.card{
-  background:var(--surface);border:1px solid var(--border);border-radius:10px;
-  padding:clamp(16px,2.5vh,28px) clamp(14px,2vw,22px);
-}
-.card h4{font-size:clamp(14px,1.5vw,17px);font-weight:700;margin-bottom:4px}
-.card .csub{font-size:clamp(10px,1vw,12px);color:var(--text-2);line-height:1.5}
-.card .ci{margin-bottom:10px;opacity:.6}
-.card.n8n{border-top:3px solid var(--n8n)}.card.skill{border-top:3px solid var(--skill)}.card.agent{border-top:3px solid var(--agent)}
+/* CARDS */
+.card-row{display:flex;gap:clamp(8px,1.2vw,14px);flex-wrap:wrap;margin-bottom:clamp(10px,2vh,16px)}
+.card{flex:1;min-width:clamp(140px,18vw,200px);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:clamp(12px,2vh,20px) clamp(10px,1.5vw,16px)}
+.card h4{font-size:clamp(12px,1.2vw,14px);font-weight:700;margin:4px 0}
+.card .cd{font-size:clamp(10px,0.9vw,11px);color:var(--text-2);line-height:1.45}
+.card.n8n{border-top:2px solid var(--n8n)}.card.skill{border-top:2px solid var(--skill)}.card.agent{border-top:2px solid var(--agent)}
 
-/* ===== PROS/CONS ===== */
-.procon-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.5vw,16px)}
-.procon{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:clamp(14px,2vh,22px) clamp(14px,2vw,20px)}
-.procon.pro{border-left:3px solid #16a34a}.procon.con{border-left:3px solid #dc2626}
-.procon h4{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.procon.pro h4{color:#16a34a}.procon.con h4{color:#dc2626}
-.procon li{font-size:clamp(10px,1vw,12px);color:var(--text-2);padding:3px 0 3px 14px;position:relative}
-.procon li::before{content:'-';position:absolute;left:0;color:var(--text-3)}
+/* PROS/CONS 3-COL */
+.procon-3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1vw,12px);margin-bottom:clamp(8px,1.5vh,14px)}
+.pc-col{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:clamp(10px,1.5vh,16px) clamp(10px,1.5vw,14px)}
+.pc-col h4{font-size:clamp(10px,1vw,12px);font-weight:700;margin-bottom:6px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.5px}
+.pc-col.pro{border-left:3px solid #16a34a}.pc-col.con{border-left:3px solid #dc2626}
+.pc-col li{font-size:clamp(9px,0.85vw,11px);color:var(--text-2);padding:2px 0 2px 12px;position:relative;line-height:1.4}
+.pc-col li::before{content:'-';position:absolute;left:0;color:var(--text-3)}
 
-/* ===== FLOW ===== */
-.flow-row{display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap}
-.flow-step{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:clamp(10px,1.5vh,16px) clamp(12px,2vw,18px);text-align:center;min-width:90px}
-.flow-step .fs{font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;margin-bottom:3px}
-.flow-step .ft{font-size:clamp(10px,1vw,12px);font-weight:600}
-.flow-arrow{font-size:clamp(14px,1.5vw,20px);color:var(--text-3)}
+/* FLOW */
+.flow-row{display:flex;align-items:center;justify-content:center;gap:clamp(6px,1.5vw,10px);flex-wrap:wrap;margin:clamp(6px,1.5vh,12px) 0}
+.flow-step{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:clamp(8px,1.2vh,12px) clamp(10px,1.5vw,14px);text-align:center;min-width:clamp(70px,10vw,100px);font-size:clamp(9px,0.9vw,11px)}
+.flow-step .fs{font-family:var(--font-mono);font-size:9px;color:var(--accent);text-transform:uppercase;margin-bottom:2px}
+.flow-arrow{font-size:clamp(12px,1.3vw,16px);color:var(--text-3)}
 
-/* ===== CALLOUT ===== */
-.callout{background:var(--accent-soft);border-left:3px solid var(--accent);padding:clamp(12px,2vh,20px) clamp(14px,2vw,20px);border-radius:0 8px 8px 0}
-.callout p{color:var(--text);font-size:clamp(12px,1.2vw,15px);margin:0}
-.callout .cl{font-family:var(--font-mono);font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+/* CALLOUT */
+.callout{background:var(--accent-soft);border-left:3px solid var(--accent);padding:clamp(8px,1.5vh,14px) clamp(10px,1.5vw,16px);border-radius:0 6px 6px 0;margin-bottom:clamp(8px,1.5vh,12px)}
+.callout p{color:var(--text);font-size:clamp(10px,1vw,13px);margin:0}
+.callout .cl{font-family:var(--font-mono);font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
 
-/* ===== NUMBERED ===== */
+/* MISC */
 .num-list{counter-reset:n;list-style:none}
-.num-list li{counter-increment:n;padding:clamp(6px,1vh,12px) 0 clamp(6px,1vh,12px) clamp(24px,3vw,36px);border-bottom:1px solid var(--border);position:relative;font-size:clamp(11px,1.1vw,13px);color:var(--text-2)}
-.num-list li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:clamp(6px,1vh,12px);font-family:var(--font-mono);font-size:11px;color:var(--accent);font-weight:500}
-.num-list li strong{display:block;color:var(--text);margin-bottom:2px}
-
-/* ===== RESOURCE GRID ===== */
-.res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(8px,1.5vw,14px)}
-.res-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:clamp(12px,2vh,18px) clamp(12px,2vw,18px)}
-.res-card .rt{font-family:var(--font-mono);font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
-.res-card .rn{font-size:clamp(12px,1.2vw,14px);font-weight:600;margin-bottom:2px}
-.res-card .rd{font-size:clamp(10px,0.9vw,11px);color:var(--text-3);line-height:1.4}
-
-/* ===== STAT STRIP ===== */
-.stat-strip{display:flex;gap:clamp(20px,4vw,40px);flex-wrap:wrap;justify-content:center}
+.num-list li{counter-increment:n;padding:clamp(4px,0.8vh,8px) 0 clamp(4px,0.8vh,8px) clamp(22px,3vw,30px);border-bottom:1px solid var(--border);position:relative;font-size:clamp(10px,1vw,12px);color:var(--text-2);line-height:1.45}
+.num-list li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:clamp(4px,0.8vh,8px);font-family:var(--font-mono);font-size:10px;color:var(--accent);font-weight:500}
+.num-list li strong{display:inline;color:var(--text);margin-right:4px}
+.res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(6px,1vw,10px)}
+.res-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:clamp(8px,1.2vh,14px) clamp(10px,1.5vw,14px)}
+.res-card .rt{font-family:var(--font-mono);font-size:8px;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px}
+.res-card .rn{font-size:clamp(11px,1vw,13px);font-weight:600;margin-bottom:2px}
+.res-card .rd{font-size:clamp(9px,0.8vw,10px);color:var(--text-3);line-height:1.35}
+.media-box{border:2px dashed var(--border-strong);border-radius:6px;padding:clamp(12px,2vh,24px);text-align:center;font-family:var(--font-mono);font-size:clamp(9px,0.8vw,10px);color:var(--text-3);background:var(--bg-alt)}
+.stat-strip{display:flex;gap:clamp(16px,3vw,32px);flex-wrap:wrap;justify-content:center;margin:clamp(8px,1.5vh,14px) 0}
 .stat-item{text-align:center;font-family:var(--font-mono)}
-.stat-item .sn{font-size:clamp(1.5rem,3vw,2rem);font-weight:500;color:var(--accent)}
-.stat-item .sl{font-size:clamp(9px,0.8vw,11px);color:var(--text-3);text-transform:uppercase;letter-spacing:.5px}
+.stat-item .sn{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;color:var(--accent)}
+.stat-item .sl{font-size:clamp(8px,0.7vw,10px);color:var(--text-3);text-transform:uppercase}
+.int-diag{display:flex;align-items:center;justify-content:center;gap:clamp(6px,1.2vw,16px);flex-wrap:wrap;margin:clamp(8px,1.5vh,14px) 0}
+.int-node{background:var(--surface);border:2px solid var(--border);border-radius:8px;padding:clamp(8px,1.2vh,14px) clamp(10px,1.5vw,18px);text-align:center;min-width:clamp(70px,10vw,90px)}
+.int-node .il{font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.int-node .it{font-size:clamp(11px,1.1vw,13px);font-weight:700}
+.int-arrow{font-size:clamp(14px,1.5vw,18px);color:var(--text-3)}
 
-/* ===== INTERACT DIAGRAM ===== */
-.int-diag{display:flex;align-items:center;justify-content:center;gap:clamp(8px,1.5vw,20px);flex-wrap:wrap}
-.int-node{background:var(--surface);border:2px solid var(--border);border-radius:10px;padding:clamp(12px,2vh,20px) clamp(14px,2vw,24px);text-align:center;min-width:100px}
-.int-node .il{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
-.int-node .it{font-size:clamp(12px,1.2vw,15px);font-weight:700}
-.int-arrow{font-size:clamp(16px,2vw,22px);color:var(--text-3)}
+.footer-rule{width:28px;height:2px;background:var(--accent);margin:0 auto clamp(12px,2vh,24px)}
 
-/* ===== MEDIA PLACEHOLDER ===== */
-.media-box{border:2px dashed var(--border-strong);border-radius:8px;padding:clamp(20px,4vh,40px);text-align:center;font-family:var(--font-mono);font-size:clamp(9px,0.9vw,11px);color:var(--text-3);background:var(--bg-alt)}
-
-/* ===== AUTHOR ===== */
-.footer-rule{width:32px;height:2px;background:var(--accent);margin:0 auto clamp(16px,3vh,32px)}
-
-/* ===== REDUCED MOTION ===== */
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}
-  html{scroll-behavior:auto}
-}
-/* ===== SHORT SCREENS ===== */
-@media(max-height:600px){
-  .slide-content{padding:clamp(0.5rem,2vw,1.5rem) clamp(1rem,4vw,2rem)}
-  .card-grid,.procon-grid{grid-template-columns:1fr 1fr}
-  .cover-stats{gap:20px}
-}
-@media(max-width:700px){
-  .card-grid,.procon-grid,.res-grid{grid-template-columns:1fr}
-  .int-diag{flex-direction:column}.int-arrow{transform:rotate(90deg)}
-}
+/* RESPONSIVE */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
+@media(max-height:600px){.slide-content{padding:clamp(0.5rem,2vw,1.2rem) clamp(0.8rem,3vw,2rem)}.card,.pc-col{padding:8px 10px}}
+@media(max-width:700px){.procon-3,.res-grid{grid-template-columns:1fr}.int-diag{flex-direction:column}.int-arrow{transform:rotate(90deg)}.card-row{flex-direction:column}}
 </style>
 </head>
 <body>
 
-<div class="slide-nav">
-  <span class="nav-arrow" onclick="go(-1)" title="Previous">◂</span>
-  <span id="slideNum">1 / 20</span>
-  <span class="nav-arrow" onclick="go(1)" title="Next">▸</span>
-</div>
-<div class="key-hint" style="position:fixed;bottom:8px;left:50%;transform:translateX(-50%);z-index:100;font-family:var(--font-mono)">← → or click arrows to navigate</div>
+<!-- BOTTOM NAV BAR -->
+<nav class="slide-nav-bar">
+  <span class="nav-arr" onclick="go(-1)">◂</span>
+  <span class="nav-dot" data-slide="0"><span class="nav-tooltip">Cover</span></span>
+  <span class="nav-dot" data-slide="1"><span class="nav-tooltip">Context &amp; Paths</span></span>
+  <span class="nav-dot" data-slide="2"><span class="nav-tooltip">Capability Boundaries</span></span>
+  <span class="nav-dot" data-slide="3"><span class="nav-tooltip">Composition &amp; Scenarios</span></span>
+  <span class="nav-dot" data-slide="4"><span class="nav-tooltip">Case: PPT</span></span>
+  <span class="nav-dot" data-slide="5"><span class="nav-tooltip">Case: Knowledge</span></span>
+  <span class="nav-dot" data-slide="6"><span class="nav-tooltip">Case: Video</span></span>
+  <span class="nav-dot" data-slide="7"><span class="nav-tooltip">How I Built It</span></span>
+  <span class="nav-dot" data-slide="8"><span class="nav-tooltip">Architecture Evidence</span></span>
+  <span class="nav-dot" data-slide="9"><span class="nav-tooltip">Takeaways</span></span>
+  <span class="nav-dot" data-slide="10"><span class="nav-tooltip">Resources</span></span>
+  <span class="nav-dot" data-slide="11"><span class="nav-tooltip">Start Here</span></span>
+  <span class="nav-dot" data-slide="12"><span class="nav-tooltip">What's Next</span></span>
+  <span class="nav-dot" data-slide="13"><span class="nav-tooltip">Author</span></span>
+  <span class="nav-arr" onclick="go(1)">▸</span>
+</nav>
 
-<!-- ====== 1. COVER ====== -->
+<!-- ===== 1. COVER ===== -->
 <section class="slide slide-cover active" id="s1">
   <div class="cover-float a"></div><div class="cover-float b"></div>
   <div class="slide-content" style="align-items:center;text-align:center">
@@ -220,139 +173,73 @@ strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ====== 2. THREE WAVES ====== -->
+<!-- ===== 2. CONTEXT + THREE PATHS ===== -->
 <section class="slide" id="s2">
   <div class="slide-content">
     <div class="slide-label reveal">01 · Context</div>
-    <h2 class="slide-title reveal d1">The Three Waves of AI Automation</h2>
-    <p class="slide-subtitle reveal d2">过去半年对自动化的理解，经历了三次迭代。每次解决前一个问题，暴露新瓶颈。</p>
-    <div class="table-wrap reveal d3">
+    <h2 class="slide-title reveal d1">The Three Waves → Three Paths</h2>
+    <p class="slide-subtitle reveal d2">过去半年，AI 自动化经历了三次范式迭代。每次解决前一个问题，同时暴露新瓶颈。现在的答案是：按确定性分层。</p>
+    <div class="table-wrap reveal d2">
       <table class="data-table">
         <tr><th>Wave</th><th>Approach</th><th>Solved</th><th>New Problem</th></tr>
-        <tr><td>1</td><td>All-in on LLM chat</td><td>NL as universal interface</td><td>Every task = new conversation</td></tr>
-        <tr><td>2</td><td>All-in on n8n / Dify</td><td>Repeatable workflows</td><td>Complex logic → spaghetti</td></tr>
+        <tr><td>1</td><td>All-in LLM chat</td><td>NL as universal interface</td><td>Every task = new conversation</td></tr>
+        <tr><td>2</td><td>All-in n8n/Dify</td><td>Repeatable workflows</td><td>Complex logic → spaghetti</td></tr>
         <tr><td>3 (now)</td><td>Layered by determinism</td><td>Right tool per sub-task</td><td>Requires upfront design</td></tr>
       </table>
     </div>
-    <div class="callout reveal d4">
-      <div class="cl">Core insight</div>
-      <p>"Which tool is best?" is wrong. "How deterministic is this sub-task?" — that routes to the right path.</p>
+    <div class="card-row reveal d3">
+      <div class="card n8n"><h4>Path 1 · n8n / Dify</h4><div class="cd">Deterministic pipelines. Fixed path, runs forever. cron, webhooks, data sync.</div></div>
+      <div class="card skill"><h4>Path 2 · Skill + MCP</h4><div class="cd">Crystallized expertise as context. Every call = expert mode. Single-shot quality.</div></div>
+      <div class="card agent"><h4>Path 3 · Agent</h4><div class="cd">Runtime decision engine. Map drawn as you walk. LangGraph, CrewAI, custom harness.</div></div>
     </div>
+    <div class="callout reveal d4"><div class="cl">Core insight</div><p>"Which tool is best?" is wrong. "How deterministic is this sub-task?" — that routes to the right path.</p></div>
   </div>
 </section>
 
-<!-- ====== 3. THREE PATHS ====== -->
+<!-- ===== 3. CAPABILITY BOUNDARIES (3 paths pros/cons combined) ===== -->
 <section class="slide" id="s3">
   <div class="slide-content">
-    <div class="slide-label reveal">02 · Framework</div>
-    <h2 class="slide-title reveal d1">Three Paths to Automation</h2>
-    <p class="slide-subtitle reveal d2">Not one tool. Three paths — each with its own strengths, boundaries, and when to use it.</p>
-    <div class="card-grid reveal d3">
-      <div class="card n8n">
-        <div class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="1" y="3" width="6" height="3" rx="1" stroke="#6b7280" stroke-width="1.2"/><rect x="1" y="9" width="6" height="3" rx="1" stroke="#6b7280" stroke-width="1.2"/><rect x="1" y="15" width="6" height="3" rx="1" stroke="#6b7280" stroke-width="1.2"/><rect x="11" y="5" width="12" height="3" rx="1" stroke="#6b7280" stroke-width="1.2"/><rect x="11" y="11" width="12" height="3" rx="1" stroke="#6b7280" stroke-width="1.2"/></svg></div>
-        <h4>Path 1 · n8n / Dify</h4>
-        <div class="csub">Deterministic pipelines. Event + fixed path. Flowchart drawn once, runs forever. cron, webhooks, data sync.</div>
+    <div class="slide-label reveal">02 · Boundaries</div>
+    <h2 class="slide-title reveal d1">Capability Boundaries</h2>
+    <p class="slide-subtitle reveal d2">Each path has a clear frontier where it stops being useful. Know when to switch.</p>
+    <div class="procon-3 reveal d2">
+      <div class="pc-col" style="border-top:2px solid var(--n8n)"><h4 style="color:var(--n8n)">Path 1 · n8n/Dify</h4>
+        <div style="margin-bottom:6px;font-size:clamp(9px,0.85vw,11px);color:#16a34a;font-weight:600">Strengths</div>
+        <ul style="list-style:none"> <li>Visual debugging</li><li>400+ integrations</li><li>Zero-code triggers</li><li>Self-hosted</li></ul>
+        <div style="margin:6px 0;font-size:clamp(9px,0.85vw,11px);color:#dc2626;font-weight:600">Limits</div>
+        <ul style="list-style:none"> <li>Spaghetti at scale</li><li>No runtime decisions</li><li>No high-aesthetic output</li><li>~50 node ceiling</li></ul>
       </div>
-      <div class="card skill">
-        <div class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l9 4.5v6c0 6-3.5 10.5-9 12-5.5-1.5-9-6-9-12V6.5L12 2z" stroke="#0d9488" stroke-width="1.2"/><path d="M8 11l3 3 5-5" stroke="#0d9488" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-        <h4>Path 2 · Skill + MCP</h4>
-        <div class="csub">Crystallized expertise as reusable context. Every call = expert mode. Single-shot high-quality output.</div>
+      <div class="pc-col" style="border-top:2px solid var(--skill)"><h4 style="color:var(--skill)">Path 2 · Skill+MCP</h4>
+        <div style="margin-bottom:6px;font-size:clamp(9px,0.85vw,11px);color:#16a34a;font-weight:600">Strengths</div>
+        <ul style="list-style:none"> <li>Expert quality every time</li><li>Knowledge accumulates</li><li>Near-zero marginal cost</li><li>MCP standardizes tools</li></ul>
+        <div style="margin:6px 0;font-size:clamp(9px,0.85vw,11px);color:#dc2626;font-weight:600">Limits</div>
+        <ul style="list-style:none"> <li>Upfront authoring cost</li><li>No runtime adaptability</li><li>MCP ecosystem maturing</li><li>Single-shot only</li></ul>
       </div>
-      <div class="card agent">
-        <div class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="8" r="2" stroke="#d97706" stroke-width="1.2"/><circle cx="17" cy="8" r="2" stroke="#d97706" stroke-width="1.2"/><circle cx="12" cy="17" r="2" stroke="#d97706" stroke-width="1.2"/><line x1="8.5" y1="9" x2="10.5" y2="15.5" stroke="#d97706" stroke-width="0.8" opacity=".4"/><line x1="15.5" y1="9" x2="13.5" y2="15.5" stroke="#d97706" stroke-width="0.8" opacity=".4"/></svg></div>
-        <h4>Path 3 · Agent</h4>
-        <div class="csub">Runtime decision engine. Each step depends on previous. Map drawn as you walk. LangGraph, CrewAI, custom harness.</div>
+      <div class="pc-col" style="border-top:2px solid var(--agent)"><h4 style="color:var(--agent)">Path 3 · Agent</h4>
+        <div style="margin-bottom:6px;font-size:clamp(9px,0.85vw,11px);color:#16a34a;font-weight:600">Strengths</div>
+        <ul style="list-style:none"> <li>Open-ended tasks</li><li>Dynamic tool selection</li><li>Self-correct &amp; retry</li><li>Orchestrates P1+P2</li></ul>
+        <div style="margin:6px 0;font-size:clamp(9px,0.85vw,11px);color:#dc2626;font-weight:600">Limits</div>
+        <ul style="list-style:none"> <li>Highest cost</li><li>Unpredictable paths</li><li>Needs observability</li><li>Overkill for fixed paths</li></ul>
       </div>
     </div>
+    <div class="callout reveal d3"><div class="cl">When MCP isn't needed yet</div><p>LLM platforms now natively handle filesystem, fetch, DB, GitHub. MCP adds a hop. Skip it until you have cross-platform needs.</p></div>
   </div>
 </section>
 
-<!-- ====== 4. PATH 1: PROS/CONS ====== -->
+<!-- ===== 4. COMPOSITION + SCENARIOS ===== -->
 <section class="slide" id="s4">
   <div class="slide-content">
-    <div class="slide-label reveal">03 · Path 1</div>
-    <h2 class="slide-title reveal d1">n8n / Dify — Capability Boundaries</h2>
-    <div class="procon-grid reveal d2">
-      <div class="procon pro"><h4>Strengths</h4><ul style="list-style:none">
-        <li>Visual debugging — see what ran</li><li>400+ native integrations</li><li>Zero-code cron + webhook triggers</li><li>Self-hosted = full data control</li>
-      </ul></div>
-      <div class="procon con"><h4>Limits</h4><ul style="list-style:none">
-        <li>Complex logic → spaghetti flowcharts</li><li>No runtime decision-making</li><li>High-aesthetic output needs external tools</li><li>Visual programming ~50 node ceiling</li>
-      </ul></div>
-    </div>
-    <div class="callout reveal d3" style="margin-top:clamp(12px,2vh,20px)">
-      <div class="cl">Best for</div><p>Cron scraping, webhook processing, cross-system sync, notification routing. Fixed path = n8n.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ====== 5. PATH 2: PROS/CONS ====== -->
-<section class="slide" id="s5">
-  <div class="slide-content">
-    <div class="slide-label reveal">04 · Path 2</div>
-    <h2 class="slide-title reveal d1">Skill + MCP — Capability Boundaries</h2>
-    <div class="procon-grid reveal d2">
-      <div class="procon pro"><h4>Strengths</h4><ul style="list-style:none">
-        <li>Expert-quality output every time</li><li>Knowledge accumulates — skills evolve</li><li>MCP standardizes tool interfaces</li><li>Near-zero marginal cost per call</li>
-      </ul></div>
-      <div class="procon con"><h4>Limits</h4><ul style="list-style:none">
-        <li>Requires upfront authoring investment</li><li>No runtime adaptability</li><li>MCP ecosystem maturing (auth, discovery)</li><li>Single-shot only — no multi-step planning</li>
-      </ul></div>
-    </div>
-    <div class="callout reveal d3" style="margin-top:clamp(12px,2vh,20px)">
-      <div class="cl">When MCP isn't needed yet</div><p>LLM platforms now natively handle filesystem, fetch, DB, GitHub. MCP adds a hop. Skip it until you hit cross-platform needs.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ====== 6. PATH 3: PROS/CONS ====== -->
-<section class="slide" id="s6">
-  <div class="slide-content">
-    <div class="slide-label reveal">05 · Path 3</div>
-    <h2 class="slide-title reveal d1">Agent Architecture — Capability Boundaries</h2>
-    <div class="procon-grid reveal d2">
-      <div class="procon pro"><h4>Strengths</h4><ul style="list-style:none">
-        <li>Handles open-ended, multi-turn tasks</li><li>Dynamic tool selection at runtime</li><li>Self-correct and retry</li><li>Orchestrates Path 1 + Path 2 as tools</li>
-      </ul></div>
-      <div class="procon con"><h4>Limits</h4><ul style="list-style:none">
-        <li>Highest cost per task</li><li>Unpredictable — same input, different paths</li><li>Needs observability infrastructure</li><li>Overkill for deterministic workflows</li>
-      </ul></div>
-    </div>
-    <div class="callout reveal d3" style="margin-top:clamp(12px,2vh,20px)">
-      <div class="cl">The real distinction</div><p>"Multi-step" alone doesn't define an agent. n8n is multi-step too. Runtime decision-making is the defining trait.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ====== 7. HOW THEY COMPOSE ====== -->
-<section class="slide" id="s7">
-  <div class="slide-content">
-    <div class="slide-label reveal">06 · Composition</div>
-    <h2 class="slide-title reveal d1">How They Compose</h2>
-    <p class="slide-subtitle reveal d2">Not "which one wins" — "how do they call each other."</p>
-    <div class="int-diag reveal d3">
-      <div class="int-node"><div class="il" style="color:var(--n8n)">Path 1</div><div class="it">n8n</div></div>
-      <div class="int-arrow">→</div>
-      <div class="int-node"><div class="il" style="color:var(--agent)">Path 3</div><div class="it">Agent</div></div>
-      <div class="int-arrow">→</div>
-      <div class="int-node"><div class="il" style="color:var(--skill)">Path 2</div><div class="it">Skill</div></div>
-      <div class="int-arrow">→</div>
+    <div class="slide-label reveal">03 · Composition &amp; Decision Guide</div>
+    <h2 class="slide-title reveal d1">How They Compose + When to Use What</h2>
+    <div class="int-diag reveal d2">
+      <div class="int-node"><div class="il" style="color:var(--n8n)">Path 1</div><div class="it">n8n</div></div><span class="int-arrow">→</span>
+      <div class="int-node"><div class="il" style="color:var(--agent)">Path 3</div><div class="it">Agent</div></div><span class="int-arrow">→</span>
+      <div class="int-node"><div class="il" style="color:var(--skill)">Path 2</div><div class="it">Skill</div></div><span class="int-arrow">→</span>
       <div class="int-node"><div class="il" style="color:var(--n8n)">Path 1</div><div class="it">n8n</div></div>
     </div>
-    <div class="callout reveal d4" style="margin-top:clamp(16px,3vh,28px)">
-      <div class="cl">Reference loop</div><p>n8n triggers → Agent decides → Skill executes → n8n delivers. Each layer does what it does best.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ====== 8. WHEN TO USE WHAT ====== -->
-<section class="slide" id="s8">
-  <div class="slide-content">
-    <div class="slide-label reveal">07 · Decision Guide</div>
-    <h2 class="slide-title reveal d1">When to Use What</h2>
-    <div class="table-wrap reveal d2">
+    <div class="table-wrap reveal d3">
       <table class="data-table">
-        <tr><th>Scenario</th><th>Path</th></tr>
+        <tr><th>Scenario</th><th>Best Path</th></tr>
         <tr><td>"Scrape 3 sources every morning"</td><td><span class="tag tn">n8n</span> — fixed schedule, zero decisions</td></tr>
         <tr><td>"Build a presentation with consistent branding"</td><td><span class="tag ts">Skill</span> — single-shot, high-aesthetic</td></tr>
         <tr><td>"Research and write a deep article"</td><td><span class="tag ta">Agent</span> + <span class="tag ts">Skill</span> — runtime research + structured writing</td></tr>
@@ -363,56 +250,46 @@ strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ====== 9. CASE 1: PPT ====== -->
-<section class="slide" id="s9">
+<!-- ===== 5. CASE: PPT ===== -->
+<section class="slide" id="s5">
   <div class="slide-content">
-    <div class="slide-label reveal">08 · Case</div>
+    <div class="slide-label reveal">04 · Case Study</div>
     <h2 class="slide-title reveal d1">Case 1: Presentation Pipeline</h2>
-    <p class="slide-subtitle reveal d2">Skill-led, Agent-structured, n8n-distributed.</p>
-    <div class="flow-row reveal d3">
-      <div class="flow-step"><div class="fs">Agent</div><div class="ft">Clarify &amp; structure</div></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Skill</div><div class="ft">Design + content</div></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Skill</div><div class="ft">Feishu writeback</div></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">n8n</div><div class="ft">Notify reviewer</div></div>
-    </div>
-    <div class="callout reveal d4" style="margin-top:clamp(16px,3vh,24px)">
-      <div class="cl">Skills used</div><p>jianan-presentation-system / design-front / excalidraw-handnote-style / feishu-write-shared</p>
-    </div>
-    <div class="media-box reveal d5" style="margin-top:clamp(8px,1.5vh,14px)">[ Screenshot / video: PPT generation in action ]</div>
-  </div>
-</section>
-
-<!-- ====== 10. CASE 2: KNOWLEDGE ====== -->
-<section class="slide" id="s10">
-  <div class="slide-content">
-    <div class="slide-label reveal">09 · Case</div>
-    <h2 class="slide-title reveal d1">Case 2: Knowledge Pipeline</h2>
-    <p class="slide-subtitle reveal d2">n8n captures → Agent curates → Skill formats → n8n delivers.</p>
+    <p class="slide-subtitle reveal d2">Skill-led, Agent-structured, n8n-distributed. From bullet points to a polished Feishu Wiki page.</p>
     <div class="flow-row reveal d2">
-      <div class="flow-step"><div class="fs">n8n</div><div class="ft">Scrape sources</div></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Agent</div><div class="ft">Score &amp; filter</div></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Skill</div><div class="ft">Digest + Feishu</div></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">n8n</div><div class="ft">Discord + Airtable</div></div>
+      <div class="flow-step"><div class="fs">Agent</div>Clarify scope,<br>structure chapters</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Skill</div>Design system +<br>content + script</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Skill</div>Feishu Wiki<br>writeback</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">n8n</div>Notify reviewer<br>on Discord</div>
     </div>
-    <div class="callout reveal d3" style="margin-top:clamp(14px,2vh,24px)">
-      <div class="cl">Real pipeline</div><p>AI-Intelligence-Vault: 10_Raw → 20_Sources → 50_Synthesis → 60_Feishu_Exports. Cron-driven, self-hosted.</p>
-    </div>
-    <div class="media-box reveal d4" style="margin-top:clamp(8px,1.5vh,14px)">[ Screenshot: Knowledge pipeline dashboard ]</div>
+    <div class="callout reveal d3"><div class="cl">Skills used</div><p>jianan-presentation-system / design-front / excalidraw-handnote-style / feishu-write-shared</p></div>
+    <div class="media-box reveal d4">[ Screenshot / video: PPT generation in action ]</div>
   </div>
 </section>
 
-<!-- ====== 11. CASE 3: VIDEO ====== -->
-<section class="slide" id="s11">
+<!-- ===== 6. CASE: KNOWLEDGE ===== -->
+<section class="slide" id="s6">
   <div class="slide-content">
-    <div class="slide-label reveal">10 · Case</div>
+    <div class="slide-label reveal">05 · Case Study</div>
+    <h2 class="slide-title reveal d1">Case 2: Knowledge Pipeline</h2>
+    <p class="slide-subtitle reveal d2">n8n captures → Agent curates → Skill formats → n8n delivers. Cron-driven, self-hosted content intake.</p>
+    <div class="flow-row reveal d2">
+      <div class="flow-step"><div class="fs">n8n</div>Scrape GitHub,<br>X, YouTube</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Agent</div>Score relevance,<br>filter noise</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Skill</div>Digest + format<br>for Feishu</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">n8n</div>Push Discord<br>+ write Airtable</div>
+    </div>
+    <div class="callout reveal d3"><div class="cl">Real pipeline</div><p>AI-Intelligence-Vault: 10_Raw → 20_Sources → 50_Synthesis → 60_Feishu_Exports. Cron-driven via Auto-Grasp-Pipeline.</p></div>
+    <div class="media-box reveal d4">[ Screenshot: Knowledge pipeline dashboard ]</div>
+  </div>
+</section>
+
+<!-- ===== 7. CASE: VIDEO ===== -->
+<section class="slide" id="s7">
+  <div class="slide-content">
+    <div class="slide-label reveal">06 · Case Study</div>
     <h2 class="slide-title reveal d1">Case 3: Video Automation</h2>
-    <p class="slide-subtitle reveal d2">End-to-end: idea → script → TTS → render → subtitle → publish.</p>
+    <p class="slide-subtitle reveal d2">End-to-end closed loop: idea capture → script → TTS → render → subtitle → publish.</p>
     <div class="table-wrap reveal d2">
       <table class="data-table">
         <tr><th>Phase</th><th>Path</th><th>What Happens</th></tr>
@@ -422,69 +299,62 @@ strong{color:var(--text)}
         <tr><td>4. Distribute</td><td><span class="tag tn">n8n</span></td><td>Upload platforms, notify Discord/Feishu</td></tr>
       </table>
     </div>
-    <div class="stat-strip reveal d4">
-      <div class="stat-item"><div class="sn">37s</div><div class="sl">test video</div></div>
-      <div class="stat-item"><div class="sn">1080p</div><div class="sl">resolution</div></div>
-      <div class="stat-item"><div class="sn">H.264</div><div class="sl">codec</div></div>
-      <div class="stat-item"><div class="sn">whisper-cpp</div><div class="sl">subtitles</div></div>
+    <div class="stat-strip reveal d3">
+      <div class="stat-item"><div class="sn">37s</div><div class="sl">test video</div></div><div class="stat-item"><div class="sn">1080p</div><div class="sl">resolution</div></div><div class="stat-item"><div class="sn">H.264</div><div class="sl">codec</div></div><div class="stat-item"><div class="sn">whisper-cpp</div><div class="sl">subtitles</div></div>
     </div>
+    <div class="media-box reveal d4">[ Video: End-to-end pipeline demo ]</div>
   </div>
 </section>
 
-<!-- ====== 12. HOW I BUILT IT (1-3) ====== -->
-<section class="slide" id="s12">
+<!-- ===== 8. HOW I BUILT IT ===== -->
+<section class="slide" id="s8">
   <div class="slide-content">
-    <div class="slide-label reveal">11 · Tutorial</div>
-    <h2 class="slide-title reveal d1">How I Built It</h2>
+    <div class="slide-label reveal">07 · Tutorial</div>
+    <h2 class="slide-title reveal d1">How I Built It — 5 Steps</h2>
     <ol class="num-list reveal d2">
-      <li><strong>Step 1: Install n8n (self-hosted via npm).</strong>Build one workflow: cron → GitHub API → Airtable. ~1 hour.</li>
-      <li><strong>Step 2: Write your first SKILL.md.</strong>Most frequent task. Encode best practices + output format. ~2 hours.</li>
-      <li><strong>Step 3: Connect a tool.</strong>Start with filesystem or Airtable. Teaches the tool protocol pattern. ~1 hour.</li>
+      <li><strong>Install n8n (self-hosted via npm).</strong>Build one workflow: cron → GitHub API → Airtable. ~1 hour. Teaches pipeline thinking.</li>
+      <li><strong>Write your first SKILL.md.</strong>Your most frequent task. Encode best practices, pitfalls, output format. ~2 hours. First crystallized expertise.</li>
+      <li><strong>Connect a tool (MCP or native).</strong>Filesystem or Airtable. Teaches the tool protocol pattern. ~1 hour.</li>
+      <li><strong>Build a minimal agent harness.</strong>State machine + lock manager + LENS validator. Or use LangGraph. Wire to n8n + skills. ~4 hours.</li>
+      <li><strong>Add observability.</strong>Structured logging with task_id. Feishu thread notifications. Airtable state ledger. Dashboard sync. ~2 hours.</li>
     </ol>
+    <div class="callout reveal d4"><div class="cl">Key lesson</div><p>Each step delivers standalone value. Don't build the full stack first — build layer 1, get value, add next.</p></div>
   </div>
 </section>
 
-<!-- ====== 13. HOW I BUILT IT (4-5) ====== -->
-<section class="slide" id="s13">
+<!-- ===== 9. ARCHITECTURE EVIDENCE ===== -->
+<section class="slide" id="s9">
   <div class="slide-content">
-    <div class="slide-label reveal">12 · Tutorial</div>
-    <h2 class="slide-title reveal d1">How I Built It (continued)</h2>
-    <ol class="num-list reveal d2" start="4">
-      <li><strong>Step 4: Build a minimal agent harness.</strong>State machine + lock manager + LENS validator. Or use LangGraph. Wire to n8n + skills. ~4 hours.</li>
-      <li><strong>Step 5: Add observability.</strong>Structured logging with task_id. Feishu thread notifications. Airtable state ledger. ~2 hours.</li>
-    </ol>
-    <div class="callout reveal d4" style="margin-top:clamp(14px,2vh,24px)">
-      <div class="cl">Key lesson</div><p>Each step delivers standalone value. Don't build everything first — build layer 1, get value, add the next.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ====== 14. BEFORE / AFTER ====== -->
-<section class="slide" id="s14">
-  <div class="slide-content">
-    <div class="slide-label reveal">13 · Evidence</div>
+    <div class="slide-label reveal">08 · Evidence</div>
     <h2 class="slide-title reveal d1">Before / After: Architecture Upgrade</h2>
-    <p class="slide-subtitle reveal d2">local-automation-stack: main (3 commits) → master (20 commits). Not "added features." Scripts → runtime framework.</p>
+    <p class="slide-subtitle reveal d2">local-automation-stack: main (3 commits) → master (20 commits). Scripts → runtime framework.</p>
     <div class="table-wrap reveal d2">
       <table class="data-table">
-        <tr><th>Dimension</th><th>main</th><th>master</th></tr>
-        <tr><td>Execution</td><td>Ad-hoc scripts</td><td>Unified runtime/ module (12 files)</td></tr>
-        <tr><td>Concurrency</td><td>No locking</td><td>Idempotency lock + lease expiry</td></tr>
-        <tr><td>State</td><td>Strings</td><td>State machine + VALID_TRANSITIONS</td></tr>
-        <tr><td>Validation</td><td>None (LLM trusted)</td><td>LENS gate — mechanical evidence check</td></tr>
+        <tr><th>Dimension</th><th>main (Phase 1)</th><th>master (Phase 2)</th></tr>
+        <tr><td>Execution</td><td>Ad-hoc scripts per executor</td><td>Unified runtime/ module (12 files)</td></tr>
+        <tr><td>Concurrency</td><td>No locking — cron by luck</td><td>Idempotency lock + lease expiry</td></tr>
+        <tr><td>State</td><td>Strings, implicit</td><td>State machine + VALID_TRANSITIONS</td></tr>
+        <tr><td>Validation</td><td>None — LLM trusted blindly</td><td>LENS gate: mechanical evidence check</td></tr>
         <tr><td>Agents</td><td>Single</td><td>4 agents + parent/child + auto-aggregation</td></tr>
+        <tr><td>Recovery</td><td>No backup/rollback</td><td>scripts/ backup, restore, snapshot</td></tr>
       </table>
+    </div>
+    <div class="stat-strip reveal d3">
+      <div class="stat-item"><div class="sn">3→20</div><div class="sl">commits</div></div>
+      <div class="stat-item"><div class="sn">5,749</div><div class="sl">lines refactored</div></div>
+      <div class="stat-item"><div class="sn">100</div><div class="sl">files changed</div></div>
+      <div class="stat-item"><div class="sn">5</div><div class="sl">patterns</div></div>
     </div>
   </div>
 </section>
 
-<!-- ====== 15. TAKEAWAYS ====== -->
-<section class="slide" id="s15">
+<!-- ===== 10. TAKEAWAYS ===== -->
+<section class="slide" id="s10">
   <div class="slide-content">
-    <div class="slide-label reveal">14 · Takeaways</div>
+    <div class="slide-label reveal">09 · Takeaways</div>
     <h2 class="slide-title reveal d1">What I Learned</h2>
     <ol class="num-list reveal d2">
-      <li><strong>Determinism is the best router.</strong>Is this sub-task deterministic? — that answer routes to the right path.</li>
+      <li><strong>Determinism is the best router.</strong>Is this sub-task deterministic? → routes to the right path.</li>
       <li><strong>Skills compound. Workflows don't.</strong>Fixed path vs accumulated expertise. Invest in skills.</li>
       <li><strong>Observability before intelligence.</strong>Feishu threads + Airtable state = free observability.</li>
       <li><strong>Start ugly, refactor later.</strong>20-commit refactor came after knowing what patterns matter.</li>
@@ -493,76 +363,61 @@ strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ====== 16. RESOURCES ====== -->
-<section class="slide" id="s16">
+<!-- ===== 11. RESOURCES ===== -->
+<section class="slide" id="s11">
   <div class="slide-content">
-    <div class="slide-label reveal">15 · Resources</div>
-    <h2 class="slide-title reveal d1">Tools &amp; Repos You Can Use</h2>
+    <div class="slide-label reveal">10 · Resources</div>
+    <h2 class="slide-title reveal d1">Tools, Repos &amp; People</h2>
     <div class="res-grid reveal d2">
-      <div class="res-card"><div class="rt">Starter Kit</div><div class="rn">jianan-ai-stack-starter</div><div class="rd">One command: SKILL.md template + n8n workflow + agent harness + 5-step guide.</div></div>
-      <div class="res-card"><div class="rt">Framework</div><div class="rn">local-automation-stack</div><div class="rd">MAE multi-agent harness: state machine, LENS, lock manager. 5 production patterns.</div></div>
-      <div class="res-card"><div class="rt">Pipeline</div><div class="rn">Auto-Grasp-Pipeline</div><div class="rd">Cron-driven source collection + vault management + EPUB generation.</div></div>
-      <div class="res-card"><div class="rt">Skill</div><div class="rn">jianan-presentation-system</div><div class="rd">Visual design + storytelling + bilingual script + Feishu writeback.</div></div>
-      <div class="res-card"><div class="rt">Platform</div><div class="rn">n8n (self-hosted)</div><div class="rd">npm install -g n8n. Visual editor at localhost:5678. 400+ nodes.</div></div>
+      <div class="res-card"><div class="rt">Starter Kit</div><div class="rn">jianan-ai-stack-starter</div><div class="rd">One command: SKILL.md template + n8n workflow + agent harness.</div></div>
+      <div class="res-card"><div class="rt">Framework</div><div class="rn">local-automation-stack</div><div class="rd">MAE multi-agent harness: state machine, LENS, lock manager.</div></div>
+      <div class="res-card"><div class="rt">Pipeline</div><div class="rn">Auto-Grasp-Pipeline</div><div class="rd">Cron-driven source collection + vault management + EPUB.</div></div>
+      <div class="res-card"><div class="rt">Skill</div><div class="rn">jianan-presentation-system</div><div class="rd">Visual design + storytelling + bilingual script + Feishu.</div></div>
+      <div class="res-card"><div class="rt">Platform</div><div class="rn">n8n (self-hosted)</div><div class="rd">npm install -g n8n. Visual editor. 400+ nodes.</div></div>
+      <div class="res-card"><div class="rt">Agent</div><div class="rn">LangGraph / CrewAI</div><div class="rd">Stateful multi-actor agent frameworks.</div></div>
+      <div class="res-card"><div class="rt">Follow</div><div class="rn">Andrej Karpathy</div><div class="rd">Deep AI technical content. Coding sessions = masterclass.</div></div>
+      <div class="res-card"><div class="rt">Study</div><div class="rn">Anthropic / Claude Code</div><div class="rd">Agent architecture patterns. Study their system prompts.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ====== 17. RESOURCES 2 ====== -->
-<section class="slide" id="s17">
-  <div class="slide-content">
-    <div class="slide-label reveal">16 · Resources</div>
-    <h2 class="slide-title reveal d1">People &amp; Communities</h2>
-    <div class="res-grid reveal d2">
-      <div class="res-card"><div class="rt">Follow</div><div class="rn">Andrej Karpathy</div><div class="rd">Deep AI technical content. His coding sessions are masterclasses.</div></div>
-      <div class="res-card"><div class="rt">Study</div><div class="rn">Anthropic / Claude Code</div><div class="rd">Agent architecture patterns, tool-use protocols. Study their system prompts.</div></div>
-      <div class="res-card"><div class="rt">Community</div><div class="rn">OpenClaw Discord</div><div class="rd">Personal AI agent infrastructure. Skill marketplace, troubleshooting.</div></div>
-      <div class="res-card"><div class="rt">Tools</div><div class="rn">LangGraph / CrewAI</div><div class="rd">Stateful multi-actor agent frameworks. Graph-based orchestration.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== 18. ONE-CLICK START ====== -->
-<section class="slide" id="s18">
-  <div class="slide-content">
-    <div class="slide-label reveal">17 · Start Here</div>
-    <h2 class="slide-title reveal d1">One Command to Start</h2>
-    <p class="slide-subtitle reveal d2" style="font-family:var(--font-mono);font-size:clamp(12px,1.3vw,15px);color:var(--accent)">git clone https://github.com/Jianan-Huang0609/jianan-ai-stack-starter</p>
-    <p class="reveal d2">You get: state machine + lock manager + LENS validator + task poller + Feishu notifier + 4-agent router — the full MAE harness from this talk.</p>
-    <div class="res-grid reveal d3" style="margin-top:clamp(12px,2vh,20px)">
-      <div class="res-card"><div class="rt">Template</div><div class="rn">SKILL.md template</div><div class="rd">Fill in your task description. Drop into your skills dir. Done.</div></div>
-      <div class="res-card"><div class="rt">Workflow</div><div class="rn">n8n starter JSON</div><div class="rd">Import-ready: cron → GitHub API → Airtable. Your first pipeline.</div></div>
-      <div class="res-card"><div class="rt">Runtime</div><div class="rn">Minimal agent harness</div><div class="rd">Clone → configure .env → python runtime/task_poller.py</div></div>
-      <div class="res-card"><div class="rt">Guide</div><div class="rn">5-step README</div><div class="rd">Follow the exact path from this talk. Each step = standalone value.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== 19. NEXT ====== -->
-<section class="slide" id="s19">
+<!-- ===== 12. ONE-CLICK START ===== -->
+<section class="slide" id="s12">
   <div class="slide-content" style="align-items:center;text-align:center">
-    <div class="slide-label reveal">18 · What's Next</div>
-    <h2 class="slide-title reveal d1" style="margin-bottom:clamp(14px,3vh,24px)">The Road Ahead</h2>
-    <div class="callout reveal d2" style="max-width:min(85vw,580px);margin:0 auto clamp(16px,3vh,28px)">
-      <div class="cl">Honest assessment</div><p>Three paths can run independently today. The next frontier: self-evolving skills, cron reviews that trigger action, and a global orchestrator that sees across projects.</p>
+    <div class="slide-label reveal">11 · Start Here</div>
+    <h2 class="slide-title reveal d1">One Command to Start</h2>
+    <p class="reveal d2" style="font-family:var(--font-mono);font-size:clamp(12px,1.3vw,15px);color:var(--accent);margin-bottom:clamp(16px,2.5vh,24px)">git clone https://github.com/Jianan-Huang0609/jianan-ai-stack-starter</p>
+    <p class="reveal d3" style="max-width:min(85vw,500px);margin:0 auto clamp(16px,2.5vh,24px)">You get: SKILL.md template + n8n workflow JSON + minimal agent harness + engineering-quality gates + 5-step README. Clone, configure .env, run.</p>
+    <div class="res-grid reveal d4" style="max-width:min(85vw,600px);margin:0 auto">
+      <div class="res-card"><div class="rt">Template</div><div class="rn">SKILL.md</div><div class="rd">Fill in your task. Drop into skills dir.</div></div>
+      <div class="res-card"><div class="rt">Workflow</div><div class="rn">n8n starter JSON</div><div class="rd">Import-ready: cron → API → Airtable.</div></div>
+      <div class="res-card"><div class="rt">Runtime</div><div class="rn">Agent harness</div><div class="rd">State machine + LENS + lock. 100 lines.</div></div>
+      <div class="res-card"><div class="rt">Quality</div><div class="rn">5 engineering gates</div><div class="rd">TDD + Evals + Review + Type + CI/CD.</div></div>
     </div>
-    <p class="reveal d3" style="text-align:center">This isn't the end. It's the foundation.</p>
   </div>
 </section>
 
-<!-- ====== 20. AUTHOR ====== -->
-<section class="slide" id="s20">
+<!-- ===== 13. WHAT'S NEXT ===== -->
+<section class="slide" id="s13">
+  <div class="slide-content" style="align-items:center;text-align:center">
+    <div class="slide-label reveal">12 · What's Next</div>
+    <h2 class="slide-title reveal d1" style="margin-bottom:clamp(12px,2vh,20px)">The Road Ahead</h2>
+    <div class="callout reveal d2" style="max-width:min(85vw,540px);margin:0 auto clamp(12px,2vh,20px)">
+      <div class="cl">Honest assessment</div><p>Three paths can run independently today. Next frontier: self-evolving skills, cron reviews that trigger action, and a global orchestrator that sees across projects. This isn't the end. It's the foundation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 14. AUTHOR ===== -->
+<section class="slide" id="s14">
   <div class="slide-content" style="align-items:center;text-align:center">
     <div class="footer-rule reveal"></div>
-    <div class="reveal d1" style="margin-bottom:clamp(12px,2vh,20px)">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="9" r="5.5" stroke="#141413" stroke-width="1.2"/>
-        <path d="M5 23c0-5 4-9 9-9s9 4 9 9" stroke="#141413" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
+    <div class="reveal d1" style="margin-bottom:clamp(10px,2vh,16px)">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="9" r="5.5" stroke="#141413" stroke-width="1.2"/><path d="M5 23c0-5 4-9 9-9s9 4 9 9" stroke="#141413" stroke-width="1.2" stroke-linecap="round"/></svg>
     </div>
-    <h2 class="slide-title reveal d1" style="font-size:clamp(1.2rem,3vw,1.8rem);margin-bottom:6px">Jianan</h2>
-    <p class="reveal d2" style="font-family:var(--font-mono);font-size:clamp(10px,1vw,12px);color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:clamp(14px,2vh,24px)">AI Automation · Layered Infrastructure</p>
-    <div class="reveal d3" style="display:flex;gap:24px;font-size:clamp(11px,1vw,13px);color:var(--text-3);justify-content:center">
+    <h2 class="slide-title reveal d1" style="font-size:clamp(1.1rem,2.5vw,1.5rem);margin-bottom:4px">Jianan</h2>
+    <p class="reveal d2" style="font-family:var(--font-mono);font-size:clamp(9px,0.9vw,11px);color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:clamp(10px,2vh,20px)">AI Automation · Layered Infrastructure</p>
+    <div class="reveal d3" style="display:flex;gap:24px;font-size:clamp(10px,0.9vw,12px);color:var(--text-3);justify-content:center">
       <a href="https://github.com/Jianan-Huang0609" style="color:var(--text-3);text-decoration:none;border-bottom:1px solid transparent;transition:all .15s" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='';this.style.borderColor=''">GitHub</a>
       <span>Internal · 2026.05</span>
     </div>
@@ -570,17 +425,14 @@ strong{color:var(--text)}
 </section>
 
 <script>
-// Slide navigation
 let current = 0;
 const slides = document.querySelectorAll('.slide');
 const total = slides.length;
-const numEl = document.getElementById('slideNum');
+const dots = document.querySelectorAll('.nav-dot');
 
 function updateActive() {
-  slides.forEach((s,i) => {
-    s.classList.toggle('active', i === current);
-  });
-  numEl.textContent = (current+1) + ' / ' + total;
+  slides.forEach((s,i) => s.classList.toggle('active', i === current));
+  dots.forEach((d,i) => d.classList.toggle('active', i === current));
 }
 
 function go(dir) {
@@ -588,7 +440,13 @@ function go(dir) {
   slides[current].scrollIntoView({behavior:'smooth'});
 }
 
-// Scroll observer to track current slide
+// Click dots to jump
+dots.forEach((dot,i) => dot.addEventListener('click', () => {
+  current = i;
+  slides[current].scrollIntoView({behavior:'smooth'});
+}));
+
+// IntersectionObserver
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if(e.isIntersecting && e.intersectionRatio > 0.5) {
@@ -599,13 +457,10 @@ const obs = new IntersectionObserver((entries) => {
 }, {threshold:0.5});
 slides.forEach(s => obs.observe(s));
 
-// Keyboard navigation
+// Keyboard
 document.addEventListener('keydown', e => {
-  if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-    e.preventDefault(); go(1);
-  } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-    e.preventDefault(); go(-1);
-  }
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+  else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
 });
 
 // Touch swipe
@@ -616,7 +471,6 @@ document.addEventListener('touchend', e => {
   if(Math.abs(dy) > 50) go(dy > 0 ? 1 : -1);
 });
 
-// Init first slide
 updateActive();
 </script>
 </body>
