@@ -130,6 +130,21 @@ strong{color:var(--text)}
 
 .footer-rule{width:28px;height:2px;background:var(--accent);margin:0 auto clamp(12px,2vh,24px)}
 
+/* N8N WORKFLOW STRIPS */
+.wf-list{display:flex;flex-direction:column;gap:clamp(3px,0.6vh,5px);margin:clamp(4px,1vh,8px) 0}
+.wf-row{display:flex;align-items:center;gap:6px;padding:clamp(5px,0.8vh,8px) clamp(8px,1vw,10px);background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.wf-row .wf-name{font-family:var(--font-mono);font-size:clamp(9px,0.8vw,10px);font-weight:600;color:var(--text);min-width:clamp(70px,10vw,90px);white-space:nowrap}
+.wf-row .wf-cron{font-size:clamp(7px,0.65vw,8px);color:var(--text-3);font-family:var(--font-mono);background:var(--bg-alt);padding:1px 5px;border-radius:3px;min-width:70px;text-align:center}
+.wf-row .wf-nodes{display:flex;align-items:center;gap:1px;flex:1;overflow-x:auto}
+.wf-n{display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:3px;font-family:var(--font-mono);font-size:8px;font-weight:500;white-space:nowrap}
+.wf-n .n-emoji{font-size:10px}
+.wf-n.nt{background:rgba(217,119,6,0.1);color:#b45309;border:1px solid rgba(217,119,6,0.2)}
+.wf-n.na{background:rgba(13,148,136,0.08);color:#0f766e;border:1px solid rgba(13,148,136,0.15)}
+.wf-n.nc{background:rgba(107,114,128,0.08);color:#4b5563;border:1px solid rgba(107,114,128,0.15)}
+.wf-n.nh{background:rgba(59,130,246,0.08);color:#2563eb;border:1px solid rgba(59,130,246,0.15)}
+.wf-n.nf{background:rgba(107,114,128,0.06);color:var(--text-2);border:1px solid var(--border)}
+.wf-arr{color:var(--text-3);font-size:10px;padding:0 1px;user-select:none}
+
 /* RESPONSIVE */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
 @media(max-height:600px){.slide-content{padding:clamp(0.5rem,2vw,1.2rem) clamp(0.8rem,3vw,2rem)}.card,.pc-col{padding:8px 10px}}
@@ -145,7 +160,8 @@ strong{color:var(--text)}
   <span class="nav-dot" data-slide="1"><span class="nav-tooltip">Context &amp; Paths</span></span>
   <span class="nav-dot" data-slide="2"><span class="nav-tooltip">Capability Boundaries</span></span>
   <span class="nav-dot" data-slide="3"><span class="nav-tooltip">Composition &amp; Scenarios</span></span>
-  <span class="nav-dot" data-slide="4"><span class="nav-tooltip">Case: PPT</span></span>
+  <span class="nav-dot" data-slide="4"><span class="nav-tooltip">n8n Live · 5 Workflows</span></span>
+  <span class="nav-dot" data-slide="5"><span class="nav-tooltip">Case: PPT</span></span>
   <span class="nav-dot" data-slide="5"><span class="nav-tooltip">Case: Knowledge</span></span>
   <span class="nav-dot" data-slide="6"><span class="nav-tooltip">Case: Video</span></span>
   <span class="nav-dot" data-slide="7"><span class="nav-tooltip">How I Built It</span></span>
@@ -246,6 +262,81 @@ strong{color:var(--text)}
         <tr><td>"Video: idea → script → generate → publish"</td><td><span class="tag tn">n8n</span> + <span class="tag ta">Agent</span> + <span class="tag ts">Skill</span> — all three</td></tr>
         <tr><td>"Sync data between Airtable and Feishu"</td><td><span class="tag tn">n8n</span> — pure state sync, no AI needed</td></tr>
       </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4.5 N8N LIVE ===== -->
+<section class="slide" id="s4a">
+  <div class="slide-content">
+    <div class="slide-label reveal">03.5 · Live Demo</div>
+    <h2 class="slide-title reveal d1">My n8n — 5 Workflows Running <em>Right Now</em></h2>
+    <p class="slide-subtitle reveal d2">Not mockups. Not plans. These are <strong>actually deployed</strong> on my Mac mini (n8n 2.18.4), each with its own cron schedule, connected to Airtable + Feishu + GitHub + YouTube APIs.</p>
+
+    <div class="wf-list reveal d2">
+      <!-- 01 -->
+      <div class="wf-row">
+        <span class="wf-name">01 逾期提醒</span>
+        <span class="wf-cron">*/30min 8-23</span>
+        <span class="wf-nodes">
+          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
+          <span class="wf-n na">📋 Airtable</span><span class="wf-arr">→</span>
+          <span class="wf-n nc">📝 Aggregate</span><span class="wf-arr">→</span>
+          <span class="wf-n nf">📤 飞书</span>
+        </span>
+      </div>
+      <!-- 02 -->
+      <div class="wf-row">
+        <span class="wf-name">02 EOD 日报</span>
+        <span class="wf-cron">每日 22:00</span>
+        <span class="wf-nodes">
+          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
+          <span class="wf-n na">📋 Airtable</span><span class="wf-arr">→</span>
+          <span class="wf-n nc">📝 5-block</span><span class="wf-arr">→</span>
+          <span class="wf-n nf">📤 飞书</span>
+        </span>
+      </div>
+      <!-- 03 -->
+      <div class="wf-row">
+        <span class="wf-name">03 Dashboard</span>
+        <span class="wf-cron">每2h + Webhook</span>
+        <span class="wf-nodes">
+          <span class="wf-n nt"><span class="n-emoji">🔗</span>Webhook</span><span class="wf-arr">→</span>
+          <span class="wf-n na">📋 Airtable</span><span class="wf-arr">→</span>
+          <span class="wf-n nc">🔄 Tag+Write</span><span class="wf-arr">→</span>
+          <span class="wf-n nf">📊 HTML</span>
+        </span>
+      </div>
+      <!-- 04 -->
+      <div class="wf-row">
+        <span class="wf-name">04 CS25 监控</span>
+        <span class="wf-cron">每周五 08:00</span>
+        <span class="wf-nodes">
+          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
+          <span class="wf-n nh">🌐 YouTube RSS</span><span class="wf-arr">→</span>
+          <span class="wf-n nc">📝 Diff</span><span class="wf-arr">→</span>
+          <span class="wf-n nf">📤 飞书</span>
+        </span>
+      </div>
+      <!-- 05 -->
+      <div class="wf-row">
+        <span class="wf-name">05 分享追踪</span>
+        <span class="wf-cron">每日 09:00+18:00</span>
+        <span class="wf-nodes">
+          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
+          <span class="wf-n nh">🌐 GitHub API</span><span class="wf-arr">→</span>
+          <span class="wf-n nc">📝 Diff+倒计时</span><span class="wf-arr">→</span>
+          <span class="wf-n nf">📤 飞书</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="callout reveal d3">
+      <div class="cl">Vibe Design</div>
+      <p>每个 workflow 都有一个「中间可调」层 — 直接在 n8n UI 拖拽改触发时间、消息模板、筛选条件。两端（Trigger + Push）不动。这就是 <strong>Agent 设计，人调中间</strong>。</p>
+    </div>
+    <div class="reveal d4" style="text-align:center;margin-top:clamp(4px,1vh,8px);font-family:var(--font-mono);font-size:9px;color:var(--text-3)">
+      localhost:5678 · n8n 2.18.4 · Mac mini · Airtable · 飞书 · GitHub · YouTube
     </div>
   </div>
 </section>
