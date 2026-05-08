@@ -37,6 +37,82 @@ body {
   --max-w: 960px;
 }
 
+/* ========== N8N WORKFLOW DIAGRAMS ========== */
+.n8n-demo { background: linear-gradient(180deg, #fafaf7 0%, #f5f5f5 100%); }
+.n8n-wf-grid { display: flex; flex-direction: column; gap: 20px; margin-top: 2rem; }
+.n8n-wf-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s;
+}
+.n8n-wf-card:hover { box-shadow: var(--card-shadow-hover); }
+.n8n-wf-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+  font-size: 14px; font-weight: 700;
+}
+.n8n-wf-header .wf-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  background: var(--n8n); color: #fff;
+  font-size: 12px; font-weight: 800;
+}
+.n8n-wf-header .wf-trigger {
+  font-size: 11px; color: #999; font-weight: 400;
+  margin-left: auto;
+  background: #f5f5f5; padding: 2px 8px; border-radius: 4px;
+}
+.n8n-wf-flow {
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+.n8n-node {
+  display: flex; flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 14px;
+  min-width: 90px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  position: relative;
+  flex-shrink: 0;
+}
+.n8n-node .n8n-icon { font-size: 16px; margin-bottom: 2px; }
+.n8n-node .n8n-label { color: #333; text-align: center; }
+.n8n-node .n8n-sub { font-size: 9px; color: #aaa; font-weight: 400; margin-top: 1px; }
+.n8n-node.n-trigger { border-color: var(--agent); background: #fef4ea; }
+.n8n-node.n-trigger .n8n-label { color: #c05a10; }
+.n8n-node.n-airtable { border-color: #4a9; background: #e8faf3; }
+.n8n-node.n-airtable .n8n-label { color: #267a55; }
+.n8n-node.n-http { border-color: #69b; background: #e8f2fa; }
+.n8n-node.n-http .n8n-label { color: #3a5f8a; }
+.n8n-node.n-code { border-color: #a7c; background: #f4ecfa; }
+.n8n-node.n-code .n8n-label { color: #6a3d99; }
+.n8n-node.n-send { border-color: var(--n8n); background: var(--n8n-light); }
+.n8n-node.n-send .n8n-label { color: #333; }
+.n8n-node.n-write { border-color: #888; background: #f0f0f0; }
+.n8n-node.n-write .n8n-label { color: #444; }
+.n8n-wf-arrow {
+  display: flex; align-items: center;
+  color: #ccc;
+  font-size: 18px;
+  padding: 0 2px;
+  flex-shrink: 0;
+}
+.n8n-wf-arrow::after { content: '→'; }
+.n8n-demo-foot {
+  text-align: center; margin-top: 1.5rem;
+  font-size: 13px; color: #888;
+}
+
 /* ========== SECTIONS ========== */
 .section {
   padding: var(--section-pad);
@@ -961,6 +1037,105 @@ code {
 
     <div class="insight-box" style="margin-top:2.5rem;">
       <strong>💡 这些案例的共同点：</strong>都不是"人做一步、AI 帮一步"。而是<strong>人定义目标，系统自动完成全过程</strong>。这不是 Copilot 帮你写一行代码——这是系统帮你完成整个任务。区别在于：<strong>你在指挥一个人，而不是使用一个工具</strong>。
+    </div>
+  </div>
+</section>
+
+<!-- ========== 👆 N8N LIVE — 5 个正在运行的自动化管线 ========== -->
+<section class="section n8n-demo">
+  <div class="section-inner">
+    <h2 class="section-title"><span class="num">👆</span> n8n 实战 — 5 条自动化管线</h2>
+    <p class="section-subtitle">不是截图，不是 demo——这 5 条管线正在 Mac mini 上以 2.18.4 运行，每一条都是真的。</p>
+
+    <div class="n8n-wf-grid">
+      <!-- WF 01 -->
+      <div class="n8n-wf-card">
+        <div class="n8n-wf-header">
+          <span class="wf-num">01</span> 逾期任务 → 飞书提醒
+          <span class="wf-trigger">⏰ 每30分钟</span>
+        </div>
+        <div class="n8n-wf-flow">
+          <div class="n8n-node n-trigger"><span class="n8n-icon">⏰</span><span class="n8n-label">Schedule</span><span class="n8n-sub">*/30 8-23h</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-airtable"><span class="n8n-icon">📋</span><span class="n8n-label">Airtable</span><span class="n8n-sub">查逾期任务</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-code"><span class="n8n-icon">📝</span><span class="n8n-label">Code</span><span class="n8n-sub">聚合消息</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-send"><span class="n8n-icon">📤</span><span class="n8n-label">飞书推送</span><span class="n8n-sub">有逾期才发</span></div>
+        </div>
+      </div>
+
+      <!-- WF 02 -->
+      <div class="n8n-wf-card">
+        <div class="n8n-wf-header">
+          <span class="wf-num">02</span> EOD 日报 → 飞书
+          <span class="wf-trigger">⏰ 每日 22:00</span>
+        </div>
+        <div class="n8n-wf-flow">
+          <div class="n8n-node n-trigger"><span class="n8n-icon">⏰</span><span class="n8n-label">Schedule</span><span class="n8n-sub">0 22 * * *</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-airtable"><span class="n8n-icon">📋</span><span class="n8n-label">Airtable</span><span class="n8n-sub">拉活跃任务</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-code"><span class="n8n-icon">📝</span><span class="n8n-label">Code</span><span class="n8n-sub">5块聚合</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-send"><span class="n8n-icon">📤</span><span class="n8n-label">飞书推送</span><span class="n8n-sub">Done/Doing/Blocked</span></div>
+        </div>
+      </div>
+
+      <!-- WF 03 -->
+      <div class="n8n-wf-card">
+        <div class="n8n-wf-header">
+          <span class="wf-num">03</span> Dashboard 同步管线
+          <span class="wf-trigger">⏰ 每2h + 🔗 Webhook</span>
+        </div>
+        <div class="n8n-wf-flow">
+          <div class="n8n-node n-trigger"><span class="n8n-icon">🔗</span><span class="n8n-label">Webhook</span><span class="n8n-sub">手动触发</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-airtable"><span class="n8n-icon">📋</span><span class="n8n-label">Airtable</span><span class="n8n-sub">全量拉取</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-code"><span class="n8n-icon">🔄</span><span class="n8n-label">Code</span><span class="n8n-sub">分类+写HTML</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-write"><span class="n8n-icon">📊</span><span class="n8n-label">Dashboard</span><span class="n8n-sub">159条任务</span></div>
+        </div>
+      </div>
+
+      <!-- WF 05 -->
+      <div class="n8n-wf-card">
+        <div class="n8n-wf-header">
+          <span class="wf-num">04</span> Stanford CS25 课程监控
+          <span class="wf-trigger">⏰ 每周五 08:00</span>
+        </div>
+        <div class="n8n-wf-flow">
+          <div class="n8n-node n-trigger"><span class="n8n-icon">⏰</span><span class="n8n-label">Schedule</span><span class="n8n-sub">0 8 * * 5</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-http"><span class="n8n-icon">🌐</span><span class="n8n-label">HTTP</span><span class="n8n-sub">YouTube RSS</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-code"><span class="n8n-icon">📝</span><span class="n8n-label">Code</span><span class="n8n-sub">XML解析+Diff</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-send"><span class="n8n-icon">📤</span><span class="n8n-label">飞书推送</span><span class="n8n-sub">有新讲座才发</span></div>
+        </div>
+      </div>
+
+      <!-- WF 06 -->
+      <div class="n8n-wf-card">
+        <div class="n8n-wf-header">
+          <span class="wf-num">05</span> 分享准备追踪
+          <span class="wf-trigger">⏰ 每日 09:00+18:00</span>
+        </div>
+        <div class="n8n-wf-flow">
+          <div class="n8n-node n-trigger"><span class="n8n-icon">⏰</span><span class="n8n-label">Schedule</span><span class="n8n-sub">0 9,18 * * *</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-http"><span class="n8n-icon">🌐</span><span class="n8n-label">HTTP</span><span class="n8n-sub">GitHub API</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-code"><span class="n8n-icon">📝</span><span class="n8n-label">Code</span><span class="n8n-sub">Diff+倒计时</span></div>
+          <span class="n8n-wf-arrow"></span>
+          <div class="n8n-node n-send"><span class="n8n-icon">📤</span><span class="n8n-label">飞书推送</span><span class="n8n-sub">有变化才发</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="n8n-demo-foot">
+      💡 每个 workflow 都有一个「中间可调」层 — 你可以直接打开 n8n UI 拖拽改触发时间、消息模板、筛选条件，两端（触发+推送）不用动。这就是 <strong>Vibe Design</strong> — Agent 设计 workflow，人操作中间部分。
     </div>
   </div>
 </section>
