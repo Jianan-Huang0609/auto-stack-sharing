@@ -160,14 +160,48 @@ strong{color:var(--text)}
 .lang-toggle button:hover{color:var(--text)}
 .slide[data-lang]{transition:opacity .2s}
 
+
+/* TAB CARDS (s2 pipeline tabs) */
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:clamp(8px,1.5vh,14px)}
+.tab-btn{font-family:var(--font-mono);font-size:clamp(9px,0.85vw,11px);font-weight:500;padding:6px 14px;color:var(--text-3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .15s}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+.tab-btn:hover{color:var(--text)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.pipeline-card{display:flex;gap:clamp(10px,1.5vw,16px);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:clamp(10px,1.5vh,16px) clamp(12px,1.5vw,18px);margin-bottom:clamp(6px,1vh,10px);align-items:stretch}
+.pipeline-card .pc-left{flex:1;min-width:0}
+.pipeline-card .pc-right{width:clamp(120px,18vw,220px);flex-shrink:0}
+.pipeline-card h4{font-size:clamp(11px,1.1vw,13px);font-weight:700;margin-bottom:4px}
+.pipeline-card .pc-desc{font-size:clamp(9px,0.85vw,11px);color:var(--text-2);line-height:1.45;margin-bottom:6px}
+.pipeline-card .pc-tags{display:flex;gap:4px;flex-wrap:wrap}
+
+/* MEDIA PLACEHOLDER */
+.media-slot{border:2px dashed var(--border-strong);border-radius:6px;overflow:hidden;position:relative;background:var(--bg-alt);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+.media-slot img,.media-slot video{width:100%;height:100%;object-fit:cover;border-radius:4px}
+.media-slot .media-placeholder{font-family:var(--font-mono);font-size:clamp(8px,0.75vw,10px);color:var(--text-3);text-align:center;padding:8px}
+.media-slot .media-placeholder .mp-icon{font-size:clamp(16px,2vw,24px);margin-bottom:4px;display:block}
+
+/* MUSCLE CARDS (s3 expanded) */
+.muscle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1vw,12px);margin-bottom:clamp(8px,1.5vh,12px)}
+.muscle-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.muscle-card .mc-media{aspect-ratio:16/9;background:var(--bg-alt);position:relative;overflow:hidden}
+.muscle-card .mc-media img,.muscle-card .mc-media video{width:100%;height:100%;object-fit:cover}
+.muscle-card .mc-media .media-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:clamp(8px,0.7vw,9px);color:var(--text-3);text-align:center;padding:6px}
+.muscle-card .mc-media .media-placeholder .mp-icon{font-size:clamp(14px,1.8vw,20px);margin-bottom:2px;display:block}
+.muscle-card .mc-body{padding:clamp(8px,1.2vh,14px) clamp(8px,1vw,12px)}
+.muscle-card h4{font-size:clamp(10px,1vw,12px);font-weight:700;margin-bottom:3px}
+.muscle-card .mc-stat{font-family:var(--font-mono);font-size:clamp(14px,1.8vw,20px);font-weight:500;color:var(--accent);line-height:1.1}
+.muscle-card .mc-desc{font-size:clamp(8px,0.8vw,10px);color:var(--text-2);line-height:1.4;margin-top:4px}
+.muscle-card.agent{border-top:2px solid var(--agent)}
+.muscle-card.n8n{border-top:2px solid var(--n8n)}
+.muscle-card.skill{border-top:2px solid var(--skill)}
+
 /* RESPONSIVE */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
 @media(max-height:600px){.slide-content{padding:clamp(0.5rem,2vw,1.2rem) clamp(0.8rem,3vw,2rem)}.card,.pc-col{padding:8px 10px}}
-@media(max-width:700px){.procon-3,.res-grid{grid-template-columns:1fr}.int-diag{flex-direction:column}.int-arrow{transform:rotate(90deg)}.card-row{flex-direction:column}}
-
-
-
-</style>
+@media(max-width:700px){.procon-3,.res-grid{grid-template-columns:1fr}.int-diag{flex-direction:column}.int-arrow{transform:rotate(90deg)}.card-row{flex-direction:column}
+@media(max-width:700px){.muscle-grid{grid-template-columns:1fr 1fr}.pipeline-card{flex-direction:column}.pipeline-card .pc-right{width:100%}}
+}</style>
 </head>
 <body>
 
@@ -230,65 +264,94 @@ strong{color:var(--text)}
 <section class="slide slide-n8n" id="z2" data-lang="zh">
   <div class="slide-content">
     <div class="slide-label reveal">01 · Live Demo</div>
-    <h2 class="slide-title reveal d1">n8n — 5 条管线<em>正在运行</em></h2>
-    <p class="slide-subtitle reveal d2">部署在 Mac mini · n8n 2.18.4 · Airtable + 飞书 + GitHub + YouTube APIs。<strong>配置完后再无人工操作。</strong></p>
+    <h2 class="slide-title reveal d1">管线正在跑 — 不只是我的，也可以是你的</h2>
+    <p class="slide-subtitle reveal d2">n8n 2.18.4 · Mac mini 自托管 · Airtable + 飞书 + GitHub + YouTube。<strong>以下是我跑的 + 通用场景，都有截图。</strong></p>
 
-    <div class="wf-list reveal d2">
-      <div class="wf-row">
-        <span class="wf-name">01 逾期提醒</span>
-        <span class="wf-cron">每30分钟</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n na"><span class="n-emoji">📋</span>Airtable</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>Aggregate</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>飞书 Push</span>
-        </span>
+    <div class="tab-bar reveal d2">
+      <button class="tab-btn active" data-group="pipe" onclick="switchTab(this,'pipe','zh-my')">我的管线</button>
+      <button class="tab-btn" data-group="pipe" onclick="switchTab(this,'pipe','zh-common')">通用场景</button>
+      <button class="tab-btn" data-group="pipe" onclick="switchTab(this,'pipe','zh-dify')">Dify + RAG</button>
+    </div>
+
+    <div id="zh-my" class="tab-panel active" data-group="pipe">
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>01 逾期提醒</h4>
+          <div class="pc-desc">每 30 分钟扫描 Airtable → 筛选 Deadline 已过 + State≠Done → 聚合成摘要 → 飞书群推送</div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag ta">Airtable</span><span class="tag ts">飞书</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>逾期提醒 n8n 截图</div></div></div>
       </div>
-      <div class="wf-row">
-        <span class="wf-name">02 EOD 日报</span>
-        <span class="wf-cron">每日 22:00</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n na"><span class="n-emoji">📋</span>Airtable</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>5-Block</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>飞书 Digest</span>
-        </span>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>02 EOD 日报</h4>
+          <div class="pc-desc">每日 22:00 拉取当天 Done/Blocked 任务 → 5-Block 模板 → 飞书群 Digest</div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag ta">Airtable</span><span class="tag ts">飞书</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>EOD 日报 n8n 截图</div></div></div>
       </div>
-      <div class="wf-row">
-        <span class="wf-name">03 Dashboard</span>
-        <span class="wf-cron">每2h + Webhook</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">🔗</span>Webhook</span><span class="wf-arr">→</span>
-          <span class="wf-n na"><span class="n-emoji">📋</span>Airtable</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">🔄</span>Tag+Write</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📊</span>HTML Live</span>
-        </span>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>03 Dashboard 同步</h4>
+          <div class="pc-desc">Webhook + 每 2h → 拉取任务+日历+线程数据 → 生成 HTML → 8080 端口实时看板</div>
+          <div class="pc-tags"><span class="tag tn">Webhook</span><span class="tag ta">Airtable</span><span class="tag ts">HTML</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Dashboard 截图</div></div></div>
       </div>
-      <div class="wf-row">
-        <span class="wf-name">04 CS25 监控</span>
-        <span class="wf-cron">每周五 08:00</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n nh"><span class="n-emoji">🌐</span>YouTube RSS</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>Diff</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>飞书 Alert</span>
-        </span>
-      </div>
-      <div class="wf-row">
-        <span class="wf-name">05 分享追踪</span>
-        <span class="wf-cron">每日 09+18:00</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n nh"><span class="n-emoji">🌐</span>GitHub API</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>Diff+倒计时</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>飞书 Reminder</span>
-        </span>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>04 CS25 监控 + 05 分享追踪</h4>
+          <div class="pc-desc">YouTube RSS diff 新讲座 → 推送 · GitHub API diff commit → 倒计时提醒</div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag tn">HTTP</span><span class="tag ts">飞书</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>CS25 + 分享追踪截图</div></div></div>
       </div>
     </div>
 
-    <div class="callout reveal d3" style="flex-shrink:0">
-      <div class="cl">制作方式</div>
-      <p>每条管线 = 一个 <strong>JSON 文件</strong> → 导入 n8n。<strong>中间节点</strong>（消息格式、筛选条件、分类规则）在 n8n UI 里直接拖拽修改，不用写代码。这就是 <strong>Vibe Design</strong>：Agent 设计骨架，人调中间。</p>
+    <div id="zh-common" class="tab-panel" data-group="pipe">
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>📰 每日信息抓取</h4>
+          <div class="pc-desc">定时爬 HackerNews / Reddit / RSS → AI 摘要 → 推送到飞书/Slack。<strong>适合：信息焦虑者、团队晨报</strong></div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag tn">HTTP</span><span class="tag ta">LLM</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>信息抓取效果截图</div></div></div>
+      </div>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>📁 周报自动整合</h4>
+          <div class="pc-desc">扫描 Git commits + Jira 状态 + 飞书文档 → LLM 生成周报草稿 → 人工一审定稿。<strong>适合：每周写周报的人</strong></div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag ta">LLM</span><span class="tag ts">飞书</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>周报效果截图</div></div></div>
+      </div>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>🔔 监控 + 告警</h4>
+          <div class="pc-desc">定时 ping API / 检查 DB 指标 → 异常阈值 → 即时推送。<strong>适合：没有 DevOps 团队的小团队</strong></div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag tn">HTTP</span><span class="tag ts">Webhook</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>监控告警截图</div></div></div>
+      </div>
+    </div>
+
+    <div id="zh-dify" class="tab-panel" data-group="pipe">
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>🤖 Dify 小 RAG：团队知识库问答</h4>
+          <div class="pc-desc">上传团队文档 (wiki/规范/FAQ) → Dify 向量化 → 自然语言问答。<strong>30 分钟搭建，适合：新人 onboarding、产品 FAQ</strong></div>
+          <div class="pc-tags"><span class="tag tn">Dify</span><span class="tag ta">RAG</span><span class="tag ts">Vector</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Dify RAG 截图</div></div></div>
+      </div>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>📋 Dify 审批流：合同/报销自动流转</h4>
+          <div class="pc-desc">表单提交 → AI 预审分类 → 人工审批节点 → 通过后自动推送到财务/HR 系统。<strong>适合：有审批流程的团队</strong></div>
+          <div class="pc-tags"><span class="tag tn">Dify</span><span class="tag ta">Approval</span><span class="tag ts">Webhook</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>审批流截图</div></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -297,65 +360,94 @@ strong{color:var(--text)}
 <section class="slide slide-n8n" id="e2" data-lang="en">
   <div class="slide-content">
     <div class="slide-label reveal">01 · Live Demo</div>
-    <h2 class="slide-title reveal d1">n8n — 5 Workflows Running <em>Right Now</em></h2>
-    <p class="slide-subtitle reveal d2">Deployed on Mac mini · n8n 2.18.4 · Airtable + Feishu + GitHub + YouTube APIs. <strong>Zero UI clicks after setup.</strong></p>
+    <h2 class="slide-title reveal d1">Pipelines Running Now — Mine &amp; Yours</h2>
+    <p class="slide-subtitle reveal d2">n8n 2.18.4 · Mac mini self-hosted · Airtable + Feishu + GitHub + YouTube. <strong>My pipelines + universal patterns, with screenshots.</strong></p>
 
-    <div class="wf-list reveal d2">
-      <div class="wf-row">
-        <span class="wf-name">01 Overdue</span>
-        <span class="wf-cron">Every 30min</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n na"><span class="n-emoji">📋</span>Airtable</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>Aggregate</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>Feishu Push</span>
-        </span>
+    <div class="tab-bar reveal d2">
+      <button class="tab-btn active" data-group="pipe-en" onclick="switchTab(this,'pipe-en','en-my')">My Pipelines</button>
+      <button class="tab-btn" data-group="pipe-en" onclick="switchTab(this,'pipe-en','en-common')">Universal</button>
+      <button class="tab-btn" data-group="pipe-en" onclick="switchTab(this,'pipe-en','en-dify')">Dify + RAG</button>
+    </div>
+
+    <div id="en-my" class="tab-panel active" data-group="pipe-en">
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>01 Overdue Reminder</h4>
+          <div class="pc-desc">Every 30min: scan Airtable → filter overdue + not-done → aggregate → Feishu push</div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag ta">Airtable</span><span class="tag ts">Feishu</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Overdue n8n screenshot</div></div></div>
       </div>
-      <div class="wf-row">
-        <span class="wf-name">02 EOD Digest</span>
-        <span class="wf-cron">Daily 22:00</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n na"><span class="n-emoji">📋</span>Airtable</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>5-Block</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>Feishu Digest</span>
-        </span>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>02 EOD Digest</h4>
+          <div class="pc-desc">Daily 22:00: pull today's Done/Blocked → 5-block template → Feishu digest</div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag ta">Airtable</span><span class="tag ts">Feishu</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>EOD n8n screenshot</div></div></div>
       </div>
-      <div class="wf-row">
-        <span class="wf-name">03 Dashboard</span>
-        <span class="wf-cron">Every 2h + Webhook</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">🔗</span>Webhook</span><span class="wf-arr">→</span>
-          <span class="wf-n na"><span class="n-emoji">📋</span>Airtable</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">🔄</span>Tag+Write</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📊</span>HTML Live</span>
-        </span>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>03 Dashboard Sync</h4>
+          <div class="pc-desc">Webhook + every 2h: pull tasks/calendar/threads → generate HTML → live on port 8080</div>
+          <div class="pc-tags"><span class="tag tn">Webhook</span><span class="tag ta">Airtable</span><span class="tag ts">HTML</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Dashboard screenshot</div></div></div>
       </div>
-      <div class="wf-row">
-        <span class="wf-name">04 CS25 Monitor</span>
-        <span class="wf-cron">Fri 08:00 weekly</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n nh"><span class="n-emoji">🌐</span>YouTube RSS</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>Diff</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>Feishu Alert</span>
-        </span>
-      </div>
-      <div class="wf-row">
-        <span class="wf-name">05 Sharing Tracker</span>
-        <span class="wf-cron">Daily 09:00+18:00</span>
-        <span class="wf-nodes">
-          <span class="wf-n nt"><span class="n-emoji">⏰</span>Schedule</span><span class="wf-arr">→</span>
-          <span class="wf-n nh"><span class="n-emoji">🌐</span>GitHub API</span><span class="wf-arr">→</span>
-          <span class="wf-n nc"><span class="n-emoji">📝</span>Diff+Countdown</span><span class="wf-arr">→</span>
-          <span class="wf-n nf"><span class="n-emoji">📤</span>Feishu Reminder</span>
-        </span>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>04 CS25 Monitor + 05 Sharing Tracker</h4>
+          <div class="pc-desc">YouTube RSS diff → push new lectures · GitHub API diff → countdown reminders</div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag tn">HTTP</span><span class="tag ts">Feishu</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>CS25 + Tracker screenshot</div></div></div>
       </div>
     </div>
 
-    <div class="callout reveal d3" style="flex-shrink:0">
-      <div class="cl">How I Built It</div>
-      <p>Each workflow = a <strong>JSON file</strong> → imported into n8n. The <strong>middle nodes</strong> (message format, filter rules, tag logic) are editable in the n8n UI — no code needed. This is <strong>Vibe Design</strong>: Agent designs the skeleton, human tweaks the middle.</p>
+    <div id="en-common" class="tab-panel" data-group="pipe-en">
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>📰 Daily Info Digest</h4>
+          <div class="pc-desc">Scrape HackerNews / Reddit / RSS → AI summary → push to Slack/Feishu. <strong>For: info-overloaded teams</strong></div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag tn">HTTP</span><span class="tag ta">LLM</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Info digest screenshot</div></div></div>
+      </div>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>📁 Auto Weekly Report</h4>
+          <div class="pc-desc">Scan Git commits + Jira + docs → LLM draft → human review. <strong>For: anyone who writes weekly reports</strong></div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag ta">LLM</span><span class="tag ts">Feishu</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Weekly report screenshot</div></div></div>
+      </div>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>🔔 Monitoring + Alerts</h4>
+          <div class="pc-desc">Ping APIs / check DB metrics → threshold alert → instant push. <strong>For: small teams without DevOps</strong></div>
+          <div class="pc-tags"><span class="tag tn">Schedule</span><span class="tag tn">HTTP</span><span class="tag ts">Webhook</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Monitoring screenshot</div></div></div>
+      </div>
+    </div>
+
+    <div id="en-dify" class="tab-panel" data-group="pipe-en">
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>🤖 Dify Mini RAG: Team Knowledge Q&A</h4>
+          <div class="pc-desc">Upload docs → Dify vectorizes → natural language Q&A. <strong>30 min setup. For: onboarding, product FAQ</strong></div>
+          <div class="pc-tags"><span class="tag tn">Dify</span><span class="tag ta">RAG</span><span class="tag ts">Vector</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Dify RAG screenshot</div></div></div>
+      </div>
+      <div class="pipeline-card">
+        <div class="pc-left">
+          <h4>📋 Dify Approval Flow</h4>
+          <div class="pc-desc">Form → AI pre-review → human approval → auto-push to finance/HR. <strong>For: teams with approval workflows</strong></div>
+          <div class="pc-tags"><span class="tag tn">Dify</span><span class="tag ta">Approval</span><span class="tag ts">Webhook</span></div>
+        </div>
+        <div class="pc-right"><div class="media-slot"><div class="media-placeholder"><span class="mp-icon">📸</span>Approval flow screenshot</div></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -364,26 +456,38 @@ strong{color:var(--text)}
 <section class="slide" id="z3" data-lang="zh">
   <div class="slide-content">
     <div class="slide-label reveal">02 · Real Impact</div>
-    <h2 class="slide-title reveal d1">3 件纯管道做不到的事</h2>
-    <p class="slide-subtitle reveal d2">n8n 只是第一层。加上 Skill 和 Agent 层，解锁了纯自动化触碰不到的能力。</p>
+    <h2 class="slide-title reveal d1">六件纯管线做不到的事</h2>
+    <p class="slide-subtitle reveal d2">n8n 只是第一层。加上 Skill 和 Agent 层，解锁确定性管道触碰不到的能力。<strong>每个都有真实产出。</strong></p>
 
-    <div class="card-row reveal d2">
-      <div class="card agent">
-        <h4>⚡ 21 秒：消息→可运行代码</h4>
-        <div class="cd">"写一个 Python CLI 工具" → MAE 路由到 Codex CLI → 21 秒后 <code>hello.py</code> 已生成，带 argparse、类型注解、docstring。直接可运行。</div>
+    <div class="muscle-grid reveal d2">
+      <div class="muscle-card agent">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">💻</span>21s 代码生成录屏</div></div>
+        <div class="mc-body"><div class="mc-stat">21s</div><h4>消息→可运行代码</h4><div class="mc-desc">Copilot + SKILL.md，从一句话到带类型注解的可运行 Python 脚本</div></div>
       </div>
-      <div class="card n8n">
-        <h4>🎬 37 秒：零人工视频生产</h4>
-        <div class="cd">选题 → GLM 写脚本 → edge-tts 配音 → ffmpeg 合成 → whisper-cpp 自动字幕。<strong>全程无人触碰，1080p 成品。</strong></div>
+      <div class="muscle-card n8n">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">🎬</span>37s 视频生成录屏</div></div>
+        <div class="mc-body"><div class="mc-stat">37s</div><h4>零人工视频生产</h4><div class="mc-desc">选题→脚本→配音→合成→字幕，全程无人触碰，1080p 成品</div></div>
       </div>
-      <div class="card skill">
-        <h4>🧠 Gbrain：AI 信息雷达</h4>
-        <div class="cd">24/7 扫描 GitHub Trending + RSS + YouTube → 对照我的画像打分 → 每天推送 3 条高信号内容。零噪音。</div>
+      <div class="muscle-card skill">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">📊</span>PPT 生成效果截图</div></div>
+        <div class="mc-body"><div class="mc-stat">PPT</div><h4>一句话→完整演示文稿</h4><div class="mc-desc">Skill 编码审美规则 + 模板，30 秒生成可直接宣讲的 slide deck</div></div>
+      </div>
+      <div class="muscle-card agent">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">📝</span>研究报告截图</div></div>
+        <div class="mc-body"><div class="mc-stat">Report</div><h4>深度研究报告</h4><div class="mc-desc">Agent 多步搜索→结构化分析→Skill 排版，输出可交付的研究文档</div></div>
+      </div>
+      <div class="muscle-card skill">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">🔄</span>GitHub repo 截图</div></div>
+        <div class="mc-body"><div class="mc-stat">Repo</div><h4>需求→GitHub 仓库</h4><div class="mc-desc">描述需求→Agent 生成项目骨架→自动创建 repo+README+CI 配置</div></div>
+      </div>
+      <div class="muscle-card skill">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">🧠</span>Gbrain 推送截图</div></div>
+        <div class="mc-body"><div class="mc-stat">24/7</div><h4>Gbrain 信息雷达</h4><div class="mc-desc">扫描 GitHub Trending+RSS+YouTube → 画像打分 → 每日推送 3 条高信号内容</div></div>
       </div>
     </div>
 
-    <div class="callout reveal d3" style="margin-top:clamp(10px,2vh,16px)">
-      <div class="cl">三个案例背后的共同模式</div><p><strong>n8n 触发 → Agent 决策 → Skill 生产 → n8n 交付。</strong>同一套编排逻辑，不同的输出形态。这不是三个独立工具，是一个分层系统。</p>
+    <div class="callout reveal d3">
+      <div class="cl">共同模式</div><p><strong>n8n 触发 → Agent 决策 → Skill 生产 → n8n 交付。</strong>同一套编排逻辑，不同的输出形态。三层协作 > 单层硬干。</p>
     </div>
   </div>
 </section>
@@ -392,26 +496,38 @@ strong{color:var(--text)}
 <section class="slide" id="e3" data-lang="en">
   <div class="slide-content">
     <div class="slide-label reveal">02 · Real Impact</div>
-    <h2 class="slide-title reveal d1">3 Things Pure Pipelines Can't Do</h2>
-    <p class="slide-subtitle reveal d2">n8n is layer one. Add Skill + Agent layers to unlock capabilities automation alone can't touch.</p>
+    <h2 class="slide-title reveal d1">6 Things Pure Pipelines Can't Do</h2>
+    <p class="slide-subtitle reveal d2">n8n is layer one. Add Skill + Agent layers to unlock capabilities automation alone can't touch. <strong>Each one has real output.</strong></p>
 
-    <div class="card-row reveal d2">
-      <div class="card agent">
-        <h4>⚡ 21s: Message → Runnable Code</h4>
-        <div class="cd">"Write a Python CLI tool" → MAE routes to Codex CLI → 21 seconds: <code>hello.py</code> with argparse, type annotations, docstrings. Runnable immediately.</div>
+    <div class="muscle-grid reveal d2">
+      <div class="muscle-card agent">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">💻</span>21s code gen recording</div></div>
+        <div class="mc-body"><div class="mc-stat">21s</div><h4>Message → Runnable Code</h4><div class="mc-desc">Copilot + SKILL.md: one sentence to a typed, documented Python script</div></div>
       </div>
-      <div class="card n8n">
-        <h4>🎬 37s: Zero-Touch Video</h4>
-        <div class="cd">Topic → GLM script → edge-tts voice → ffmpeg composite → whisper-cpp subtitles. <strong>No human touch. 1080p output.</strong></div>
+      <div class="muscle-card n8n">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">🎬</span>37s video gen recording</div></div>
+        <div class="mc-body"><div class="mc-stat">37s</div><h4>Zero-Touch Video</h4><div class="mc-desc">Idea→script→voice→composite→subtitles. No human touch. 1080p output.</div></div>
       </div>
-      <div class="card skill">
-        <h4>🧠 Gbrain: AI News Radar</h4>
-        <div class="cd">24/7 scans GitHub Trending + RSS + YouTube → scores against my profile → pushes 3 high-signal items daily. Zero noise.</div>
+      <div class="muscle-card skill">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">📊</span>PPT output screenshot</div></div>
+        <div class="mc-body"><div class="mc-stat">PPT</div><h4>One Line → Full Deck</h4><div class="mc-desc">Skill encodes aesthetic rules + template. 30s to a presentation-ready slide deck.</div></div>
+      </div>
+      <div class="muscle-card agent">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">📝</span>Research report screenshot</div></div>
+        <div class="mc-body"><div class="mc-stat">Report</div><h4>Deep Research Report</h4><div class="mc-desc">Agent multi-step search → structured analysis → Skill formatting → deliverable doc</div></div>
+      </div>
+      <div class="muscle-card skill">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">🔄</span>GitHub repo screenshot</div></div>
+        <div class="mc-body"><div class="mc-stat">Repo</div><h4>Spec → GitHub Repo</h4><div class="mc-desc">Describe requirements → Agent generates project skeleton → auto repo + README + CI</div></div>
+      </div>
+      <div class="muscle-card skill">
+        <div class="mc-media"><div class="media-placeholder"><span class="mp-icon">🧠</span>Gbrain push screenshot</div></div>
+        <div class="mc-body"><div class="mc-stat">24/7</div><h4>Gbrain Radar</h4><div class="mc-desc">Scans GitHub Trending+RSS+YouTube → scores vs profile → 3 high-signal items daily</div></div>
       </div>
     </div>
 
-    <div class="callout reveal d3" style="margin-top:clamp(10px,2vh,16px)">
-      <div class="cl">The pattern behind all three</div><p><strong>n8n triggers → Agent decides → Skill produces → n8n delivers.</strong> Same choreography, different outputs. This isn't three separate tools. It's one layered system.</p>
+    <div class="callout reveal d3">
+      <div class="cl">The pattern</div><p><strong>n8n triggers → Agent decides → Skill produces → n8n delivers.</strong> Same choreography, different outputs. Three layers &gt; one layer.</p>
     </div>
   </div>
 </section>
@@ -986,6 +1102,17 @@ document.addEventListener('touchend', e => {
   const dy = touchY - e.changedTouches[0].clientY;
   if(Math.abs(dy) > 50) go(dy > 0 ? 1 : -1);
 });
+
+
+// Tab switching for pipeline page
+function switchTab(btn, tabGroup, panelId) {
+  // Deactivate all tabs in this group
+  btn.closest('.slide').querySelectorAll(`.tab-btn[data-group="${tabGroup}"]`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Show/hide panels
+  btn.closest('.slide').querySelectorAll(`.tab-panel[data-group="${tabGroup}"]`).forEach(p => p.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+}
 
 // Init
 updateLang();
