@@ -429,26 +429,56 @@ strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ===== 9. ON-RAMP C: AGENT FRAMEWORK ===== -->
+<!-- ===== 9. ON-RAMP C: THE HARD PARTS ===== -->
 <section class="slide" id="s9">
   <div class="slide-content">
     <div class="slide-label reveal">08 · On-Ramp C</div>
-    <h2 class="slide-title reveal d1">The Full Stack: Agent Framework + Orchestration</h2>
-    <p class="slide-subtitle reveal d2">This is what I built. <strong>Not required to start</strong> — but this is the ceiling of what's possible.</p>
+    <h2 class="slide-title reveal d1">MAE — 5 Engineering Challenges I Had to Solve</h2>
+    <p class="slide-subtitle reveal d2">The gap between "a script that calls an LLM" and "an agent system that runs itself for days."</p>
 
     <div class="table-wrap reveal d2">
       <table class="data-table">
-        <tr><th>Layer</th><th>Tool</th><th>What It Does</th></tr>
-        <tr><td>Orchestration</td><td>MAE Harness</td><td>Task routing: decide → dispatch to agent → validate → write back</td></tr>
-        <tr><td>Agent Runtime</td><td>OpenClaw + Claude Code / Codex</td><td>Multi-agent with state machine, LENS validation, lock manager</td></tr>
-        <tr><td>Knowledge</td><td>Gbrain + Vault</td><td>Content screening → scoring → curated push → archival</td></tr>
-        <tr><td>Pipeline</td><td>n8n (5 workflows)</td><td>All deterministic glue: cron, API sync, notifications</td></tr>
-        <tr><td>Output</td><td>Airtable + Feishu + Dashboard</td><td>Task ledger, Wiki docs, real-time dashboard</td></tr>
+        <tr><th>#</th><th>Pain Point</th><th>What Broke</th><th>Solution</th><th>Key Decision</th></tr>
+        <tr>
+          <td>1</td>
+          <td><strong>State Chaos</strong></td>
+          <td>Task failed silently; status stayed "pending"; manual triage every morning</td>
+          <td><span class="tag ta">State Machine</span> — LOADED→RUNNING→REVIEW→DONE. VALID_TRANSITIONS enforced in 91 lines of Python</td>
+          <td>Dict, not DB. Explicit transitions beat implicit conventions</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Race Conditions</strong></td>
+          <td>Cron fired twice before first poll completed → same task ran in parallel → Airtable corrupted</td>
+          <td><span class="tag tn">Idempotency Lock</span> — claim/release/lease-expiry/sweep. Lock stored in Airtable, not Redis</td>
+          <td>Zero new infrastructure. Airtable <em>is</em> the distributed lock store</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>LLM Trust</strong></td>
+          <td>LLM said "done" but code wasn't written. Research claimed complete but had no evidence</td>
+          <td><span class="tag ts">LENS Gate</span> — mechanical evidence check. run_id + log_summary + writeback_ts must all exist. No LLM in the validation path</td>
+          <td>LLMs should not validate LLMs. This lesson came from CER Evals</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Memory Loss</strong></td>
+          <td>Multi-step pipeline: step 3 had no idea what step 1 did. Each LLM call was amnesic</td>
+          <td><span class="tag ta">TaskContext</span> — append every step's output to Airtable messages[]. Inject full history into system prompt</td>
+          <td>Raw text append, not vector DB. Simple, debuggable, effective</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Human Disconnect</strong></td>
+          <td>Tasks ran for hours in background. Jianan on subway: no visibility, no way to intervene</td>
+          <td><span class="tag ts">Checkpoint System</span> — review/decision/blocked/notify nodes. Phone controls via WeChat → Dashboard</td>
+          <td>Feishu for push, Airtable for state, WeChat for compact interaction</td>
+        </tr>
       </table>
     </div>
 
     <div class="callout reveal d3">
-      <div class="cl">Honest assessment</div><p>Three paths can run independently today. The agent framework takes time to set up — but the Skill layer (Path A) and n8n layer (Path B) give you <strong>80% of the value with 20% of the setup</strong>. Start there. The agent layer is the amplifier that makes everything else 10x more powerful once you're ready.</p>
+      <div class="cl">The correct build order</div><p><strong>Week 1:</strong> n8n cron + Airtable queue + single LLM call. No state machine, no lock, no LENS. Manual verification. <strong>Week 2:</strong> Add state machine (when >5 tasks). Add LENS gate (when you start trusting the system). <strong>Week 3:</strong> Add lock (when cron > execution time). Add TaskContext (when multi-step appears). <strong>Week 4+:</strong> Checkpoint + multi-agent. <em>Don't build the full stack first. Each layer exists because the previous layer's pain became real.</em></p>
     </div>
   </div>
 </section>
