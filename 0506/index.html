@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+
 :root {
   --bg: #faf9f5; --bg-alt: #f3f2ed; --surface: #ffffff;
   --border: #e8e6de; --border-strong: #d4d2c8;
@@ -152,6 +153,7 @@ strong{color:var(--text)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
 @media(max-height:600px){.slide-content{padding:clamp(0.5rem,2vw,1.2rem) clamp(0.8rem,3vw,2rem)}.card,.pc-col{padding:8px 10px}}
 @media(max-width:700px){.procon-3,.res-grid{grid-template-columns:1fr}.int-diag{flex-direction:column}.int-arrow{transform:rotate(90deg)}.card-row{flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -160,20 +162,18 @@ strong{color:var(--text)}
 <nav class="slide-nav-bar">
   <span class="nav-arr" onclick="go(-1)">◂</span>
   <span class="nav-dot" data-slide="0"><span class="nav-tooltip">Cover</span></span>
-  <span class="nav-dot" data-slide="1"><span class="nav-tooltip">Context &amp; Paths</span></span>
-  <span class="nav-dot" data-slide="2"><span class="nav-tooltip">Capability Boundaries</span></span>
-  <span class="nav-dot" data-slide="3"><span class="nav-tooltip">Composition &amp; Scenarios</span></span>
-  <span class="nav-dot" data-slide="4"><span class="nav-tooltip">n8n Live · 5 Workflows</span></span>
-  <span class="nav-dot" data-slide="5"><span class="nav-tooltip">Case: PPT</span></span>
-  <span class="nav-dot" data-slide="5"><span class="nav-tooltip">Case: Knowledge</span></span>
-  <span class="nav-dot" data-slide="6"><span class="nav-tooltip">Case: Video</span></span>
-  <span class="nav-dot" data-slide="7"><span class="nav-tooltip">How I Built It</span></span>
-  <span class="nav-dot" data-slide="8"><span class="nav-tooltip">Architecture Evidence</span></span>
-  <span class="nav-dot" data-slide="9"><span class="nav-tooltip">Takeaways</span></span>
-  <span class="nav-dot" data-slide="10"><span class="nav-tooltip">Resources</span></span>
-  <span class="nav-dot" data-slide="11"><span class="nav-tooltip">Start Here</span></span>
-  <span class="nav-dot" data-slide="12"><span class="nav-tooltip">What's Next</span></span>
-  <span class="nav-dot" data-slide="13"><span class="nav-tooltip">Author</span></span>
+  <span class="nav-dot" data-slide="1"><span class="nav-tooltip">n8n Live · 5 Workflows</span></span>
+  <span class="nav-dot" data-slide="2"><span class="nav-tooltip">Real Impact · 3 Cases</span></span>
+  <span class="nav-dot" data-slide="3"><span class="nav-tooltip">Three Paths</span></span>
+  <span class="nav-dot" data-slide="4"><span class="nav-tooltip">Capability Boundaries</span></span>
+  <span class="nav-dot" data-slide="5"><span class="nav-tooltip">Composition &amp; Scenarios</span></span>
+  <span class="nav-dot" data-slide="6"><span class="nav-tooltip">On-Ramp A · Copilot+Skill</span></span>
+  <span class="nav-dot" data-slide="7"><span class="nav-tooltip">On-Ramp B · Dify+n8n</span></span>
+  <span class="nav-dot" data-slide="8"><span class="nav-tooltip">On-Ramp C · Agent Framework</span></span>
+  <span class="nav-dot" data-slide="9"><span class="nav-tooltip">Evidence</span></span>
+  <span class="nav-dot" data-slide="10"><span class="nav-tooltip">Takeaways</span></span>
+  <span class="nav-dot" data-slide="11"><span class="nav-tooltip">Resources</span></span>
+  <span class="nav-dot" data-slide="12"><span class="nav-tooltip">Author</span></span>
   <span class="nav-arr" onclick="go(1)">▸</span>
 </nav>
 
@@ -183,98 +183,22 @@ strong{color:var(--text)}
   <div class="slide-content" style="align-items:center;text-align:center">
     <div class="cover-hook reveal">From Zero to Production</div>
     <h1 class="cover-title reveal d1">I spent 6 months building a <span class="hl">personal AI automation system</span>. Here's what actually works.</h1>
-    <p class="cover-subtitle reveal d2">Three paths. Five patterns. One framework you can clone and run.</p>
+    <p class="cover-subtitle reveal d2">Three paths. Five patterns. Three on-ramps you can try tomorrow.</p>
     <div class="cover-stats">
       <div class="cover-stat reveal d3"><div class="n">130+</div><div class="l">tasks automated</div></div>
-      <div class="cover-stat reveal d4"><div class="n">3</div><div class="l">architecture paths</div></div>
-      <div class="cover-stat reveal d5"><div class="n">5</div><div class="l">production patterns</div></div>
+      <div class="cover-stat reveal d3"><div class="n">21s</div><div class="l">code from message</div></div>
+      <div class="cover-stat reveal d3"><div class="n">5</div><div class="l">pipelines running 24/7</div></div>
     </div>
+    <p class="reveal d4" style="font-family:var(--font-mono);font-size:clamp(9px,0.8vw,10px);color:var(--text-3);margin-top:clamp(20px,3vh,36px)">Internal Sharing · 2026.05 · Jianan</p>
   </div>
 </section>
 
-<!-- ===== 2. CONTEXT + THREE PATHS ===== -->
-<section class="slide" id="s2">
+<!-- ===== 2. N8N LIVE ===== -->
+<section class="slide slide-n8n" id="s2">
   <div class="slide-content">
-    <div class="slide-label reveal">01 · Context</div>
-    <h2 class="slide-title reveal d1">The Three Waves → Three Paths</h2>
-    <p class="slide-subtitle reveal d2">过去半年，AI 自动化经历了三次范式迭代。每次解决前一个问题，同时暴露新瓶颈。现在的答案是：按确定性分层。</p>
-    <div class="table-wrap reveal d2">
-      <table class="data-table">
-        <tr><th>Wave</th><th>Approach</th><th>Solved</th><th>New Problem</th></tr>
-        <tr><td>1</td><td>All-in LLM chat</td><td>NL as universal interface</td><td>Every task = new conversation</td></tr>
-        <tr><td>2</td><td>All-in n8n/Dify</td><td>Repeatable workflows</td><td>Complex logic → spaghetti</td></tr>
-        <tr><td>3 (now)</td><td>Layered by determinism</td><td>Right tool per sub-task</td><td>Requires upfront design</td></tr>
-      </table>
-    </div>
-    <div class="card-row reveal d3">
-      <div class="card n8n"><h4>Path 1 · n8n / Dify</h4><div class="cd">Deterministic pipelines. Fixed path, runs forever. cron, webhooks, data sync.</div></div>
-      <div class="card skill"><h4>Path 2 · Skill + MCP</h4><div class="cd">Crystallized expertise as context. Every call = expert mode. Single-shot quality.</div></div>
-      <div class="card agent"><h4>Path 3 · Agent</h4><div class="cd">Runtime decision engine. Map drawn as you walk. LangGraph, CrewAI, custom harness.</div></div>
-    </div>
-    <div class="callout reveal d4"><div class="cl">Core insight</div><p>"Which tool is best?" is wrong. "How deterministic is this sub-task?" — that routes to the right path.</p></div>
-  </div>
-</section>
-
-<!-- ===== 3. CAPABILITY BOUNDARIES (3 paths pros/cons combined) ===== -->
-<section class="slide" id="s3">
-  <div class="slide-content">
-    <div class="slide-label reveal">02 · Boundaries</div>
-    <h2 class="slide-title reveal d1">Capability Boundaries</h2>
-    <p class="slide-subtitle reveal d2">Each path has a clear frontier where it stops being useful. Know when to switch.</p>
-    <div class="procon-3 reveal d2">
-      <div class="pc-col" style="border-top:2px solid var(--n8n)"><h4 style="color:var(--n8n)">Path 1 · n8n/Dify</h4>
-        <div style="margin-bottom:6px;font-size:clamp(9px,0.85vw,11px);color:#16a34a;font-weight:600">Strengths</div>
-        <ul style="list-style:none"> <li>Visual debugging</li><li>400+ integrations</li><li>Zero-code triggers</li><li>Self-hosted</li></ul>
-        <div style="margin:6px 0;font-size:clamp(9px,0.85vw,11px);color:#dc2626;font-weight:600">Limits</div>
-        <ul style="list-style:none"> <li>Spaghetti at scale</li><li>No runtime decisions</li><li>No high-aesthetic output</li><li>~50 node ceiling</li></ul>
-      </div>
-      <div class="pc-col" style="border-top:2px solid var(--skill)"><h4 style="color:var(--skill)">Path 2 · Skill+MCP</h4>
-        <div style="margin-bottom:6px;font-size:clamp(9px,0.85vw,11px);color:#16a34a;font-weight:600">Strengths</div>
-        <ul style="list-style:none"> <li>Expert quality every time</li><li>Knowledge accumulates</li><li>Near-zero marginal cost</li><li>MCP standardizes tools</li></ul>
-        <div style="margin:6px 0;font-size:clamp(9px,0.85vw,11px);color:#dc2626;font-weight:600">Limits</div>
-        <ul style="list-style:none"> <li>Upfront authoring cost</li><li>No runtime adaptability</li><li>MCP ecosystem maturing</li><li>Single-shot only</li></ul>
-      </div>
-      <div class="pc-col" style="border-top:2px solid var(--agent)"><h4 style="color:var(--agent)">Path 3 · Agent</h4>
-        <div style="margin-bottom:6px;font-size:clamp(9px,0.85vw,11px);color:#16a34a;font-weight:600">Strengths</div>
-        <ul style="list-style:none"> <li>Open-ended tasks</li><li>Dynamic tool selection</li><li>Self-correct &amp; retry</li><li>Orchestrates P1+P2</li></ul>
-        <div style="margin:6px 0;font-size:clamp(9px,0.85vw,11px);color:#dc2626;font-weight:600">Limits</div>
-        <ul style="list-style:none"> <li>Highest cost</li><li>Unpredictable paths</li><li>Needs observability</li><li>Overkill for fixed paths</li></ul>
-      </div>
-    </div>
-    <div class="callout reveal d3"><div class="cl">When MCP isn't needed yet</div><p>LLM platforms now natively handle filesystem, fetch, DB, GitHub. MCP adds a hop. Skip it until you have cross-platform needs.</p></div>
-  </div>
-</section>
-
-<!-- ===== 4. COMPOSITION + SCENARIOS ===== -->
-<section class="slide" id="s4">
-  <div class="slide-content">
-    <div class="slide-label reveal">03 · Composition &amp; Decision Guide</div>
-    <h2 class="slide-title reveal d1">How They Compose + When to Use What</h2>
-    <div class="int-diag reveal d2">
-      <div class="int-node"><div class="il" style="color:var(--n8n)">Path 1</div><div class="it">n8n</div></div><span class="int-arrow">→</span>
-      <div class="int-node"><div class="il" style="color:var(--agent)">Path 3</div><div class="it">Agent</div></div><span class="int-arrow">→</span>
-      <div class="int-node"><div class="il" style="color:var(--skill)">Path 2</div><div class="it">Skill</div></div><span class="int-arrow">→</span>
-      <div class="int-node"><div class="il" style="color:var(--n8n)">Path 1</div><div class="it">n8n</div></div>
-    </div>
-    <div class="table-wrap reveal d3">
-      <table class="data-table">
-        <tr><th>Scenario</th><th>Best Path</th></tr>
-        <tr><td>"Scrape 3 sources every morning"</td><td><span class="tag tn">n8n</span> — fixed schedule, zero decisions</td></tr>
-        <tr><td>"Build a presentation with consistent branding"</td><td><span class="tag ts">Skill</span> — single-shot, high-aesthetic</td></tr>
-        <tr><td>"Research and write a deep article"</td><td><span class="tag ta">Agent</span> + <span class="tag ts">Skill</span> — runtime research + structured writing</td></tr>
-        <tr><td>"Video: idea → script → generate → publish"</td><td><span class="tag tn">n8n</span> + <span class="tag ta">Agent</span> + <span class="tag ts">Skill</span> — all three</td></tr>
-        <tr><td>"Sync data between Airtable and Feishu"</td><td><span class="tag tn">n8n</span> — pure state sync, no AI needed</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 4.5 N8N LIVE ===== -->
-<section class="slide slide-n8n" id="s4a">
-  <div class="slide-content">
-    <div class="slide-label reveal">03.5 · Live Demo</div>
+    <div class="slide-label reveal">01 · Live Demo</div>
     <h2 class="slide-title reveal d1">n8n — 5 Workflows Running <em>Right Now</em></h2>
-    <p class="slide-subtitle reveal d2">Deployed on Mac mini · n8n 2.18.4 · Airtable + 飞书 + GitHub + YouTube APIs</p>
+    <p class="slide-subtitle reveal d2">Deployed on Mac mini · n8n 2.18.4 · Airtable + 飞书 + GitHub + YouTube APIs. <strong>Zero UI clicks after setup.</strong></p>
 
     <div class="wf-list reveal d2">
       <div class="wf-row">
@@ -331,87 +255,208 @@ strong{color:var(--text)}
 
     <div class="callout reveal d3" style="flex-shrink:0">
       <div class="cl">How I Built It</div>
-      <p>Each workflow = a <strong>JSON file</strong> I wrote → imported into n8n. Triggers + data sources are fixed. The <strong>middle nodes</strong> (message format, filter rules, tag logic) are editable in the n8n UI — no code needed. This is <strong>Vibe Design</strong>: Agent designs the skeleton, human tweaks the middle.</p>
+      <p>Each workflow = a <strong>JSON file</strong> I wrote → imported into n8n. The <strong>middle nodes</strong> (message format, filter rules, tag logic) are editable in the n8n UI — no code needed. This is <strong>Vibe Design</strong>: Agent designs the skeleton, human tweaks the middle.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== 5. CASE: PPT ===== -->
-<section class="slide" id="s5">
+<!-- ===== 3. REAL IMPACT ===== -->
+<section class="slide" id="s3">
   <div class="slide-content">
-    <div class="slide-label reveal">04 · Case Study</div>
-    <h2 class="slide-title reveal d1">Case 1: Presentation Pipeline</h2>
-    <p class="slide-subtitle reveal d2">Skill-led, Agent-structured, n8n-distributed. From bullet points to a polished Feishu Wiki page.</p>
-    <div class="flow-row reveal d2">
-      <div class="flow-step"><div class="fs">Agent</div>Clarify scope,<br>structure chapters</div><span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Skill</div>Design system +<br>content + script</div><span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Skill</div>Feishu Wiki<br>writeback</div><span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">n8n</div>Notify reviewer<br>on Discord</div>
+    <div class="slide-label reveal">02 · Real Impact</div>
+    <h2 class="slide-title reveal d1">3 More Things My System Does</h2>
+    <p class="slide-subtitle reveal d2">Beyond n8n pipelines — the other two layers unlock capabilities that pure automation can't touch.</p>
+
+    <div class="card-row reveal d2">
+      <div class="card agent">
+        <h4>⚡ 21-Second Code Generation</h4>
+        <div class="cd">"Create a Python CLI tool" → MAE routes to Codex CLI → 21 seconds later: <code>hello.py</code> with argparse, type annotations, docstrings. Runnable immediately.</div>
+      </div>
+      <div class="card n8n">
+        <h4>🎬 Zero-Touch Video Pipeline</h4>
+        <div class="cd">Topic idea → GLM writes script → edge-tts voice → ffmpeg composite → whisper-cpp auto-subtitles. <strong>37 seconds, 1080p, no human touch.</strong></div>
+      </div>
+      <div class="card skill">
+        <h4>🧠 AI Frontier Monitoring</h4>
+        <div class="cd">Gbrain scans GitHub Trending + RSS + YouTube 24/7 → scores relevance → pushes 3 high-signal items daily to Feishu. Zero noise.</div>
+      </div>
     </div>
-    <div class="callout reveal d3"><div class="cl">Skills used</div><p>jianan-presentation-system / design-front / excalidraw-handnote-style / feishu-write-shared</p></div>
-    <div class="media-box reveal d4">[ Screenshot / video: PPT generation in action ]</div>
+
+    <div class="flow-row reveal d3" style="margin-top:clamp(10px,2vh,16px)">
+      <div class="flow-step"><div class="fs">n8n</div>Schedule +<br>data sync</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Agent</div>Judge + decide<br>+ execute</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Skill</div>Expert-quality<br>single-shot output</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">n8n</div>Notify +<br>write back</div>
+    </div>
+
+    <div class="callout reveal d4" style="margin-top:clamp(8px,1.5vh,12px)">
+      <div class="cl">The pattern</div><p>Every case above follows the same choreography: <strong>n8n triggers → Agent decides → Skill produces → n8n delivers</strong>. This isn't three separate tools. It's one layered system.</p>
+    </div>
   </div>
 </section>
 
-<!-- ===== 6. CASE: KNOWLEDGE ===== -->
-<section class="slide" id="s6">
+<!-- ===== 4. THREE PATHS ===== -->
+<section class="slide" id="s4">
   <div class="slide-content">
-    <div class="slide-label reveal">05 · Case Study</div>
-    <h2 class="slide-title reveal d1">Case 2: Knowledge Pipeline</h2>
-    <p class="slide-subtitle reveal d2">n8n captures → Agent curates → Skill formats → n8n delivers. Cron-driven, self-hosted content intake.</p>
-    <div class="flow-row reveal d2">
-      <div class="flow-step"><div class="fs">n8n</div>Scrape GitHub,<br>X, YouTube</div><span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Agent</div>Score relevance,<br>filter noise</div><span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">Skill</div>Digest + format<br>for Feishu</div><span class="flow-arrow">→</span>
-      <div class="flow-step"><div class="fs">n8n</div>Push Discord<br>+ write Airtable</div>
-    </div>
-    <div class="callout reveal d3"><div class="cl">Real pipeline</div><p>AI-Intelligence-Vault: 10_Raw → 20_Sources → 50_Synthesis → 60_Feishu_Exports. Cron-driven via Auto-Grasp-Pipeline.</p></div>
-    <div class="media-box reveal d4">[ Screenshot: Knowledge pipeline dashboard ]</div>
-  </div>
-</section>
+    <div class="slide-label reveal">03 · The Secret</div>
+    <h2 class="slide-title reveal d1">Three Paths, Not One Tool</h2>
+    <p class="slide-subtitle reveal d2">The key insight: <strong>sort tasks by determinism</strong>. Different problems need different engines.</p>
 
-<!-- ===== 7. CASE: VIDEO ===== -->
-<section class="slide" id="s7">
-  <div class="slide-content">
-    <div class="slide-label reveal">06 · Case Study</div>
-    <h2 class="slide-title reveal d1">Case 3: Video Automation</h2>
-    <p class="slide-subtitle reveal d2">End-to-end closed loop: idea capture → script → TTS → render → subtitle → publish.</p>
-    <div class="table-wrap reveal d2">
+    <div class="card-row reveal d2">
+      <div class="card n8n"><h4>Path 1 · n8n / Dify</h4><div class="cd">Deterministic pipelines. Fixed path, runs forever. cron, webhooks, data sync.</div></div>
+      <div class="card skill"><h4>Path 2 · Skill</h4><div class="cd">Expert context injection. Best practices encoded. Single-shot, high-quality output.</div></div>
+      <div class="card agent"><h4>Path 3 · Agent / CLI</h4><div class="cd">Runtime decisions. Multi-step reasoning. "Figure it out as you go."</div></div>
+    </div>
+
+    <div class="table-wrap reveal d3">
       <table class="data-table">
-        <tr><th>Phase</th><th>Path</th><th>What Happens</th></tr>
-        <tr><td>1. Capture</td><td><span class="tag tn">n8n</span></td><td>Cron scrapes trending AI topics → Airtable</td></tr>
-        <tr><td>2. Evaluate</td><td><span class="tag ta">Agent</span></td><td>Judge quality, pick visual style, script outline</td></tr>
-        <tr><td>3. Produce</td><td><span class="tag ts">Skill</span></td><td>edge-tts voice, PIL frames, ffmpeg composite, whisper-cpp subs</td></tr>
-        <tr><td>4. Distribute</td><td><span class="tag tn">n8n</span></td><td>Upload platforms, notify Discord/Feishu</td></tr>
+        <tr><th>Question</th><th>Answer</th><th>Path</th></tr>
+        <tr><td>Path pre-drawable?</td><td>Yes</td><td><span class="tag tn">n8n/Dify</span></td></tr>
+        <tr><td>Single-shot, high-quality?</td><td>Yes</td><td><span class="tag ts">Skill</span></td></tr>
+        <tr><td>Needs runtime decisions?</td><td>Yes</td><td><span class="tag ta">Agent</span></td></tr>
       </table>
     </div>
-    <div class="stat-strip reveal d3">
-      <div class="stat-item"><div class="sn">37s</div><div class="sl">test video</div></div><div class="stat-item"><div class="sn">1080p</div><div class="sl">resolution</div></div><div class="stat-item"><div class="sn">H.264</div><div class="sl">codec</div></div><div class="stat-item"><div class="sn">whisper-cpp</div><div class="sl">subtitles</div></div>
+
+    <div class="callout reveal d4">
+      <div class="cl">The rule</div><p>If you can draw the flowchart before running it → n8n. If you need expert taste → Skill. If you need to figure it out step by step → Agent.</p>
     </div>
-    <div class="media-box reveal d4">[ Video: End-to-end pipeline demo ]</div>
   </div>
 </section>
 
-<!-- ===== 8. HOW I BUILT IT ===== -->
+<!-- ===== 5. BOUNDARIES ===== -->
+<section class="slide" id="s5">
+  <div class="slide-content">
+    <div class="slide-label reveal">04 · Boundaries</div>
+    <h2 class="slide-title reveal d1">Capability Boundaries</h2>
+    <p class="slide-subtitle reveal d2">Each path has a clear frontier. Know when to switch.</p>
+    <div class="procon-3 reveal d2">
+      <div class="pc-col" style="border-top:2px solid var(--n8n)"><h4 style="color:var(--n8n)">Path 1 · n8n/Dify</h4>
+        <ul><li>✅ Cron, webhooks, API glue</li><li>✅ Multi-system data sync</li><li>✅ Notification routing</li></ul>
+        <p style="font-size:clamp(9px,0.85vw,11px);color:var(--text-3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">❌ When: need runtime judgment, multi-step reasoning, or high-aesthetic generation.</p>
+      </div>
+      <div class="pc-col" style="border-top:2px solid var(--skill)"><h4 style="color:var(--skill)">Path 2 · Skill</h4>
+        <ul><li>✅ One-shot presentation/poster</li><li>✅ Encoded expertise + style</li><li>✅ Consistent quality output</li></ul>
+        <p style="font-size:clamp(9px,0.85vw,11px);color:var(--text-3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">❌ When: task requires multi-step exploration, dynamic tool use, or runtime branching.</p>
+      </div>
+      <div class="pc-col" style="border-top:2px solid var(--agent)"><h4 style="color:var(--agent)">Path 3 · Agent</h4>
+        <ul><li>✅ Open-ended research</li><li>✅ Multi-tool orchestration</li><li>✅ Code generation + debugging</li></ul>
+        <p style="font-size:clamp(9px,0.85vw,11px);color:var(--text-3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">❌ When: task is purely deterministic, cost-sensitive at scale, or single-purpose automation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. COMPOSITION ===== -->
+<section class="slide" id="s6">
+  <div class="slide-content">
+    <div class="slide-label reveal">05 · Composition</div>
+    <h2 class="slide-title reveal d1">How They Compose + When to Use What</h2>
+    <div class="int-diag reveal d2">
+      <div class="int-node"><div class="il" style="color:var(--n8n)">Path 1</div><div class="it">n8n</div></div><span class="int-arrow">→</span>
+      <div class="int-node"><div class="il" style="color:var(--agent)">Path 3</div><div class="it">Agent</div></div><span class="int-arrow">→</span>
+      <div class="int-node"><div class="il" style="color:var(--skill)">Path 2</div><div class="it">Skill</div></div><span class="int-arrow">→</span>
+      <div class="int-node"><div class="il" style="color:var(--n8n)">Path 1</div><div class="it">n8n</div></div>
+    </div>
+    <div class="table-wrap reveal d3">
+      <table class="data-table">
+        <tr><th>Scenario</th><th>Best Path</th></tr>
+        <tr><td>"Scrape 3 sources every morning"</td><td><span class="tag tn">n8n</span> — fixed schedule, zero decisions</td></tr>
+        <tr><td>"Build a presentation with consistent branding"</td><td><span class="tag ts">Skill</span> — single-shot, high-aesthetic</td></tr>
+        <tr><td>"Research and write a deep article"</td><td><span class="tag ta">Agent</span> + <span class="tag ts">Skill</span> — runtime research + structured writing</td></tr>
+        <tr><td>"Video: idea → script → generate → publish"</td><td><span class="tag tn">n8n</span> + <span class="tag ta">Agent</span> + <span class="tag ts">Skill</span> — all three</td></tr>
+        <tr><td>"Sync data between Airtable and Feishu"</td><td><span class="tag tn">n8n</span> — pure state sync, no AI needed</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. ON-RAMP A: COPILOT + SKILL ===== -->
+<section class="slide" id="s7">
+  <div class="slide-content">
+    <div class="slide-label reveal">06 · On-Ramp A</div>
+    <h2 class="slide-title reveal d1">Start Tomorrow: VS Code Copilot + 1 SKILL.md</h2>
+    <p class="slide-subtitle reveal d2"><strong>Zero new infrastructure.</strong> You already have Copilot. Add one markdown file and unlock 5x quality on your most frequent task.</p>
+
+    <div class="flow-row reveal d2">
+      <div class="flow-step"><div class="fs">Step 1</div>Pick your most<br>repeated task</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Step 2</div>Write a<br>SKILL.md</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Step 3</div>Paste into<br>Copilot Chat</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="fs">Step 4</div>Get expert-level<br>output every time</div>
+    </div>
+
+    <div class="callout reveal d3">
+      <div class="cl">Example SKILL.md structure</div>
+      <p style="font-family:var(--font-mono);font-size:clamp(9px,0.8vw,10px);line-height:1.6;white-space:pre-wrap"># Code Review Skill
+
+## Best Practices
+- Check: error handling, null safety, test coverage
+- Pattern: flag → suggest fix → explain why
+
+## Anti-Patterns
+- Never: "LGTM" without evidence
+- Avoid: style-only comments without logic check
+
+## Output Format
+1. Summary (1 line)
+2. Critical issues (if any)
+3. Suggestions (numbered)
+4. Positive findings</p>
+    </div>
+
+    <div class="reveal d4" style="margin-top:clamp(8px,1.5vh,12px);font-size:clamp(10px,1vw,12px);color:var(--text-2)">
+      <strong>Why this works:</strong> LLMs are context-starved by default. A SKILL.md gives Copilot <strong>your standards, your anti-patterns, your output format</strong> — transforming generic AI into a domain expert. This is the Skill layer, running on tools you already have.
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. ON-RAMP B: DIFY + N8N ===== -->
 <section class="slide" id="s8">
   <div class="slide-content">
-    <div class="slide-label reveal">07 · Tutorial</div>
-    <h2 class="slide-title reveal d1">How I Built It — 5 Steps</h2>
-    <ol class="num-list reveal d2">
-      <li><strong>Install n8n (self-hosted via npm).</strong>Build one workflow: cron → GitHub API → Airtable. ~1 hour. Teaches pipeline thinking.</li>
-      <li><strong>Write your first SKILL.md.</strong>Your most frequent task. Encode best practices, pitfalls, output format. ~2 hours. First crystallized expertise.</li>
-      <li><strong>Connect a tool (MCP or native).</strong>Filesystem or Airtable. Teaches the tool protocol pattern. ~1 hour.</li>
-      <li><strong>Build a minimal agent harness.</strong>State machine + lock manager + LENS validator. Or use LangGraph. Wire to n8n + skills. ~4 hours.</li>
-      <li><strong>Add observability.</strong>Structured logging with task_id. Feishu thread notifications. Airtable state ledger. Dashboard sync. ~2 hours.</li>
-    </ol>
-    <div class="callout reveal d4"><div class="cl">Key lesson</div><p>Each step delivers standalone value. Don't build the full stack first — build layer 1, get value, add next.</p></div>
+    <div class="slide-label reveal">07 · On-Ramp B</div>
+    <h2 class="slide-title reveal d1">Next Week: Dify Workflow / n8n Pipeline</h2>
+    <p class="slide-subtitle reveal d2">Your company is deploying Dify. Here's the <strong>exact pattern</strong> that makes it useful — not just another chatbot.</p>
+
+    <div class="card-row reveal d2">
+      <div class="card n8n"><h4>Pattern 1 · Cron + API</h4><div class="cd">Schedule → HTTP fetch → filter → notify. The hello-world of automation. 30 minutes to build, runs forever.</div></div>
+      <div class="card n8n"><h4>Pattern 2 · Multi-System Sync</h4><div class="cd">Airtable ↔ Feishu ↔ GitHub. One workflow replaces 3 manual copy-paste steps. The n8n 01-05 workflows all use this.</div></div>
+      <div class="card n8n"><h4>Pattern 3 · Human-in-the-Loop</h4><div class="cd">Auto-generate → pause for review → on approval: publish. Dify excels at this with its approval node.</div></div>
+    </div>
+
+    <div class="callout reveal d3">
+      <div class="cl">The mental model</div>
+      <p>If you can draw the flowchart <strong>before</strong> running it → it belongs in n8n/Dify. Trigger → fetch → decide → act → notify. The decision node is a simple IF, not an LLM. That's the key difference from Path C.</p>
+    </div>
   </div>
 </section>
 
-<!-- ===== 9. ARCHITECTURE EVIDENCE ===== -->
+<!-- ===== 9. ON-RAMP C: AGENT FRAMEWORK ===== -->
 <section class="slide" id="s9">
   <div class="slide-content">
-    <div class="slide-label reveal">08 · Evidence</div>
+    <div class="slide-label reveal">08 · On-Ramp C</div>
+    <h2 class="slide-title reveal d1">The Full Stack: Agent Framework + Orchestration</h2>
+    <p class="slide-subtitle reveal d2">This is what I built. <strong>Not required to start</strong> — but this is the ceiling of what's possible.</p>
+
+    <div class="table-wrap reveal d2">
+      <table class="data-table">
+        <tr><th>Layer</th><th>Tool</th><th>What It Does</th></tr>
+        <tr><td>Orchestration</td><td>MAE Harness</td><td>Task routing: decide → dispatch to agent → validate → write back</td></tr>
+        <tr><td>Agent Runtime</td><td>OpenClaw + Claude Code / Codex</td><td>Multi-agent with state machine, LENS validation, lock manager</td></tr>
+        <tr><td>Knowledge</td><td>Gbrain + Vault</td><td>Content screening → scoring → curated push → archival</td></tr>
+        <tr><td>Pipeline</td><td>n8n (5 workflows)</td><td>All deterministic glue: cron, API sync, notifications</td></tr>
+        <tr><td>Output</td><td>Airtable + Feishu + Dashboard</td><td>Task ledger, Wiki docs, real-time dashboard</td></tr>
+      </table>
+    </div>
+
+    <div class="callout reveal d3">
+      <div class="cl">Honest assessment</div><p>Three paths can run independently today. The agent framework takes time to set up — but the Skill layer (Path A) and n8n layer (Path B) give you <strong>80% of the value with 20% of the setup</strong>. Start there. The agent layer is the amplifier that makes everything else 10x more powerful once you're ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. EVIDENCE ===== -->
+<section class="slide" id="s10">
+  <div class="slide-content">
+    <div class="slide-label reveal">09 · Evidence</div>
     <h2 class="slide-title reveal d1">Before / After: Architecture Upgrade</h2>
     <p class="slide-subtitle reveal d2">local-automation-stack: main (3 commits) → master (20 commits). Scripts → runtime framework.</p>
     <div class="table-wrap reveal d2">
@@ -434,10 +479,10 @@ strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ===== 10. TAKEAWAYS ===== -->
-<section class="slide" id="s10">
+<!-- ===== 11. TAKEAWAYS ===== -->
+<section class="slide" id="s11">
   <div class="slide-content">
-    <div class="slide-label reveal">09 · Takeaways</div>
+    <div class="slide-label reveal">10 · Takeaways</div>
     <h2 class="slide-title reveal d1">What I Learned</h2>
     <ol class="num-list reveal d2">
       <li><strong>Determinism is the best router.</strong>Is this sub-task deterministic? → routes to the right path.</li>
@@ -449,10 +494,10 @@ strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ===== 11. RESOURCES ===== -->
-<section class="slide" id="s11">
+<!-- ===== 12. RESOURCES ===== -->
+<section class="slide" id="s12">
   <div class="slide-content">
-    <div class="slide-label reveal">10 · Resources</div>
+    <div class="slide-label reveal">11 · Resources</div>
     <h2 class="slide-title reveal d1">Tools, Repos &amp; People</h2>
     <div class="res-grid reveal d2">
       <div class="res-card"><div class="rt">Starter Kit</div><div class="rn">jianan-ai-stack-starter</div><div class="rd">One command: SKILL.md template + n8n workflow + agent harness.</div></div>
@@ -467,35 +512,8 @@ strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ===== 12. ONE-CLICK START ===== -->
-<section class="slide" id="s12">
-  <div class="slide-content" style="align-items:center;text-align:center">
-    <div class="slide-label reveal">11 · Start Here</div>
-    <h2 class="slide-title reveal d1">One Command to Start</h2>
-    <p class="reveal d2" style="font-family:var(--font-mono);font-size:clamp(12px,1.3vw,15px);color:var(--accent);margin-bottom:clamp(16px,2.5vh,24px)">git clone https://github.com/Jianan-Huang0609/jianan-ai-stack-starter</p>
-    <p class="reveal d3" style="max-width:min(85vw,500px);margin:0 auto clamp(16px,2.5vh,24px)">You get: SKILL.md template + n8n workflow JSON + minimal agent harness + engineering-quality gates + 5-step README. Clone, configure .env, run.</p>
-    <div class="res-grid reveal d4" style="max-width:min(85vw,600px);margin:0 auto">
-      <div class="res-card"><div class="rt">Template</div><div class="rn">SKILL.md</div><div class="rd">Fill in your task. Drop into skills dir.</div></div>
-      <div class="res-card"><div class="rt">Workflow</div><div class="rn">n8n starter JSON</div><div class="rd">Import-ready: cron → API → Airtable.</div></div>
-      <div class="res-card"><div class="rt">Runtime</div><div class="rn">Agent harness</div><div class="rd">State machine + LENS + lock. 100 lines.</div></div>
-      <div class="res-card"><div class="rt">Quality</div><div class="rn">5 engineering gates</div><div class="rd">TDD + Evals + Review + Type + CI/CD.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 13. WHAT'S NEXT ===== -->
+<!-- ===== 13. AUTHOR ===== -->
 <section class="slide" id="s13">
-  <div class="slide-content" style="align-items:center;text-align:center">
-    <div class="slide-label reveal">12 · What's Next</div>
-    <h2 class="slide-title reveal d1" style="margin-bottom:clamp(12px,2vh,20px)">The Road Ahead</h2>
-    <div class="callout reveal d2" style="max-width:min(85vw,540px);margin:0 auto clamp(12px,2vh,20px)">
-      <div class="cl">Honest assessment</div><p>Three paths can run independently today. Next frontier: self-evolving skills, cron reviews that trigger action, and a global orchestrator that sees across projects. This isn't the end. It's the foundation.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 14. AUTHOR ===== -->
-<section class="slide" id="s14">
   <div class="slide-content" style="align-items:center;text-align:center">
     <div class="footer-rule reveal"></div>
     <div class="reveal d1" style="margin-bottom:clamp(10px,2vh,16px)">
@@ -505,12 +523,14 @@ strong{color:var(--text)}
     <p class="reveal d2" style="font-family:var(--font-mono);font-size:clamp(9px,0.9vw,11px);color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:clamp(10px,2vh,20px)">AI Automation · Layered Infrastructure</p>
     <div class="reveal d3" style="display:flex;gap:24px;font-size:clamp(10px,0.9vw,12px);color:var(--text-3);justify-content:center">
       <a href="https://github.com/Jianan-Huang0609" style="color:var(--text-3);text-decoration:none;border-bottom:1px solid transparent;transition:all .15s" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='';this.style.borderColor=''">GitHub</a>
+      <a href="https://github.com/Jianan-Huang0609/jianan-ai-stack-starter" style="color:var(--text-3);text-decoration:none;border-bottom:1px solid transparent;transition:all .15s" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='';this.style.borderColor=''">Starter Kit</a>
       <span>Internal · 2026.05</span>
     </div>
   </div>
 </section>
 
 <script>
+
 let current = 0;
 const slides = document.querySelectorAll('.slide');
 const total = slides.length;
@@ -558,6 +578,7 @@ document.addEventListener('touchend', e => {
 });
 
 updateActive();
+
 </script>
 </body>
 </html>
