@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-12 21:36 CST
+Updated: 2026-05-13 07:20 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -63,7 +63,8 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | Draft framework | script material source | planning / editing | active | `draft-sharing-framework-20260512.md` |
 | Video scenes V7 | attention / conversion / motion material | quick visual impact | prototype | `sharing-video-20260515/scenes/v7/PLAY.html` |
 | Real screenshots | proof | belief building | pending | TBD |
-| Final video | short conversion asset | “what should I look at?” | not started | TBD |
+| Final video | short conversion asset | “what should I look at?” | prototype started | `sharing-video-20260515/remotion/out/n8n-pipeline-prototype.mp4` |
+| Remotion n8n pipeline prototype | dynamic automation proof | motion-first video asset | rendered v1 | `sharing-video-20260515/remotion/out/n8n-pipeline-frame.png`, `sharing-video-20260515/remotion/out/n8n-pipeline-prototype.mp4` |
 
 ## 7. Open Questions / Grill Log
 
@@ -79,8 +80,9 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 - Current phase: content state locked enough for asset iteration.
 - Entry condition met: audience, goal, proof themes, three-layer framework are clear.
 - Exit condition: real proof screenshots + one dynamic video pipeline prototype are inserted.
+- Completed: one Remotion dynamic n8n pipeline prototype rendered as preview PNG + MP4.
 - Blockers: need real screenshots from PPT/n8n/Dashboard/Feishu/TTS.
-- Next gate: create one animated n8n pipeline video scene showing trigger → steps → output.
+- Next gate: replace placeholder pipeline cards with real screenshots and extend the 14s prototype into the full sharing sequence.
 - Must not change without owner confirmation: main hook, visual style baseline, repo as source of truth.
 
 ## 9. Scale Evaluation
@@ -101,3 +103,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-12 21:30 | Main deck typography increased; video entry added | Text was too small; video needed entry | `index.html` |
 | 2026-05-12 21:30 | V7 video-first scenes created | V6 was readable but not eye-catching as video | `sharing-video-20260515/scenes/v7/` |
 | 2026-05-12 21:36 | Project State added | Need scale evaluation and PLO state retention | `PROJECT_STATE.md` |
+
+| 2026-05-13 07:20 | Remotion n8n pipeline prototype rendered | Jianan approved video execution; Remotion is the chosen animation route | `src/N8nPipelinePrototype.tsx`, `sharing-video-20260515/remotion/out/` |

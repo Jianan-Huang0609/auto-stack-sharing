@@ -1,0 +1,21 @@
+{
+  "name": "auto-stack-sharing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "remotion:studio": "remotion studio src/index.ts",
+    "remotion:preview": "remotion preview src/index.ts",
+    "remotion:render": "remotion render src/index.ts N8nPipelinePrototype sharing-video-20260515/remotion/out/n8n-pipeline-prototype.mp4 --codec=h264 --crf=18",
+    "remotion:still": "remotion still src/index.ts N8nPipelinePrototype sharing-video-20260515/remotion/out/n8n-pipeline-frame.png --frame=120"
+  },
+  "dependencies": {
+    "@remotion/cli": "latest",
+    "@remotion/player": "latest",
+    "remotion": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {}
+}
