@@ -1,0 +1,103 @@
+# AutoStackSharing Project State
+
+Updated: 2026-05-12 21:36 CST
+Owner: Jianan
+PLO mode: B2B Content / Influence + Asset Production
+Current phase: framing → asset production prototype
+Repo: https://github.com/Jianan-Huang0609/auto-stack-sharing
+
+## 1. Audience / Stakeholders
+
+| Stakeholder | Need / motivation | What they must believe after this | Risk / objection |
+|---|---|---|---|
+| Cross-department peers | Understand what AI can really do in daily work | AI is no longer only chat; it can become a working system | Too tool-heavy, not enough proof |
+| Software expert | See system thinking and real technical leverage | Jianan understands AI orchestration, architecture, and verification, not just vibe coding | “AI wrote all code” may look unprofessional |
+| Automation expert | See how n8n / workflows connect with Agent systems | Agent OS + Skills + n8n can scale automation beyond one-off workflows | n8n demo feels abstract if not animated/proven |
+| Business colleagues | See practical business/work impact | AI can produce PPT, HTML, video, analysis, and management automation | Too technical / hard to adopt |
+
+## 2. Goal / Success Criteria
+
+- Primary goal: show the capability boundary of a personal AI operating system in real daily management and content/work production.
+- Secondary goals: establish Jianan’s AI authority, create networking pull, attract software/automation collaborators.
+- Non-goal: exhaustive tool tutorial or pure coding demo.
+- Success signals: people remember the three-layer model, ask for setup details, and believe the outputs are real.
+- Desired next action: interested peers ask to connect, copy the setup path, or collaborate on AI automation.
+
+## 3. Core Hook / Positioning
+
+- One-sentence hook: AI 的能力边界到底在哪？在日常管理中，自动化到底能做到什么程度？
+- Core thesis: AI’s real leverage is not one tool, but a system: Agent OS + Skills + n8n.
+- What this is NOT: not a tool list, not “look how many apps I use”, not “AI writes all my code”.
+- Best opening question: 如果 AI 不只是聊天窗口，而是一套持续工作的操作系统，它到底能帮我们做到什么？
+- Strongest contrast: from isolated tools → working operating system; from hand-written code → orchestrated, verified outputs.
+
+## 4. Proof / Muscle
+
+| Proof asset | Type | Why compelling | Status | Link / path |
+|---|---|---|---|---|
+| CER registration analysis PPT | PPT screenshot | Real work/business proof | ready, needs screenshot | `/Users/jianan/Documents/SSME/CER-Presentation/SSME_QT_CER_0509.pptx` |
+| AutoStackSharing main deck | HTML deck | Existing polished courseware | ready | `index.html` |
+| V7 video scenes | HTML video material | Video-first, animated-material starting point | prototype | `sharing-video-20260515/scenes/v7/PLAY.html` |
+| AIPM / product HTML | HTML screenshot | Product / B2C / dashboard proof | needs selected screenshot | `../AIPM-Mystique/index.html` |
+| n8n workflows | workflow screenshots | Automation muscle | needs screenshot or animated HTML recreation | `/Users/jianan/.openclaw/workspace/n8n-workflows/` |
+| Dashboard | screenshot | Operations closed loop | blocked by auth / needs access | `http://127.0.0.1:8080/` |
+| Feishu MAE / writing status | doc screenshot | Knowledge pipeline proof | needs screenshot | Feishu docs |
+| TTS voice design | audio/waveform | Sensory proof | needs clip/waveform | TBD |
+
+## 5. Framework / Mental Model
+
+Main framework: three-layer AI automation system.
+
+1. n8n scale layer: triggers, sync, workflows, Feishu push, Dashboard.
+2. Skills layer: reusable capabilities, not one-off prompts.
+3. Agent OS layer: memory, task ledger, roles, heartbeat, escalation.
+
+Takeaway model: first show muscle, then explain system, then give adoption path.
+Learning reversal appears after the three layers: Jianan learned n8n → Skills → Agent OS, but the recommended path is Agent OS → Skills → n8n.
+
+## 6. Output Format / Asset Plan
+
+| Output | Purpose | Audience state | Status | Link / path |
+|---|---|---|---|---|
+| Main deck | calm reading / presentation | sit down and understand | active | `index.html` |
+| Draft framework | script material source | planning / editing | active | `draft-sharing-framework-20260512.md` |
+| Video scenes V7 | attention / conversion / motion material | quick visual impact | prototype | `sharing-video-20260515/scenes/v7/PLAY.html` |
+| Real screenshots | proof | belief building | pending | TBD |
+| Final video | short conversion asset | “what should I look at?” | not started | TBD |
+
+## 7. Open Questions / Grill Log
+
+| Question | Answer | Decision made? | Follow-up |
+|---|---|---|---|
+| Should learning reversal be the hook? | No. It is important but not opening hook. | yes | Put it after muscle + system reveal |
+| Should HTML works all be shown? | No. Select a few strong examples. | yes | Choose 3–4 screenshots only |
+| Should video scenes be static slide-like? | No. They need motion/recording/conversion feeling. | yes | Build dynamic n8n pipeline example |
+| How to discuss code ratio decline safely? | Frame as work moving upward to orchestration/spec/verification, not “AI writes all code”. | yes | Use careful wording in script |
+
+## 8. Current Phase Gate
+
+- Current phase: content state locked enough for asset iteration.
+- Entry condition met: audience, goal, proof themes, three-layer framework are clear.
+- Exit condition: real proof screenshots + one dynamic video pipeline prototype are inserted.
+- Blockers: need real screenshots from PPT/n8n/Dashboard/Feishu/TTS.
+- Next gate: create one animated n8n pipeline video scene showing trigger → steps → output.
+- Must not change without owner confirmation: main hook, visual style baseline, repo as source of truth.
+
+## 9. Scale Evaluation
+
+| Dimension | Score 1-5 | Evidence | Problem / drift | Fix |
+|---|---:|---|---|---|
+| State retention | 3 | Important context captured in draft, but came late | PLO questions stayed in chat too long | Use PROJECT_STATE from start |
+| Grill question hit-rate | 3 | Audience/goals emerged after several rounds | Questions not tied to state table | Grill answers must update Project State |
+| Phase discipline | 2 | HTML/video execution distracted from framing | Jumped to V5/V6 too early | Gate execution behind current phase |
+| Asset-source consistency | 3 | Corrected to repo source of truth | Temporary SAM state caused confusion | Assets must live in repo |
+| User correction frequency | 2 | Multiple corrections on color/video purpose | Visual/video assumptions too early | Prototype smaller, ask before broad generation |
+| Reuse potential | 4 | Project State template can generalize | Needs global PLO adoption | Added to PLO template |
+
+## 10. Change Log
+
+| Time | Change | Reason | Evidence |
+|---|---|---|---|
+| 2026-05-12 21:30 | Main deck typography increased; video entry added | Text was too small; video needed entry | `index.html` |
+| 2026-05-12 21:30 | V7 video-first scenes created | V6 was readable but not eye-catching as video | `sharing-video-20260515/scenes/v7/` |
+| 2026-05-12 21:36 | Project State added | Need scale evaluation and PLO state retention | `PROJECT_STATE.md` |
