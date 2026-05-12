@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 07:48 CST
+Updated: 2026-05-13 07:55 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -109,3 +109,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 07:36 | Reframed speech/video script to muscle-first structure | Jianan rejected concept-first V2; new structure starts with n8n → Copilot+Skill → Agent, then three-layer landing, learning order, thinking decomposition, resources | `sharing-video-20260515/SPEECH_SCRIPT_V3_20260513.md`, `sharing-video-20260515/VIDEO_SCRIPT_V3_20260513.md` |
 
 | 2026-05-13 07:48 | V4 script reframed around personal AI system first, CER/PTR second | Jianan wanted to first present the personal system and only briefly mention CER company project | `sharing-video-20260515/SPEECH_SCRIPT_V4_20260513.md`, `sharing-video-20260515/VIDEO_SCRIPT_V4_20260513.md` |
+
+| 2026-05-13 07:55 | Added run-of-show page structure for V4 sharing | Converts V4 speech script into 19 presentation pages with titles, bullets, speaker notes, and visual direction | `sharing-video-20260515/PRESENTATION_RUN_OF_SHOW_V1_20260513.md` |
