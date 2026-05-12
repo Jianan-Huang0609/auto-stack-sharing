@@ -1,43 +1,41 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scene 06 — n8n Automation</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S06 · n8n Automation</title>
 <style>
-:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6;--blue:#3b82f6;--green:#10b981}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
-.scene{width:960px;height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.title{font-size:48px;font-weight:900;color:var(--ink);letter-spacing:-.02em;margin-bottom:8px}
-.title em{font-style:normal;background:linear-gradient(135deg,#8b5cf6,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.sub{font-size:20px;color:var(--muted);margin-bottom:40px}
-.flow{display:flex;align-items:center;gap:12px}
-.block{width:140px;height:80px;background:white;border:1px solid #e2e8f0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.block .icon{font-size:28px;margin-bottom:4px}
-.block .label{font-size:14px;font-weight:700;color:var(--ink)}
-.b1{border-top:4px solid #f59e0b}
-.b2{border-top:4px solid var(--blue)}
-.b3{border-top:4px solid var(--accent)}
-.b4{border-top:4px solid var(--green)}
-.arrow{font-size:24px;color:#cbd5e1}
-.caption{position:absolute;bottom:60px;font-size:16px;color:var(--muted)}
-</style>
-</head>
+body{width:960px;height:540px;overflow:hidden;background:#f8fafc;font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#1e293b}
+.scene{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(16,185,129,.04) 0%,transparent 50%),radial-gradient(ellipse at 30% 80%,rgba(59,130,246,.04) 0%,transparent 50%)}
+h2{font-size:44px;font-weight:900;color:#0f172a;z-index:1;letter-spacing:-.02em;margin-bottom:6px}
+h2 em{color:#3b82f6;font-style:normal}
+.sub{font-size:17px;color:#64748b;z-index:1;margin-bottom:40px}
+.flow{display:flex;align-items:center;gap:14px;z-index:1}
+.block{width:170px;height:86px;background:white;border:1px solid #f1f5f9;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-shadow:0 2px 12px rgba(0,0,0,.03);position:relative}
+.block .i{font-size:28px}.block .l{font-size:15px;font-weight:700;color:#334155}
+.block::after{content:'';position:absolute;top:-1px;left:15px;right:15px;height:3px;border-radius:0 0 3px 3px}
+.b1::after{background:#f59e0b}.b2::after{background:#3b82f6}
+.b3::after{background:#06b6d4}.b4::after{background:#10b981}
+.arrow{font-size:22px;color:#cbd5e1}
+.cap{z-index:1;margin-top:28px;font-size:15px;color:#64748b}
+.cap strong{color:#059669}
+</style></head>
 <body>
 <div class="scene">
-  <div class="title">Workflows <em>自动运转</em></div>
+  <div class="bg"></div>
+  <h2>Workflows <em>自动运转</em></h2>
   <div class="sub">n8n · Airtable · Dashboard · 提醒，一套打通</div>
   <div class="flow">
-    <div class="block b1"><div class="icon">⚙️</div><div class="label">n8n 触发</div></div>
+    <div class="block b1"><div class="i">⚙️</div><div class="l">n8n 触发</div></div>
     <div class="arrow">→</div>
-    <div class="block b2"><div class="icon">📊</div><div class="label">Airtable</div></div>
+    <div class="block b2"><div class="i">📊</div><div class="l">Airtable</div></div>
     <div class="arrow">→</div>
-    <div class="block b3"><div class="icon">📈</div><div class="label">Dashboard</div></div>
+    <div class="block b3"><div class="i">📈</div><div class="l">Dashboard</div></div>
     <div class="arrow">→</div>
-    <div class="block b4"><div class="icon">🔔</div><div class="label">提醒 / 行动</div></div>
+    <div class="block b4"><div class="i">🔔</div><div class="l">提醒 / 行动</div></div>
   </div>
-  <div class="caption">每日心跳 → 自动同步 → 可视化 → 闭环</div>
+  <div class="cap">每日心跳 → <strong>自动同步</strong> → 可视化 → 闭环</div>
 </div>
 </body>
 </html>

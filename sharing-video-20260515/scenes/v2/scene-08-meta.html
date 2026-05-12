@@ -1,38 +1,40 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scene 08 — Meta Reveal</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S08 · Meta Reveal</title>
 <style>
-:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
-.scene{width:960px;height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.line1{font-size:56px;font-weight:900;color:var(--ink);letter-spacing:-.02em;line-height:1.2}
-.line1 em{font-style:normal;background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.line2{font-size:28px;color:var(--muted);margin-top:20px;font-weight:500}
-.pipeline{display:flex;align-items:center;gap:16px;margin-top:36px}
-.artifact{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:700;color:var(--ink);box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.link{font-size:20px;color:#cbd5e1}
-.cursor{display:inline-block;width:10px;height:28px;background:var(--accent);vertical-align:-4px;margin-left:6px;animation:blink .8s infinite}
-@keyframes blink{50%{opacity:0}}
-</style>
-</head>
+body{width:960px;height:540px;overflow:hidden;background:#f8fafc;font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#1e293b}
+.scene{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(59,130,246,.06) 0%,transparent 60%)}
+.corner{position:absolute;width:50px;height:50px;border-color:#e2e8f0}
+.corner.tl{top:50px;left:50px;border-top:1px solid;border-left:1px solid}
+.corner.tr{top:50px;right:50px;border-top:1px solid;border-right:1px solid}
+.corner.bl{bottom:50px;left:50px;border-bottom:1px solid;border-left:1px solid}
+.corner.br{bottom:50px;right:50px;border-bottom:1px solid;border-right:1px solid}
+h2{font-size:52px;font-weight:900;color:#0f172a;z-index:1;letter-spacing:-.02em;line-height:1.2;text-align:center}
+h2 em{font-style:normal;color:#3b82f6}
+.pipeline{z-index:1;display:flex;align-items:center;gap:12px;margin-top:36px}
+.pipe{font-size:14px;color:#64748b;font-weight:700;padding:10px 20px;background:white;border:1px solid #f1f5f9;border-radius:8px;letter-spacing:.02em;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.pipe.acc{color:#2563eb;border-color:#bfdbfe;background:#eff6ff}
+.arr{color:#cbd5e1;font-size:16px}
+.sub{z-index:1;margin-top:24px;font-size:18px;color:#64748b}
+.cursor{display:inline-block;width:10px;height:32px;background:#3b82f6;border-radius:2px;vertical-align:-5px;margin-left:6px;animation:blink .8s infinite}
+@keyframes blink{50%{opacity:.15}}
+</style></head>
 <body>
 <div class="scene">
-  <div class="line1">This video was <em>planned</em></div>
-  <div class="line1">by the system it explains<span class="cursor"></span></div>
+  <div class="bg"></div>
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <h2>This video was <em>planned</em><br>by the system it explains<span class="cursor"></span></h2>
   <div class="pipeline">
-    <div class="artifact">STORYBOARD</div>
-    <div class="link">→</div>
-    <div class="artifact">HTML SCENES</div>
-    <div class="link">→</div>
-    <div class="artifact">API RENDER</div>
-    <div class="link">→</div>
-    <div class="artifact">FINAL MP4</div>
+    <div class="pipe">STORYBOARD</div><div class="arr">→</div>
+    <div class="pipe acc">HTML SCENES</div><div class="arr">→</div>
+    <div class="pipe">API RENDER</div><div class="arr">→</div>
+    <div class="pipe acc">FINAL MP4</div>
   </div>
-  <div class="line2" style="margin-top:24px;font-size:20px">PLO → ai-video-production-pack → Seedance / Kling → 成品</div>
+  <div class="sub">PLO → ai-video-production-pack → Seedance / Kling → 成品</div>
 </div>
 </body>
 </html>

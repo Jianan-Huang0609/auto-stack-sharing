@@ -1,36 +1,39 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scene 01 — From Chatbot to AI OS</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S01 · Hook</title>
 <style>
-:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6;--blue:#3b82f6;--green:#10b981}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;overflow:hidden}
-.scene{width:960px;height:540px;position:relative;display:flex;align-items:center;justify-content:center}
-.hero{text-align:center}
-.line1{font-size:72px;font-weight:900;letter-spacing:-.03em;color:var(--ink);line-height:1.1}
-.line1 em{font-style:normal;color:var(--accent);background:linear-gradient(135deg,#8b5cf6,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.line2{font-size:24px;color:var(--muted);margin-top:24px;font-weight:500;letter-spacing:-.01em}
-.arrow{font-size:48px;margin:16px 0;color:#cbd5e1}
-.old{font-size:20px;color:#94a3b8;display:inline-block;padding:6px 24px;border:1px solid #e2e8f0;border-radius:999px;margin-right:12px;font-weight:500}
-.new{font-size:20px;color:var(--accent);display:inline-block;padding:6px 24px;border:1px solid #c4b5fd;border-radius:999px;background:#f5f3ff;font-weight:700}
-.pills{margin-top:28px}
-.dot{display:inline-block;width:6px;height:6px;background:#cbd5e1;border-radius:50%;margin:0 12px;vertical-align:middle}
-</style>
-</head>
+body{width:960px;height:540px;overflow:hidden;background:#f8fafc;font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#1e293b}
+.scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 85% 20%,rgba(59,130,246,.06) 0%,transparent 55%),radial-gradient(ellipse at 15% 80%,rgba(6,182,212,.04) 0%,transparent 50%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.02) 1px,transparent 1px);background-size:48px 48px}
+.accent-line{position:absolute;top:0;right:280px;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(59,130,246,.15) 30%,rgba(6,182,212,.1) 70%,transparent)}
+.content{z-index:1;text-align:left;padding:0 100px 0 80px;max-width:800px}
+.overline{font-size:13px;letter-spacing:.14em;color:#3b82f6;font-weight:700;margin-bottom:20px}
+h1{font-size:68px;font-weight:900;line-height:1.08;letter-spacing:-.03em;color:#0f172a}
+h1 em{font-style:normal;color:#3b82f6}
+.sub{font-size:21px;color:#64748b;margin-top:20px;font-weight:400;line-height:1.5}
+.pills{margin-top:32px;display:flex;gap:10px}
+.pill{font-size:14px;font-weight:700;padding:9px 20px;border-radius:8px}
+.pill.ghost{color:#64748b;background:#f1f5f9;border:1px solid #e2e8f0}
+.pill.accent{color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe}
+.dot-block{position:absolute;right:60px;top:50%;transform:translateY(-50%);width:180px;height:180px;border-radius:50%;border:1px solid rgba(59,130,246,.08);background:radial-gradient(circle,rgba(59,130,246,.04) 0%,transparent 70%)}
+.dot-block::after{content:'';position:absolute;inset:30px;border-radius:50%;border:1px solid rgba(6,182,212,.06)}
+</style></head>
 <body>
 <div class="scene">
-  <div class="hero">
+  <div class="bg"></div><div class="grid"></div><div class="accent-line"></div>
+  <div class="dot-block"></div>
+  <div class="content">
+    <div class="overline">Internal Sharing · 2026</div>
+    <h1>一人公司的<br><em>AI 工程化</em>尝试</h1>
+    <div class="sub">从聊天到操作系统：skills 路由 · agents 协调 · workflows 运转</div>
     <div class="pills">
-      <span class="old">Chatbot</span>
-      <span class="dot"></span>
-      <span class="new">AI Operating System</span>
+      <span class="pill ghost">Chatbot</span>
+      <span class="pill accent">→ AI Operating System</span>
     </div>
-    <div class="line1" style="margin-top:32px">一人公司</div>
-    <div class="line1">的<em>AI 工程化</em>尝试</div>
-    <div class="line2">从聊天到操作系统：skills 路由 · agents 协调 · workflows 运转</div>
   </div>
 </div>
 </body>

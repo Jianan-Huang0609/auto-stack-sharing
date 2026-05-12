@@ -1,48 +1,46 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scene 05 — Multi-Agent OS</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S05 · Multi-Agent OS</title>
 <style>
-:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6;--blue:#3b82f6;--green:#10b981;--amber:#f59e0b;--rose:#f43f5e}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
-.scene{width:960px;height:540px;position:relative;display:flex;align-items:center;justify-content:center}
-.ring{width:360px;height:360px;border:2px solid #e2e8f0;border-radius:50%;position:absolute}
-.r1{width:280px;height:280px;border-color:#e2e8f0}
-.r2{width:200px;height:200px;border-style:dashed}
-.center{width:100px;height:100px;background:var(--ink);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:800;z-index:10;position:absolute}
-.center div:last-child{font-size:28px;line-height:1}
-.node{position:absolute;width:100px;text-align:center}
-.node .icon{font-size:32px;margin-bottom:4px}
-.node .name{font-size:18px;font-weight:800;color:var(--ink)}
-.node .role{font-size:12px;color:var(--muted)}
-.n0{top:10px;left:50%;transform:translateX(-50%)}
-.n1{right:10px;top:50%;transform:translateY(-50%)}
-.n2{bottom:10px;right:25%}
-.n3{bottom:10px;left:25%}
-.n4{left:10px;top:50%;transform:translateY(-50%)}
-.legend{position:absolute;bottom:24px;width:100%;text-align:center;font-size:14px;color:var(--muted);display:flex;justify-content:center;gap:24px}
-.legend span{display:inline-flex;align-items:center;gap:6px}
-.legdot{width:8px;height:8px;border-radius:50%;display:inline-block}
-</style>
-</head>
+body{width:960px;height:540px;overflow:hidden;background:#f8fafc;font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#1e293b}
+.scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(59,130,246,.04) 0%,transparent 60%)}
+.ring{position:absolute;border-radius:50%;border:1px solid}
+.r0{width:440px;height:440px;border-color:#e2e8f0}
+.r1{width:340px;height:340px;border-color:#dbeafe;border-style:dashed}
+.r2{width:240px;height:240px;border-color:#bfdbfe}
+.core{width:120px;height:120px;border-radius:50%;background:white;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;box-shadow:0 8px 40px rgba(59,130,246,.1);border:2px solid #bfdbfe}
+.core .e{font-size:40px}.core .l{font-size:13px;font-weight:800;color:#2563eb;letter-spacing:.05em}
+.node{position:absolute;text-align:center;z-index:5}
+.node .e{font-size:34px;margin-bottom:4px}
+.node .n{font-size:17px;font-weight:800;color:#1e293b}
+.node .r{font-size:11px;color:#94a3b8}
+.n1{top:28px;left:50%;transform:translateX(-50%)}
+.n2{right:44px;top:50%;transform:translateY(-50%)}
+.n3{bottom:50px;right:170px}
+.n4{bottom:50px;left:170px}
+.n5{left:44px;top:50%;transform:translateY(-50%)}
+.leg{position:absolute;bottom:34px;display:flex;gap:28px;z-index:5}
+.leg span{font-size:13px;color:#94a3b8;display:flex;align-items:center;gap:8px}
+.leg span::before{content:'';width:8px;height:8px;border-radius:50%}
+</style></head>
 <body>
 <div class="scene">
-  <div class="ring"></div>
-  <div class="ring r1"></div>
-  <div class="ring r2"></div>
-  <div class="center"><div>SAM</div><div>🧠</div></div>
-  <div class="node n0"><div class="icon">🌸</div><div class="name">Andrew</div><div class="role">学习 · 侦察</div></div>
-  <div class="node n1"><div class="icon">💼</div><div class="name">Rex</div><div class="role">工作 · CER</div></div>
-  <div class="node n2"><div class="icon">✍️</div><div class="name">Lulu</div><div class="role">内容 · 设计</div></div>
-  <div class="node n3"><div class="icon">💗</div><div class="name">Alex</div><div class="role">个人 · 生活</div></div>
-  <div class="node n4"><div class="icon">📡</div><div class="name">MAE</div><div class="role">编排 · 调度</div></div>
-  <div class="legend">
-    <span><span class="legdot" style="background:var(--ink)"></span> Memory</span>
-    <span><span class="legdot" style="background:var(--accent)"></span> Task Ledger</span>
-    <span><span class="legdot" style="background:var(--blue)"></span> Heartbeat</span>
+  <div class="bg"></div>
+  <div class="ring r0"></div><div class="ring r1"></div><div class="ring r2"></div>
+  <div class="core"><div class="e">🧠</div><div class="l">SAM</div></div>
+  <div class="node n1"><div class="e">🌸</div><div class="n">Andrew</div><div class="r">学习 · 侦察</div></div>
+  <div class="node n2"><div class="e">💼</div><div class="n">Rex</div><div class="r">工作 · CER</div></div>
+  <div class="node n3"><div class="e">✍️</div><div class="n">Lulu</div><div class="r">内容 · 设计</div></div>
+  <div class="node n4"><div class="e">💗</div><div class="n">Alex</div><div class="r">个人 · 生活</div></div>
+  <div class="node n5"><div class="e">📡</div><div class="n">MAE</div><div class="r">编排 · 调度</div></div>
+  <div class="leg">
+    <span style="--c:#1e293b">Memory</span>
+    <span style="--c:#3b82f6">Task Ledger</span>
+    <span style="--c:#06b6d4">Heartbeat</span>
   </div>
 </div>
 </body>
