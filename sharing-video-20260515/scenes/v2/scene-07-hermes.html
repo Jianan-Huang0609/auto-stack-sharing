@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scene 07 — Hermes Evolution Loop</title>
+<style>
+:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6;--blue:#3b82f6;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
+.scene{width:960px;height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.title{font-size:48px;font-weight:900;color:var(--ink);letter-spacing:-.02em;margin-bottom:40px}
+.loop{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;max-width:800px}
+.step{width:130px;height:90px;background:white;border:1px solid #e2e8f0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.step .icon{font-size:28px;margin-bottom:6px}
+.step .label{font-size:14px;font-weight:700;color:var(--ink);text-align:center}
+.arr{font-size:20px;color:#cbd5e1}
+.sub{font-size:18px;color:var(--muted);margin-top:36px;text-align:center;line-height:1.6}
+.sub strong{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="title">系统自己 <em>进化</em></div>
+  <div class="loop">
+    <div class="step"><div class="icon">👁️</div><div class="label">Observe</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="icon">🔍</div><div class="label">Pattern</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="icon">📝</div><div class="label">Dry-run Patch</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="icon">✅</div><div class="label">Human Confirm</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="icon">🔄</div><div class="label">Skill Update</div></div>
+    <div class="arr">↺</div>
+  </div>
+  <div class="sub"><strong>Hermes Evolution Loop</strong><br>每周自动审视：哪里重复了？哪里可以变成 skill？</div>
+</div>
+</body>
+</html>

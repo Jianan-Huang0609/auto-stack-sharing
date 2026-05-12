@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scene 08 — Meta Reveal</title>
+<style>
+:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
+.scene{width:960px;height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.line1{font-size:56px;font-weight:900;color:var(--ink);letter-spacing:-.02em;line-height:1.2}
+.line1 em{font-style:normal;background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.line2{font-size:28px;color:var(--muted);margin-top:20px;font-weight:500}
+.pipeline{display:flex;align-items:center;gap:16px;margin-top:36px}
+.artifact{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:700;color:var(--ink);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.link{font-size:20px;color:#cbd5e1}
+.cursor{display:inline-block;width:10px;height:28px;background:var(--accent);vertical-align:-4px;margin-left:6px;animation:blink .8s infinite}
+@keyframes blink{50%{opacity:0}}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="line1">This video was <em>planned</em></div>
+  <div class="line1">by the system it explains<span class="cursor"></span></div>
+  <div class="pipeline">
+    <div class="artifact">STORYBOARD</div>
+    <div class="link">→</div>
+    <div class="artifact">HTML SCENES</div>
+    <div class="link">→</div>
+    <div class="artifact">API RENDER</div>
+    <div class="link">→</div>
+    <div class="artifact">FINAL MP4</div>
+  </div>
+  <div class="line2" style="margin-top:24px;font-size:20px">PLO → ai-video-production-pack → Seedance / Kling → 成品</div>
+</div>
+</body>
+</html>

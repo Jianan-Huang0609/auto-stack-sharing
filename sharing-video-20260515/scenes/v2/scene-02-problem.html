@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scene 02 — Work Fragmentation</title>
+<style>
+:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6;--red:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
+.scene{width:960px;height:540px;position:relative;display:flex;align-items:center;justify-content:center}
+.question{font-size:28px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:32px}
+.frags{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:780px}
+.frag{width:160px;height:100px;background:white;border:1px solid #e2e8f0;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;color:var(--muted);box-shadow:0 2px 12px rgba(0,0,0,.04);transform:rotate(var(--r,0deg));transition:all .3s}
+.frag::before{content:attr(data-icon);margin-right:8px;font-size:20px}
+.arrow{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:36px;color:#cbd5e1}
+.answer{position:absolute;bottom:80px;width:100%;text-align:center;font-size:20px;color:var(--accent);font-weight:600}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div style="position:relative">
+    <div class="question">一周的工作，散落在多少地方？</div>
+    <div class="frags">
+      <div class="frag" style="--r:-3deg" data-icon="📋">会议纪要</div>
+      <div class="frag" style="--r:2deg" data-icon="📄">需求文档</div>
+      <div class="frag" style="--r:-1deg" data-icon="💻">代码仓库</div>
+      <div class="frag" style="--r:4deg" data-icon="📊">Dashboard</div>
+      <div class="frag" style="--r:-2deg" data-icon="💬">微信指令</div>
+      <div class="frag" style="--r:3deg" data-icon="🔗">n8n 流程</div>
+      <div class="frag" style="--r:-4deg" data-icon="📝">飞书文档</div>
+      <div class="frag" style="--r:1deg" data-icon="🤖">Agent 日志</div>
+    </div>
+    <div class="answer">如果有一个系统能把这些串起来呢？</div>
+    <div class="arrow">↓</div>
+  </div>
+</div>
+</body>
+</html>

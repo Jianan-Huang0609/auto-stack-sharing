@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Operating System — Full Storyboard Preview</title>
+<style>
+:root{--bg:#f8fafc;--ink:#1e293b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;gap:18px}
+.viewport{width:960px;height:540px;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);background:var(--bg);position:relative}
+iframe{width:100%;height:100%;border:none;display:block}
+.timeline{display:flex;gap:6px}
+.dot{width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.5);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit}
+.dot:hover,.dot.active{border-color:white;color:white;background:rgba(255,255,255,.1)}
+.info{color:rgba(255,255,255,.5);font-size:14px;position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap}
+.controls{display:flex;gap:12px;align-items:center}
+.btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:8px 20px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s}
+.btn:hover{background:rgba(255,255,255,.2);color:white}
+.wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="viewport"><iframe id="frame" src="v2/scene-01-hook.html"></iframe></div>
+  <div class="timeline" id="dots"></div>
+  <div class="controls">
+    <button class="btn" id="prev">◀ Prev</button>
+    <button class="btn" id="next">Next ▶</button>
+    <button class="btn" id="auto">▶ Auto (3s)</button>
+  </div>
+</div>
+
+<script>
+const scenes=[
+  {file:'v2/scene-01-hook.html',label:'Hook'},
+  {file:'v2/scene-02-problem.html',label:'Problem'},
+  {file:'v2/scene-03-plo.html',label:'PLO'},
+  {file:'v2/scene-04-architecture.html',label:'Arch×Matt'},
+  {file:'v2/scene-05-agents.html',label:'Agents'},
+  {file:'v2/scene-06-n8n.html',label:'n8n'},
+  {file:'v2/scene-07-hermes.html',label:'Hermes'},
+  {file:'v2/scene-08-meta.html',label:'Meta'},
+];
+let idx=0,timer=null;
+const f=document.getElementById('frame'),dots=document.getElementById('dots');
+function show(i){
+  idx=i; f.src=scenes[i].file;
+  document.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+}
+function next(){ show((idx+1)%scenes.length) }
+function prev(){ show((idx-1+scenes.length)%scenes.length) }
+scenes.forEach((s,i)=>{
+  const d=document.createElement('div'); d.className='dot'+(i===0?' active':'');
+  d.textContent=i+1; d.title=s.label;
+  d.onclick=()=>{ stopAuto(); show(i) };
+  dots.appendChild(d);
+});
+document.getElementById('next').onclick=()=>{stopAuto();next()};
+document.getElementById('prev').onclick=()=>{stopAuto();prev()};
+document.getElementById('auto').onclick=function(){
+  if(timer){stopAuto();this.textContent='▶ Auto (3s)';return}
+  this.textContent='⏸ Stop';
+  next(); timer=setInterval(next,3000);
+};
+function stopAuto(){ if(timer){clearInterval(timer);timer=null;document.getElementById('auto').textContent='▶ Auto (3s)'} }
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){stopAuto();next()}
+  if(e.key==='ArrowLeft'){stopAuto();prev()}
+  if(e.key===' '){e.preventDefault();document.getElementById('auto').click()}
+});
+</script>
+</body>
+</html>

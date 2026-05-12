@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scene 03 — PLO Routing</title>
+<style>
+:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6;--blue:#3b82f6;--green:#10b981;--amber:#f59e0b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
+.scene{width:960px;height:540px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.label{font-size:18px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+.title{font-size:56px;font-weight:900;color:var(--ink);letter-spacing:-.02em;margin-bottom:40px}
+.title em{font-style:normal;background:linear-gradient(135deg,#8b5cf6,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.routes{display:flex;gap:24px}
+.route{width:180px;padding:28px 20px;background:white;border-radius:20px;text-align:center;border:1px solid #e2e8f0;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.route .icon{font-size:36px;margin-bottom:12px}
+.route .name{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.route .desc{font-size:13px;color:var(--muted);line-height:1.5}
+.r1{border-top:4px solid var(--blue)}
+.r2{border-top:4px solid var(--accent)}
+.r3{border-top:4px solid var(--green)}
+.r4{border-top:4px solid var(--amber)}
+.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-110%);width:60px;height:60px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:800;z-index:1}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="label">Product Lifecycle Orchestrator</div>
+  <div class="title">一切项目，<em>先判断类型</em></div>
+  <div class="routes" style="position:relative">
+    <div class="route r1">
+      <div class="icon">🏭</div>
+      <div class="name">B2B Enterprise</div>
+      <div class="desc">内部自动化<br/>CER · PTR · QA</div>
+    </div>
+    <div class="route r2">
+      <div class="icon">📢</div>
+      <div class="name">B2B Content</div>
+      <div class="desc">影响力内容<br/>分享 · 白皮书 · 视频</div>
+    </div>
+    <div class="route r3">
+      <div class="icon">🎯</div>
+      <div class="name">ToC Product</div>
+      <div class="desc">消费者产品<br/>激活 · 留存 · 增长</div>
+    </div>
+    <div class="route r4">
+      <div class="icon">🔧</div>
+      <div class="name">Personal Tools</div>
+      <div class="desc">个人工具<br/>原型 · 迭代 · 维护</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

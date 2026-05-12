@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scene 04 — Architecture × Matt Execution</title>
+<style>
+:root{--bg:#f8fafc;--ink:#1e293b;--muted:#64748b;--accent:#8b5cf6;--blue:#3b82f6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}
+.scene{width:960px;height:540px;display:flex;align-items:center;justify-content:center;gap:60px}
+.col{text-align:center}
+.col .label{font-size:14px;color:var(--muted);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
+.col .big{font-size:36px;font-weight:900;color:var(--ink);margin-bottom:16px;letter-spacing:-.01em}
+.col .items{text-align:left;font-size:16px;color:var(--muted);line-height:2.2}
+.col .items span{color:var(--ink);font-weight:600}
+.plus{font-size:36px;color:#cbd5e1;font-weight:300}
+.result{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);font-size:22px;color:var(--accent);font-weight:700}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="col">
+    <div class="label">🧠 Architecture Lens</div>
+    <div class="big">想清楚</div>
+    <div class="items">
+      <div><span>独特能力</span> 是什么</div>
+      <div><span>能力包</span> 怎么拆</div>
+      <div><span>谁负责</span> 什么</div>
+      <div><span>Tradeoff</span> 怎么选</div>
+    </div>
+  </div>
+  <div class="plus">×</div>
+  <div class="col">
+    <div class="label">🔨 Matt Execution</div>
+    <div class="big">做出来</div>
+    <div class="items">
+      <div><span>grill-with-docs</span> 问清需求</div>
+      <div><span>to-prd / to-issues</span> 拆任务</div>
+      <div><span>tdd / diagnose</span> 测试修复</div>
+      <div><span>review / ship</span> 审查发布</div>
+    </div>
+  </div>
+  <div class="result">PLO v4：双路径融合，不是二选一</div>
+</div>
+</body>
+</html>
