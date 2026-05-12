@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 07:20 CST
+Updated: 2026-05-13 07:36 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -105,3 +105,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-12 21:36 | Project State added | Need scale evaluation and PLO state retention | `PROJECT_STATE.md` |
 
 | 2026-05-13 07:20 | Remotion n8n pipeline prototype rendered | Jianan approved video execution; Remotion is the chosen animation route | `src/N8nPipelinePrototype.tsx`, `sharing-video-20260515/remotion/out/` |
+
+| 2026-05-13 07:36 | Reframed speech/video script to muscle-first structure | Jianan rejected concept-first V2; new structure starts with n8n → Copilot+Skill → Agent, then three-layer landing, learning order, thinking decomposition, resources | `sharing-video-20260515/SPEECH_SCRIPT_V3_20260513.md`, `sharing-video-20260515/VIDEO_SCRIPT_V3_20260513.md` |
