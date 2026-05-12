@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Operating System — 30s Preview</title>
+<style>
+:root{--bg:#f8fafc;--ink:#0f172a;--muted:#64748b;--blue:#3b82f6;--purple:#8b5cf6;--green:#10b981;--amber:#f59e0b;--line:#dbe3ef;}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#f8fafc,#eef6ff);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",Arial,sans-serif;color:var(--ink);overflow:hidden}
+.stage{width:100vw;height:100vh;position:relative;padding:7vh 7vw}.title{font-size:64px;line-height:1.05;font-weight:850;letter-spacing:-.04em;max-width:980px;animation:rise .8s ease-out both}.subtitle{font-size:26px;color:var(--muted);margin-top:22px;max-width:850px;line-height:1.45;animation:rise .8s .15s ease-out both}.grid{position:absolute;right:7vw;top:16vh;width:520px;height:520px}.card{position:absolute;width:220px;height:130px;background:white;border:1px solid var(--line);border-radius:26px;box-shadow:0 24px 70px rgba(15,23,42,.12);padding:24px;animation:float 5s ease-in-out infinite}.card b{display:block;font-size:25px;margin-bottom:10px}.card span{font-size:16px;color:var(--muted);line-height:1.35}.c1{left:0;top:0;border-top:6px solid var(--blue)}.c2{right:0;top:105px;border-top:6px solid var(--purple);animation-delay:.4s}.c3{left:95px;bottom:0;border-top:6px solid var(--green);animation-delay:.8s}.hub{position:absolute;left:165px;top:210px;width:190px;height:190px;border-radius:50%;background:#0f172a;color:white;display:flex;align-items:center;justify-content:center;text-align:center;font-size:30px;font-weight:850;box-shadow:0 30px 80px rgba(15,23,42,.25);animation:pulse 2.2s ease-in-out infinite}.line{position:absolute;background:linear-gradient(90deg,transparent,#94a3b8,transparent);height:2px;transform-origin:left;opacity:.7}.l1{left:150px;top:130px;width:170px;transform:rotate(38deg)}.l2{left:290px;top:230px;width:150px;transform:rotate(-18deg)}.l3{left:230px;top:360px;width:160px;transform:rotate(-78deg)}.ticker{position:absolute;left:7vw;bottom:8vh;display:flex;gap:14px;animation:rise .8s .35s ease-out both}.pill{background:white;border:1px solid var(--line);padding:13px 18px;border-radius:999px;font-size:18px;font-weight:700;box-shadow:0 12px 30px rgba(15,23,42,.08)}.reveal{position:absolute;left:7vw;bottom:18vh;font-size:28px;color:#334155;font-weight:700;opacity:0;animation:appear 1s 6s both}.cursor{display:inline-block;width:12px;height:32px;background:var(--blue);vertical-align:-5px;animation:blink .8s infinite}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}@keyframes appear{to{opacity:1}}@keyframes blink{50%{opacity:0}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="title">From Chatbot<br/>to AI Operating System</div>
+  <div class="subtitle">A practical internal experiment: skills route the work, agents coordinate context, workflows keep operations moving.</div>
+  <div class="grid">
+    <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div>
+    <div class="card c1"><b>Skills</b><span>PLO, templates, handoff, evals</span></div>
+    <div class="card c2"><b>Agents</b><span>SAM, Andrew, Rex, Lulu, Alex</span></div>
+    <div class="card c3"><b>Workflows</b><span>n8n, Airtable, dashboard</span></div>
+    <div class="hub">AI<br/>OS</div>
+  </div>
+  <div class="reveal">This video is planned by the system it explains <span class="cursor"></span></div>
+  <div class="ticker"><div class="pill">PLO</div><div class="pill">Multi-Agent</div><div class="pill">n8n</div><div class="pill">Hermes Loop</div></div>
+</div>
+</body>
+</html>
