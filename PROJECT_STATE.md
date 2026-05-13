@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 13:50 CST
+Updated: 2026-05-13 13:58 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -133,3 +133,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 13:32 | Added AIPM UI reference for V6 deck | Jianan asked to reference AI PM page design for attractive image/UI treatment. Design decision: keep 0506 beige/orange/teal deck identity while borrowing AIPM proof-card, asset-wall, split-proof, rounded shadow image containers, and productized knowledge-page feel | `sharing-video-20260515/AIPM_UI_REFERENCE_FOR_DECK_V6_20260513.md` |
 
 | 2026-05-13 13:50 | Built first V6 HTML deck skeleton | Created `deck-v6/index.html` from the original 0506 beige/orange/teal visual direction, borrowing AIPM-style proof cards, asset wall, rounded image containers, and placeholders for missing screenshots | `sharing-video-20260515/deck-v6/index.html` |
+
+| 2026-05-13 13:58 | Revised V6 deck navigation and layer detail pages | Jianan pointed out page 12 was too heavy and muscle section lacked clear section transitions. Split the three-layer detail into overview + separate n8n/Skills/Agent OS pages and added a bottom section rail with OPENING/N8N/SKILL/AGENT/THREE LAYERS/THINKING/TAKEAWAY labels | `sharing-video-20260515/deck-v6/index.html` |
