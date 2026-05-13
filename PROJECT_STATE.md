@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 14:05 CST
+Updated: 2026-05-13 14:45 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -137,3 +137,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 13:58 | Revised V6 deck navigation and layer detail pages | Jianan pointed out page 12 was too heavy and muscle section lacked clear section transitions. Split the three-layer detail into overview + separate n8n/Skills/Agent OS pages and added a bottom section rail with OPENING/N8N/SKILL/AGENT/THREE LAYERS/THINKING/TAKEAWAY labels | `sharing-video-20260515/deck-v6/index.html` |
 
 | 2026-05-13 14:05 | Added V6 deck redesign thinking aligned to approved script | Jianan said current HTML still does not match the approved script plan. Created a redesign document with page-by-page narrative architecture, section breaks, proof pages, method pages, information-density rules, and a 40-page structure | `sharing-video-20260515/DECK_V6_REDESIGN_THINKING_20260513.md` |
+
+| 2026-05-13 14:45 | Rebuilt deck-v6 HTML around approved V6 narrative | Replaced patchwork 30-page skeleton with a 40-slide script-aligned deck: opening, muscle overview, n8n, evolution bridge, Copilot+Skill, Agent OS, method layers, learning path, thinking, CER, takeaway. Kept 0506 visual identity and placeholders | `sharing-video-20260515/deck-v6/index.html` |
