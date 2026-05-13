@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 08:00 CST
+Updated: 2026-05-13 08:18 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -113,3 +113,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 07:55 | Added run-of-show page structure for V4 sharing | Converts V4 speech script into 19 presentation pages with titles, bullets, speaker notes, and visual direction | `sharing-video-20260515/PRESENTATION_RUN_OF_SHOW_V1_20260513.md` |
 
 | 2026-05-13 08:00 | Rebuilt HTML deck around V4 personal AI system story | Root `index.html` and `sharing-video-20260515/deck-v4/index.html` now follow V4: personal AI system first, three muscles, three-layer landing, learning path, thinking decomposition, CER/PTR light proof, resources takeaway | `index.html`, `sharing-video-20260515/deck-v4/index.html` |
+
+| 2026-05-13 08:18 | Added V8 video HTML base from V4 story | Video storyline locked as 2m-ish trailer: muscle → system → playbooks → learning/thinking → CER light proof → resources; based on old scenes/v7 HTML base but updated to personal AI system narrative | `sharing-video-20260515/scenes/v8/PLAY.html`, `sharing-video-20260515/scenes/v8/scene-*.html` |
