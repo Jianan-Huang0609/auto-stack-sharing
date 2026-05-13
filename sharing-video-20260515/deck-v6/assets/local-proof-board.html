@@ -1,0 +1,192 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#faf9f5;color:#141413;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;padding:36px;background-image:radial-gradient(circle,rgba(20,20,19,.045) 1px,transparent 1px);background-size:22px 22px}h1{font-size:40px;letter-spacing:-.04em;margin:0 0 20px}main{display:grid;grid-template-columns:1fr 1fr;gap:18px}section{background:#fff;border:1px solid #e8dcc6;border-radius:24px;padding:20px;box-shadow:0 18px 55px rgba(120,75,30,.10);min-height:330px}.label{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.09em;color:#d97706;text-transform:uppercase;margin-bottom:12px}pre{white-space:pre-wrap;word-break:break-word;margin:0;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.45;color:#383734;max-height:285px;overflow:hidden}</style></head><body><h1>Local Proof Board</h1><main><section><div class="label">GitHub Commit Trail</div><pre>9813a0c Add tonight asset fill list for V7 deck
+8a2aab3 Add V7 framework diagrams and executable placeholders
+5040cc7 Enrich V7 deck with substantive card and flow content
+d397f8a Refine V7 deck framework styling
+20c242f Regenerate V6 deck with fixed layout system
+1c4380f Add V6 deck page-by-page review
+b0bf715 Rebuild V6 deck around approved narrative
+f7a76eb Add V6 deck redesign thinking
+</pre></section><section><div class="label">V6 Script / Project State</div><pre># 演讲分享剧本 V6 — 我如何搭了一个个人 AI 工作系统
+
+定位：45min 干货 + 15min Q&amp;A  
+受众：跨部门同事，包含业务、软件、自动化方向  
+目标：建立认知、展示能力、塑造“懂 AI / 懂系统 / 能落地”的个人品牌，并链接关键同事  
+视觉基准：演讲 HTML 使用原始 0506 deck 的米白背景 + 橙色 + 青色基调；视频 HTML 使用橘色调肌肉 trailer
+
+---
+
+## 总体主旨
+
+这场分享不是一个 AI 工具清单。
+
+我真正想回答三个问题：
+
+1. AI 到底能做什么？
+2. 在日常管理里，自动化到底能做到什么程度？
+3. 一个人怎样用 Agent OS + Skills + n8n，把 AI 变成真实工作系统？
+
+核心句：
+
+不是用 AI 工具，而是设计一套让 AI 正确工作的系统。
+
+---
+
+# 0A. 开场互动：先让大家定位自己在哪里（3–5 min）
+
+这部分不是热场游戏，而是快速让不同基础的同事都找到自己的位置。
+
+我希望已经举手的人，今天能带走更进阶的系统实践。
+也希望没有举手的人，听完之后下次愿意真实试一次。
+
+## 互动问题
+
+可以现场举手，或做成二维码问卷 / 飞书问卷 / 简单 HTML 投票页。
+
+### Q1. 你是不是每天都在用 AI？
+
+- 每天都用
+- 一周几次
+- 偶尔用
+- 基本不用
+
+### Q2. 你有没有玩过 n8n / Dify 这类拖拉拽自动化或 agentic workflow 工具？
+
+- 用过并搭过 workflow
+- 看过 demo / 试过一点
+- 听过但没用过
+- 没听过
+
+这里可以轻带解释：Dify 文档把自己定义成 open-source platform for building agentic workflows；n8n 更像 workflow automation 和 integration 的底座。
+
+### Q3. 你有没有听过 / 玩过 MCP？
+
+- 自己配置过 MCP server / client
+- 在 Claude / Cursor / VS Code 里用过
+- 听过但没搭过
+- 没听过
+
+这里用一句话解释：MCP 像 AI 应用的 USB-C 接口，让 AI 能标准化连接文件、数据库、工具和外部系统。
+
+### Q4. 你有没有自己沉淀过个人 Skill / SOP / Prompt 包？
+
+- 有自己的 Skill / SOP / prompt library
+- 有零散 prompt
+- 只临时问
+- 还没开始
+
+这题是为了引出：真正的效率不是每次问得更聪明，而是把做事方法沉淀下来。
+
+## 过渡讲法
+
+如果你刚才很多题都举手了，今天我希望你能带走更进阶的系统搭建方式：怎么把 n8n、Skill、Agent OS 串起来。
+
+如果你刚才没怎么举手，也没关系。今天至少希望你 get 到一个有趣的实践：AI 不只是聊天窗口，它可以进入工作流，帮你做真实任务。
+
+我的目标不是让大家听完马上搭一套完整系统。
+
+我的目标是：让已经在用 AI 的同事往前走一步，让还没开始的同事下次愿意真实试一次。
+
+## 金句
+
+- 今天不是考大家会不会 AI，而是帮大家看见下一步可以怎么用。
+- 举手的人带走进阶实践；没举手的人，下次至少可以举一次手。
+- AI 的差距，不只在模型，也在你有没有把方法沉淀下来。
+
+---
+
+# 0. 开场前视频：先看肌肉，后拆方法（可选，75–120 秒）
+
+&gt; 这部分是开场前播放，不是正式演讲内容。
+
+视频只做三件事：
+
+1. 展示肌肉：n8n → Copilot + Skill → Agent 搭建。
+2. 制造反转：这不是用了很多 AI 工具，而是一套个人 AI 工作系统。
+3. 留钩子：接下来我会拆解怎么搭、踩了哪些坑、大家可以从哪里开始。
+
+视频结尾：
+
+先看肌肉，后拆方法。
+
+---
+
+# 1. 正式开场：不是工具清单，是能力边界（3–5 min）
+
+## 讲稿
+
+今天我不想讲一个 AI 工具清单。
+
+不是说我用了哪些模型、哪些平台、哪些插件。
+
+我更想回答一个问题：AI 的能力边界到底在哪？在日常管理里，我们能把自动化做到什么程度？
+
+过去大家对 AI 的理解，很多还停</pre></section><section><div class="label">Skill.md Examples</div><pre>---
+name: grill-me
+description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions &quot;grill me&quot;.
+---
+
+Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
+
+Ask the questions one at a time.
+
+If a question can be answered by exploring the codebase, explore the codebase instead.
+
+
+---
+---
+name: grill-with-docs
+description: &gt;
+  Grill a plan/spec against the repo&#x27;s domain language and documented decisions.
+  Updates CONTEXT.md (glossary) inline as terms crystallize, and writes ADRs sparingly.
+  Use for team engineering work (PM/FE/BE/FS) to converge on shared language and prevent
+  &quot;code keeps growing messy&quot; drift.
+aliases: [grill-with-dogs, grill-with-docs]
+---
+
+# Grill With Docs (Team Mode)
+
+This skill is based on Matt Pocock&#x27;s public `mattpocock/skills` methodology, adapted to Jianan&#x27;s workflow.
+
+## Goal
+
+Relentlessly clarify terms, boundaries, and invariants **and** persist the result into repo docs so that:
+
+- PM / FE / BE / FS share the same vocabulary
+- future agents (and humans) stop re-asking the same questions
+- architecture decisions don&#x27;t get silently re-litigated
+
+## Repo doc layout
+
+Default (single context):
+
+```
+/
+├── CONTEXT.md
+├── docs/
+│   └── adr/
+└──</pre></section><section><div class="label">Agent File Tree</div><pre>agent_tasks.md
+alex/AGENTS.md
+alex/HEARTBEAT.md
+alex/SOUL.md
+alex/USER.md
+andrew/AGENTS.md
+andrew/HEARTBEAT.md
+andrew/SOUL.md
+andrew/USER.md
+lulu/AGENTS.md
+lulu/HEARTBEAT.md
+lulu/SOUL.md
+lulu/USER.md
+mahjong/AGENTS.md
+mahjong/HEARTBEAT.md
+mahjong/SOUL.md
+mahjong/USER.md
+rex/AGENTS.md
+rex/HEARTBEAT.md
+rex/SOUL.md
+rex/USER.md
+sam/AGENTS.md
+sam/HEARTBEAT.md
+sam/SOUL.md
+sam/USER.md
+</pre></section></main></body></html>
