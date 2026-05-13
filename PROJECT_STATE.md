@@ -153,3 +153,9 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 18:02 | Added tonight asset fill list for deck-v7 | Extracted remaining placeholders from deck-v6 and organized them into P0/P1/P2 replacement plan for tonight's screenshot/link collection | `sharing-video-20260515/TONIGHT_ASSET_FILL_LIST_20260513.md` |
 
 | 2026-05-13 19:55 | Captured local deck assets and replaced available placeholders | Generated screenshots for AutoStackSharing HTML, AIPM, CER Tech Frame, PPT previews, Dashboard, n8n workflow JSON preview, and local proof board; replaced available placeholders in deck-v6; remaining manual items are QR links, real RAG/n8n UI if desired, Feishu bot screenshot, and resource links | `sharing-video-20260515/ASSET_CAPTURE_REPORT_20260513.md`, `sharing-video-20260515/deck-v6/assets/`, `sharing-video-20260515/deck-v6/index.html` |
+
+| 2026-05-13 21:30 | Page 19 fixed: MAE screenshot inserted, image sizing corrected | Jianan provided MAE screenshot | deck-v6/index.html dc364da |
+| 2026-05-13 21:30 | Page 13/19 carousel reverted to assetWall grid for density | Jianan feedback: carousel arrows invisible, images wrong size | deck-v6/index.html |
+| 2026-05-13 21:30 | Page 02 QR code inserted | Jianan provided QR screenshot | deck-v6/index.html |
+| 2026-05-13 21:30 | Page 36 SkillHub link added | Jianan requested resource links | deck-v6/index.html |
+| 2026-05-13 20:30 | Deck deployed to Vercel | Ready for sharing | auto-stack-sharing.vercel.app |
