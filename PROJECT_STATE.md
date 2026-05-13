@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 16:15 CST
+Updated: 2026-05-13 17:58 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -147,3 +147,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 15:50 | Refined deck-v6 HTML framework styling | User asked to return to the HTML framework and check effect. Updated CSS framework without changing narrative: fixed title/body/cue grid, stable safe area, section watermark, stronger meta divider, consistent card/proof min-height and placeholder grid texture | `sharing-video-20260515/deck-v6/index.html` |
 
 | 2026-05-13 16:15 | Enriched V7 deck content: substantive cards, framework text, concrete examples | Jianan criticized skeleton pages were too lazy; enriched all 37 slides with real descriptions, concrete tips, detailed agent roles, flow labels, and substantive card content while keeping 0506 visual DNA and AIPM proof-card style |  |
+
+| 2026-05-13 17:58 | Added generated framework diagrams and executable interaction/resource placeholders | Per Jianan request, implemented priority 3 and 5: generated HTML architecture diagrams for three-layer system, evolution bridge, and Agent mechanism/file tree; added QR/link placeholders for opening poll and resource page so screenshots/content can be filled tonight | `sharing-video-20260515/deck-v6/index.html` |
