@@ -159,9 +159,18 @@
 展示逻辑：
 “一个想法 → 剧本 → 页面 → 视频素材 → commit → 可分享资产”。
 
+Jianan 2026-05-13 补充：
+Copilot+Skill 这段不能只展示代码/commit，也要展示 PPT 和之前仓库中的其他 HTML。原因是这类产物的要求和审美感觉是高壁垒，很难用一句话解释清楚，必须通过真实作品让观众感受到。
+
+重点 proof：
+- CER / sharing PPT 或演示稿页面。
+- AutoStackSharing 主 HTML。
+- 之前仓库中的其他高审美 HTML 页面 / 产品页 / 课件页。
+- beautiful-html-templates 吸收后的“高密度内容骨架 + 高审美视觉皮肤”。
+
 不要表达成“AI 替我写代码”。
 要表达成：
-“我用 AI + Skill 把想法推进成可交付资产。”
+“我用 AI + Skill 把复杂审美和内容要求，推进成可交付资产。”
 
 ---
 

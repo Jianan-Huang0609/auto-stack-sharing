@@ -97,21 +97,24 @@
 
 ### 可用素材
 
-#### A. 当前分享 HTML deck
+#### A. 当前分享 HTML deck + PPT/HTML 审美 proof
 
 路径：
 - `index.html`
 - `sharing-video-20260515/deck-v4/index.html`
+- CER / sharing PPT 截图（待补）
+- 之前仓库中的其他高审美 HTML 页面 / 产品页 / 课件页（待选）
 
 线上：
 - `https://auto-stack-sharing.vercel.app`
 
 怎么用：
 - 展示“演讲页面已经生成”。
+- 展示 PPT / HTML 本身的审美和内容密度，证明 Copilot+Skill 不是只会写代码，而是能承接高要求表达。
 - 快速切几页：封面、n8n、Skill、Agent、Takeaway。
 
 建议字幕：
-演讲稿 → HTML deck → 可讲页面
+复杂审美 + 高密度内容 → 可交付表达资产
 
 ---
 
@@ -204,7 +207,7 @@ terminal/git log → changed files → Vercel page。
 
 ### Copilot + Skill 段一句话
 
-“AI 不只是写一段代码，它能把想法推进成可交付资产。”
+“AI 不只是写一段代码，它能把复杂审美、内容结构和产品表达推进成可交付资产。”
 
 ---
 
