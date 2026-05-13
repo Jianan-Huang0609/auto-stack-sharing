@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 10:45 CST
+Updated: 2026-05-13 10:50 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -127,3 +127,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 10:22 | Drafted full V5 speech script from locked state | V5 is a 45min+Q&A MD script with professional concepts, Feynman explanations, muscle proof, three-layer landing plan, learning reversal, AI-era thinking decomposition, CER/PTR light proof, resources, Q&A, and HTML mapping based on original 0506 beige+orange+teal source | `sharing-video-20260515/SPEECH_SCRIPT_V5_20260513.md` |
 
 | 2026-05-13 10:45 | Added V6 refinements: opening interaction, RAG/MCP bridge, MAE/Dashboard/Feishu proof, human-brain tradeoff | Jianan requested opening poll/questions, n8n/RAG/chatbox/context engineering/MCP/model moment bridge, more Agent proof (Dashboard, MAE, Feishu multi-bot), and the point that Agent makes learning easier but human judgment remains essential | `sharing-video-20260515/SPEECH_SCRIPT_V6_20260513.md` |
+
+| 2026-05-13 10:50 | Locked V6 and created material/HTML next-step checklist | V6 script is temporarily final; next step is deck-v6 from original 0506 source; material list covers interaction, n8n, RAG/MCP docs, Copilot+Skill PPT/HTML, Agent/MAE/Dashboard/Feishu, thinking, CER proof, resources | `sharing-video-20260515/V6_MATERIALS_AND_HTML_NEXT_STEPS_20260513.md` |
