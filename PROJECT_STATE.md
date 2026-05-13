@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 14:55 CST
+Updated: 2026-05-13 15:05 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -141,3 +141,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 14:45 | Rebuilt deck-v6 HTML around approved V6 narrative | Replaced patchwork 30-page skeleton with a 40-slide script-aligned deck: opening, muscle overview, n8n, evolution bridge, Copilot+Skill, Agent OS, method layers, learning path, thinking, CER, takeaway. Kept 0506 visual identity and placeholders | `sharing-video-20260515/deck-v6/index.html` |
 
 | 2026-05-13 14:55 | Added page-by-page V6 deck review and layout drift diagnosis | Jianan asked for detailed review of each page: what to compress, merge, expand, supplement with materials/info, and how to fix drifting/unattractive layout. Created a review doc covering all 40 pages, template system, compression/expansion decisions, and P0/P1 material list | `sharing-video-20260515/DECK_V6_PAGE_BY_PAGE_REVIEW_20260513.md` |
+
+| 2026-05-13 15:05 | Regenerated deck-v6 with fixed frame layout and added V7 speech-deck design MD | Per Jianan request, created an updated稿件×页面设计 MD and regenerated HTML from the narrative/page review. New HTML uses fixed frame grid/templates to reduce drift and compresses 40 pages to 37 by merging duplicate transition/overview content | `sharing-video-20260515/SPEECH_DECK_DESIGN_V7_20260513.md`, `sharing-video-20260515/deck-v6/index.html` |
