@@ -1,6 +1,6 @@
 # AutoStackSharing Project State
 
-Updated: 2026-05-13 09:20 CST
+Updated: 2026-05-13 09:28 CST
 Owner: Jianan
 PLO mode: B2B Content / Influence + Asset Production
 Current phase: framing → asset production prototype
@@ -17,7 +17,7 @@ Repo: https://github.com/Jianan-Huang0609/auto-stack-sharing
 
 ## 2. Goal / Success Criteria
 
-- Primary goal: show the capability boundary of a personal AI operating system in real daily management and content/work production.
+- Primary goal: deliver a 45min practical sharing + 15min Q&A that shows the capability boundary of a personal AI operating system in real daily management and content/work production.
 - Secondary goals: establish Jianan’s AI authority, create networking pull, attract software/automation collaborators.
 - Non-goal: exhaustive tool tutorial or pure coding demo.
 - Success signals: people remember the three-layer model, ask for setup details, and believe the outputs are real.
@@ -119,3 +119,5 @@ Learning reversal appears after the three layers: Jianan learned n8n → Skills 
 | 2026-05-13 08:24 | Repositioned video as pre-talk muscle trailer | Jianan clarified video HTML should be pure muscle display with a reversal and hook, played 1–2 min before the talk, not a full explainer; formal talk handles method breakdown | `sharing-video-20260515/VIDEO_OPENING_MUSCLE_CONCEPT_V1_20260513.md` |
 
 | 2026-05-13 09:20 | Added information collection state to stop repeated questioning | Jianan pointed out prior answers must be persisted under PLO-style project state; added locked answers, remaining true unknowns, concept gaps, and next execution order | `sharing-video-20260515/SHARING_INFO_COLLECTION_V1_20260513.md` |
+
+| 2026-05-13 09:28 | Corrected sharing state from Discord SAM source | Duration/purpose/visual preferences corrected from Discord SAM 2026-05-12: 45min dry goods + 15min Q&A; cross-functional business/software/automation audience; goal is cognition + capability display + personal brand + collaborator pull; visual direction is colorful system feel, not white/beige | `sharing-video-20260515/SHARING_INFO_COLLECTION_V1_20260513.md` |
