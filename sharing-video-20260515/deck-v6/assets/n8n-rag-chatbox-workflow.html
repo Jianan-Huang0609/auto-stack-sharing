@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1200"><title>n8n RAG Chatbox Workflow</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#121212;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.canvas{position:relative;width:1100px;height:620px;background:#1a1a1a;border-radius:16px;overflow:hidden;border:1px solid #2a2a2a;background-image:radial-gradient(circle,rgba(255,255,255,.025) 1px,transparent 1px);background-size:24px 24px}
+/* header bar */
+.bar{position:absolute;top:0;left:0;right:0;height:44px;background:#1e1e1e;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;padding:0 20px;gap:14px;z-index:10}
+.bar .tab{font-size:12px;color:#888;font-weight:600;cursor:default}.bar .tab.active{color:#e5e5e5;border-bottom:2px solid #ff6d00;padding-bottom:8px;margin-top:8px}
+.bar .sep{width:1px;height:18px;background:#333}
+.bar .name{font-size:13px;color:#e5e5e5;font-weight:700;margin-left:auto}
+/* nodes */
+.node{position:absolute;background:#2a2a2a;border:1.5px solid #3a3a3a;border-radius:10px;min-width:170px;padding:14px 16px;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:2;transition:all .2s}
+.node .nt{font-size:13px;font-weight:700;color:#e5e5e5;margin-bottom:4px}
+.node .nd{font-size:11px;color:#888;line-height:1.4}
+.node::before{content:attr(data-icon);position:absolute;top:-12px;left:14px;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;background:#333;border:1.5px solid #3a3a3a}
+.node.trigger{background:linear-gradient(135deg,#1a1a1a,#2a1a00);border-color:#ff6d00}.node.trigger::before{background:#ff6d00;color:#fff}
+.node.ai{background:linear-gradient(135deg,#1a1a2a,#1a1a3a);border-color:#6c5ce7}.node.ai::before{background:#6c5ce7;color:#fff}
+.node.action{background:linear-gradient(135deg,#1a2a1a,#1a2a1a);border-color:#00b894}.node.action::before{background:#00b894;color:#fff}
+.node.http{background:linear-gradient(135deg,#1a1a2a,#1a2a3a);border-color:#0984e3}.node.http::before{background:#0984e3;color:#fff}
+.node.db{background:linear-gradient(135deg,#2a1a2a,#2a1a2a);border-color:#e84393}.node.db::before{background:#e84393;color:#fff}
+/* connectors */
+.conn{position:absolute;pointer-events:none;z-index:1}
+.conn svg{overflow:visible}
+.conn path{fill:none;stroke:#444;stroke-width:2;stroke-linecap:round}
+.conn .dot{fill:#444}
+/* active pulse on key nodes */
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+/* mini status indicators */
+.status{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#666;margin-top:6px}
+.status .dot{width:6px;height:6px;border-radius:50%;background:#444;display:inline-block}
+.status .dot.on{background:#00b894}
+.status .dot.off{background:#444}
+</style></head><body>
+<div class="canvas">
+  <div class="bar">
+    <span class="tab active">RAG Chatbox Pipeline</span>
+    <span class="sep"></span>
+    <span class="tab">Executions</span>
+    <span class="tab">Settings</span>
+    <span class="name" style="color:#ff6d00">⬤ Active</span>
+  </div>
+
+  <!-- TRIGGER: Webhook chat input -->
+  <div class="node trigger pulse" data-icon="⚡" style="left:60px;top:100px">
+    <div class="nt">Webhook Trigger</div>
+    <div class="nd">Receives chat messages<br>from Feishu / WeChat</div>
+    <div class="status"><span class="dot on"></span> listening</div>
+  </div>
+
+  <!-- Load Project State -->
+  <div class="node db" data-icon="🗄️" style="left:60px;top:290px">
+    <div class="nt">Read State (Airtable)</div>
+    <div class="nd">Loads current project state<br>tasks / blockers / context</div>
+    <div class="status"><span class="dot on"></span> connected</div>
+  </div>
+
+  <!-- RAG Knowledge -->
+  <div class="node db" data-icon="📚" style="left:60px;top:450px">
+    <div class="nt">RAG Knowledge Base</div>
+    <div class="nd">Vector search over project<br>docs, Skills, meeting notes</div>
+    <div class="status"><span class="dot on"></span> indexed</div>
+  </div>
+
+  <!-- AI Node -->
+  <div class="node ai pulse" data-icon="🧠" style="left:340px;top:170px">
+    <div class="nt">AI Chat Node</div>
+    <div class="nd">LLM routes the question:<br>• factual → RAG lookup<br>• status → Airtable query<br>• action → tool call</div>
+    <div class="status"><span class="dot on"></span> Codex For Me</div>
+  </div>
+
+  <!-- Tool Use -->
+  <div class="node action" data-icon="🔧" style="left:340px;top:360px">
+    <div class="nt">Tool Use / Decision</div>
+    <div class="nd">Generate response or<br>trigger follow-up action</div>
+    <div class="status"><span class="dot on"></span> ready</div>
+  </div>
+
+  <!-- Response Output -->
+  <div class="node http" data-icon="📤" style="left:620px;top:160px">
+    <div class="nt">Response → Feishu</div>
+    <div class="nd">Formatted answer with<br>context and action items</div>
+    <div class="status"><span class="dot on"></span> sent</div>
+  </div>
+
+  <!-- Update Dashboard -->
+  <div class="node action" data-icon="📊" style="left:620px;top:340px">
+    <div class="nt">Update Dashboard</div>
+    <div class="nd">Log query + answer +<br>update Airtable state</div>
+    <div class="status"><span class="dot on"></span> synced</div>
+  </div>
+
+  <!-- File Store -->
+  <div class="node db" data-icon="📁" style="left:620px;top:470px">
+    <div class="nt">Save to Logs</div>
+    <div class="nd">Append to conversation<br>log & project state</div>
+    <div class="status"><span class="dot on"></span> stored</div>
+  </div>
+
+  <!-- Connection lines -->
+  <!-- Trigger → AI -->
+  <div class="conn" style="left:230px;top:112px;width:120px;height:80px">
+    <svg width="120" height="80"><path d="M0,10 C40,10 40,60 110,60"/></svg>
+  </div>
+  <!-- Airtable → AI -->
+  <div class="conn" style="left:230px;top:300px;width:120px;height:40">
+    <svg width="120" height="40"><path d="M0,15 C40,15 40,-85 110,-85"/></svg>
+  </div>
+  <!-- RAG → AI -->
+  <div class="conn" style="left:230px;top:460px;width:120px;height:40">
+    <svg width="120" height="40"><path d="M0,8 C40,8 40,-260 110,-260"/></svg>
+  </div>
+  <!-- AI → Response -->
+  <div class="conn" style="left:510px;top:195px;width:120px;height:40">
+    <svg width="120" height="40"><path d="M0,10 C40,10 40,-15 110,-15"/></svg>
+  </div>
+  <!-- AI → Tool Use -->
+  <div class="conn" style="left:510px;top:195px;width:230px;height:200">
+    <svg width="230" height="200"><path d="M0,15 C80,15 80,0 110,0"/><path d="M0,15 C80,15 80,195 210,195"/></svg>
+  </div>
+  <!-- Tool → Dashboard -->
+  <div class="conn" style="left:510px;top:380px;width:120px;height:40">
+    <svg width="120" height="40"><path d="M0,12 C40,12 40,-20 110,-20"/></svg>
+  </div>
+  <!-- Tool → Logs -->
+  <div class="conn" style="left:510px;top:380px;width:230px;height:160">
+    <svg width="230" height="160"><path d="M0,15 C80,15 80,95 210,95"/></svg>
+  </div>
+  <!-- Response horizontal arrow -->
+  <svg style="position:absolute;top:182px;left:790px" width="60" height="20">
+    <path d="M0,10 L40,10" stroke="#444" stroke-width="2" fill="none"/>
+    <polygon points="40,10 34,6 34,14" fill="#444"/>
+  </svg>
+</div>
+</body></html>
