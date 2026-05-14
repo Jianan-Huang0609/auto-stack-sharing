@@ -11,46 +11,50 @@
 长文/复盘/知识资产</div></div><div class="arrow">&rarr;</div><div class="node"><div class="nl">Dashboard</div><div class="nt">管可视化
 状态/证据/blocker</div></div></div></main><footer class="cue reveal d3"><div class="key">Skill 不是 prompt 收藏夹，而是可重复执行的做事方法。</div></footer></div></section><section class="slide" data-section="AGENT"><div class="frame center"><div></div><div><div class="meta" style="justify-content:center;margin-bottom:14px">AGENT · 18</div><h1 class="title reveal">Muscle 3 / Agent OS</h1><p class="sub reveal d1" style="margin-inline:auto">一个人背后，有一个小团队。每个 Agent 有角色边界、任务账本、记忆和心跳节奏。</p></div><div></div></div></section><section class="slide" data-section="AGENT"><div class="frame"><div class="meta"><span>AGENT</span><span>19</span></div><header><h2 class="title mid reveal">SAM 居中，专业 Agent 环绕</h2><p class="sub reveal d1">不是拟人化装饰，而是角色边界 + 执行循环 + 升级规则。</p></header><main class="body reveal d2"><div class="grid3"><div class="card"><div class="topline">SAM</div><h3>主脑 / 全局协调</h3><p>接收需求，分解任务，分配给子 Agent，仲裁冲突，升级到人类。L3 协调者。</p></div><div class="card"><div class="topline">Andrew</div><h3>学习 / 研究 / 技术评估</h3><p>搜索资料、整合概念、做研究分析。L2 学习频道。</p></div><div class="card"><div class="topline">Rex</div><h3>工作 / CER / 项目管理</h3><p>支持 CER 推进、PTR 规划、项目状态管理。L2 工作频道。</p></div><div class="card"><div class="topline">Lulu</div><h3>内容 / 写作 / 设计</h3><p>文稿、HTML、视频 production、视觉表达。L2 内容频道。</p></div><div class="card"><div class="topline">Alex</div><h3>个人节奏 / 情绪 / 生活</h3><p>协助时间管理、反思和个人规划。L2 个人频道。</p></div></div></main><footer class="cue reveal d3"><div class="key">Agent 的关键不是名字，而是角色边界、heartbeat、记忆、任务账本和升级协议。</div></footer></div></section><section class="slide" data-section="AGENT"><div class="frame"><div class="meta"><span>AGENT</span><span>20</span></div><header><h2 class="title mid reveal">不是拟人化，而是机制</h2><p class="sub reveal d1">SOUL / USER / AGENTS / HEARTBEAT / memory / agent_tasks / PROJECT_STATE — 七个文件让角色、记忆、任务、状态各就各位。</p></header><main class="body reveal d2"><div class="grid2"><div><div class="card"><div class="topline">七文件机制</div><h3>每个 Agent 有一套文件系统</h3><p>SOUL.md 定义角色边界；USER.md 存用户偏好和长期上下文；AGENTS.md 定义工作协议；HEARTBEAT.md 定义醒来节奏；memory/ 存长期状态；agent_tasks.md 管任务证据和 blocker；PROJECT_STATE.md 管项目级决策。</p></div><div class="tags"><span class="pill orange">Memory</span><span class="pill teal">Heartbeat</span><span class="pill orange">Tasks</span><span class="pill teal">AGENTS</span></div></div><div class="proof"><div class="proofHead"><span class="pill orange">GENERATED FRAMEWORK</span><span class="pill">SCREENSHOT SLOT</span></div><div class="proofBody"><img src="assets/local-proof-board.png" alt="Agent file tree proof" style="object-fit:contain;background:#fff;padding:8px"/></div></div></div></main><footer class="cue reveal d3"><div class="key">没有任务账本和状态文件，多 Agent 很快就变成多窗口混乱。</div></footer></div></section><section class="slide" data-section="AGENT"><div class="frame"><div class="meta"><span>AGENT</span><span>21</span></div><header><h2 class="title mid reveal">系统要让人看得见，才值得信任</h2><p class="sub reveal d1">Dashboard 让任务状态可观察；MAE 让多 Agent 可编排；飞书多 bot 让信息进入真实协作场。</p></header><main class="body reveal d2">
 <style>
-.p21Proof{display:grid;grid-template-columns:1.18fr .82fr;gap:22px;align-items:stretch;height:100%}
-.p21Stage{background:linear-gradient(180deg,#fffdf8,#f8f4ed);border:1px solid rgba(20,20,20,.10);border-radius:26px;padding:14px;box-shadow:0 28px 70px rgba(30,20,10,.12);min-height:440px;display:flex;flex-direction:column;overflow:hidden}
-.p21Chrome{height:28px;display:flex;align-items:center;gap:8px;padding:0 8px 10px;border-bottom:1px solid rgba(20,20,20,.08);font-family:var(--mono);font-size:11px;color:var(--muted)}
-.p21Dot{width:9px;height:9px;border-radius:50%;display:inline-block}.p21Dot.r{background:#e9644d}.p21Dot.y{background:#e3b94f}.p21Dot.g{background:#4db476}
-.p21ImgWrap{position:relative;flex:1;margin-top:12px;border-radius:18px;background:#f7f3eb;overflow:hidden;border:1px solid rgba(20,20,20,.08);display:flex;align-items:center;justify-content:center}
-.p21ImgWrap.phone{background:#15161a}
-.p21ImgWrap img{width:100%;height:100%;object-fit:contain;display:block}
-.p21ImgWrap.fill img{object-fit:cover}
-.p21Label{position:absolute;left:14px;bottom:12px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);font-family:var(--mono);font-size:11px;color:#2b261d;border:1px solid rgba(0,0,0,.08)}
-.p21Side{display:flex;flex-direction:column;gap:12px}
-.p21Switch{cursor:pointer;text-align:left;border:1px solid rgba(20,20,20,.10);background:#fffaf2;border-radius:20px;padding:16px 16px 15px;box-shadow:0 10px 30px rgba(30,20,10,.06);transition:.18s ease}
-.p21Switch:hover{transform:translateY(-1px);box-shadow:0 16px 40px rgba(30,20,10,.10)}
-.p21Switch.active{border-color:rgba(209,115,42,.55);background:#fff4df;box-shadow:0 16px 42px rgba(209,115,42,.16)}
-.p21Switch .k{font-family:var(--mono);font-size:11px;color:var(--orange);letter-spacing:.08em;margin-bottom:7px}.p21Switch h4{margin:0 0 5px;font-size:19px}.p21Switch p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
-.p21Mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}.p21Mini .pillbox{border-radius:16px;background:#111827;color:#fff;padding:12px;font-family:var(--mono);font-size:11px;line-height:1.45}.p21Mini .pillbox.light{background:#f4efe7;color:#2b261d;border:1px solid rgba(0,0,0,.08)}
+.p21Proof{height:100%;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px;align-items:stretch}
+.p21Stage{position:relative;background:linear-gradient(135deg,#fffdf8 0%,#f7efe2 100%);border:1px solid rgba(146,64,14,.15);border-radius:34px;padding:18px;box-shadow:0 34px 90px rgba(96,54,13,.14);overflow:hidden;min-height:430px}
+.p21Stage:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 16%,rgba(217,119,6,.14),transparent 28%),radial-gradient(circle at 86% 90%,rgba(13,148,136,.11),transparent 30%);pointer-events:none}.p21Stage:after{content:"";position:absolute;inset:18px;border-radius:26px;background-image:linear-gradient(rgba(20,20,19,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,19,.035) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.p21Tabs{position:relative;z-index:4;display:inline-flex;gap:6px;background:rgba(255,255,255,.76);border:1px solid rgba(20,20,19,.08);border-radius:999px;padding:6px;backdrop-filter:blur(16px);box-shadow:0 12px 30px rgba(96,54,13,.08)}
+.p21Tab{border:0;background:transparent;border-radius:999px;padding:9px 13px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);cursor:pointer}.p21Tab.active{background:#141413;color:#fff;box-shadow:0 8px 20px rgba(20,20,19,.16)}
+.p21Device{position:absolute;z-index:3;left:30px;right:30px;top:76px;bottom:28px;border-radius:28px;background:#fff;border:1px solid rgba(20,20,19,.10);box-shadow:0 26px 70px rgba(30,20,10,.18);overflow:hidden;display:grid;grid-template-rows:34px minmax(0,1fr)}
+.p21Device.phone{left:50%;right:auto;width:310px;transform:translateX(-50%);border-radius:36px;background:#111318;border:10px solid #111318;box-shadow:0 34px 90px rgba(17,19,24,.34);grid-template-rows:18px minmax(0,1fr)}
+.p21Chrome{display:flex;align-items:center;gap:7px;padding:0 14px;background:#fbfaf7;border-bottom:1px solid rgba(20,20,19,.08);font-family:var(--mono);font-size:10px;color:var(--muted)}.p21Device.phone .p21Chrome{justify-content:center;background:#111318;border:0;color:#777}.p21Dot{width:8px;height:8px;border-radius:50%;display:inline-block}.p21Dot.r{background:#e9644d}.p21Dot.y{background:#e3b94f}.p21Dot.g{background:#4db476}.p21Notch{width:62px;height:5px;border-radius:99px;background:#2a2d34}
+.p21Shot{min-height:0;background:#f8f5ef;display:flex;align-items:center;justify-content:center;overflow:hidden}.p21Shot img{width:100%;height:100%;object-fit:contain;display:block}.p21Device.dashboard .p21Shot img{object-fit:cover}.p21Device.phone .p21Shot{background:#111318;border-radius:24px;overflow:hidden}.p21Device.phone .p21Shot img{object-fit:cover;width:100%;height:100%}
+.p21Caption{position:absolute;z-index:5;left:44px;bottom:42px;max-width:420px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.86);border:1px solid rgba(20,20,19,.08);backdrop-filter:blur(16px);box-shadow:0 16px 40px rgba(30,20,10,.12)}.p21Caption .k{font-family:var(--mono);font-size:10px;letter-spacing:.10em;color:var(--accent);margin-bottom:5px}.p21Caption h4{margin:0;font-size:18px;letter-spacing:-.03em}.p21Caption p{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.p21Side{display:flex;flex-direction:column;justify-content:center;gap:14px}.p21Claim{position:relative;background:rgba(255,255,255,.90);border:1px solid rgba(20,20,19,.09);border-radius:24px;padding:18px 18px 17px;box-shadow:0 12px 34px rgba(96,54,13,.07);overflow:hidden}.p21Claim:before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;background:var(--accent);border-radius:99px}.p21Claim:nth-child(2):before{background:var(--teal)}.p21Claim:nth-child(3):before{background:#111827}.p21Claim .num{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted2);margin-bottom:8px}.p21Claim h4{margin:0 0 7px;font-size:20px;letter-spacing:-.035em}.p21Claim p{margin:0;color:var(--muted);font-size:13px;line-height:1.48}.p21Hint{margin-top:2px;font-family:var(--mono);font-size:10px;color:var(--muted2);line-height:1.55;padding-left:4px}
 </style>
 <div class="p21Proof">
   <div class="p21Stage">
-    <div class="p21Chrome"><span class="p21Dot r"></span><span class="p21Dot y"></span><span class="p21Dot g"></span><span id="p21ChromeTitle">Dashboard · observable state</span></div>
-    <div id="p21Wrap" class="p21ImgWrap fill"><img id="p21Img" src="assets/dashboard-home.png" alt="Observable system screenshot"><div id="p21Label" class="p21Label">Dashboard / 状态可观察</div></div>
+    <div class="p21Tabs">
+      <button class="p21Tab active" data-src="assets/dashboard-home.png" data-mode="dashboard" data-k="01 · DASHBOARD" data-h="任务状态可观察" data-p="任务、证据链接、阻塞项、完成率，不再靠聊天记忆。">Dashboard</button>
+      <button class="p21Tab" data-src="assets/mae-framework.png" data-mode="mae" data-k="02 · MAE" data-h="多 Agent 可编排" data-p="用真实 MAE / 多 Agent 架构图说明角色边界、路由和协作链路。">MAE</button>
+      <button class="p21Tab" data-src="assets/feishu-bots.png" data-mode="phone" data-k="03 · FEISHU BOT" data-h="信息进入协作场" data-p="使用昨天 Discord 里的 Feishu bot 截图，表现真实协作入口。">Feishu Bot</button>
+    </div>
+    <div id="p21Device" class="p21Device dashboard">
+      <div class="p21Chrome" id="p21Chrome"><span class="p21Dot r"></span><span class="p21Dot y"></span><span class="p21Dot g"></span><span>observable-system.local</span></div>
+      <div class="p21Shot"><img id="p21Img" src="assets/dashboard-home.png" alt="Observable system screenshot"></div>
+    </div>
+    <div class="p21Caption"><div id="p21K" class="k">01 · DASHBOARD</div><h4 id="p21H">任务状态可观察</h4><p id="p21P">任务、证据链接、阻塞项、完成率，不再靠聊天记忆。</p></div>
   </div>
   <div class="p21Side">
-    <button class="p21Switch active" data-src="assets/dashboard-home.png" data-title="Dashboard · observable state" data-label="Dashboard / 状态可观察" data-mode="fill"><div class="k">01 · DASHBOARD</div><h4>任务状态可观察</h4><p>任务、证据链接、阻塞项、完成率，不再靠聊天记忆。</p></button>
-    <button class="p21Switch" data-src="assets/mae-framework.png" data-title="MAE architecture · from source file" data-label="MAE / 架构与协作边界" data-mode="contain"><div class="k">02 · MAE ARCHITECTURE</div><h4>多 Agent 可编排</h4><p>来自已有 MAE/多 Agent 架构文件，不再用 PPT 错图。</p></button>
-    <button class="p21Switch" data-src="assets/feishu-bots.png" data-title="Feishu bot · collaboration thread" data-label="Feishu Bot / 协作入口" data-mode="phone"><div class="k">03 · FEISHU BOT</div><h4>信息进入协作场</h4><p>使用昨天发到 Discord 的 bot 截图；纵向截图用手机框展示。</p></button>
-    <div class="p21Mini"><div class="pillbox">图片可切换：右侧三项点击切换主截图。</div><div class="pillbox light">统一截图容器：browser chrome / phone frame / contain，不再硬裁变形。</div></div>
+    <div class="p21Claim"><div class="num">VISIBLE STATE</div><h4>先让系统可见</h4><p>Dashboard 不是装饰，是判断 Agent 是否真的在推进工作的信任层。</p></div>
+    <div class="p21Claim"><div class="num">EDITABLE ORG</div><h4>再让协作可编排</h4><p>MAE 把 Agent、任务、记忆、升级规则组织起来，而不是多开几个聊天窗口。</p></div>
+    <div class="p21Claim"><div class="num">REAL ENTRY</div><h4>最后接入真实入口</h4><p>Feishu bot / 微信 / Discord 让信息进入协作场，形成“输入 → 执行 → 状态回写”。</p></div>
+    <div class="p21Hint">点击上方 tab 可切换三张真实截图。截图保持原比例，不再硬裁变形。</div>
   </div>
 </div>
 <script>
 (function(){
-  const buttons=document.querySelectorAll('.p21Switch');
+  const tabs=document.querySelectorAll('.p21Tab');
   const img=document.getElementById('p21Img');
-  const wrap=document.getElementById('p21Wrap');
-  const title=document.getElementById('p21ChromeTitle');
-  const label=document.getElementById('p21Label');
-  buttons.forEach(btn=>btn.addEventListener('click',()=>{
-    buttons.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    img.src=btn.dataset.src; title.textContent=btn.dataset.title; label.textContent=btn.dataset.label;
-    wrap.className='p21ImgWrap '+(btn.dataset.mode==='fill'?'fill':btn.dataset.mode==='phone'?'phone':'');
+  const device=document.getElementById('p21Device');
+  const chrome=document.getElementById('p21Chrome');
+  const k=document.getElementById('p21K'),h=document.getElementById('p21H'),pp=document.getElementById('p21P');
+  tabs.forEach(tab=>tab.addEventListener('click',()=>{
+    tabs.forEach(t=>t.classList.remove('active')); tab.classList.add('active');
+    img.src=tab.dataset.src; device.className='p21Device '+tab.dataset.mode;
+    chrome.innerHTML=tab.dataset.mode==='phone'?'<span class="p21Notch"></span>':'<span class="p21Dot r"></span><span class="p21Dot y"></span><span class="p21Dot g"></span><span>observable-system.local</span>';
+    k.textContent=tab.dataset.k; h.textContent=tab.dataset.h; pp.textContent=tab.dataset.p;
   }));
 })();
 </script>
