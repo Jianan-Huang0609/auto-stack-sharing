@@ -593,3 +593,159 @@ AI 可以自动化：搜索、整理、输出、分析
    - 继续保留 placeholder，但每个 placeholder 必须说明需要什么素材。
 
 完成后再进入第三步：逐个替换真实截图。
+
+---
+
+# 2026-05-14 Tonight Review — Jianan 逐页需求汇总（已执行）
+
+> 来源：今晚 Claude Code 对话，逐页 review + 逐条执行记录。
+> 状态：✅已执行 / ⚠️待截图 / 🎨待生图
+
+---
+
+## 全局改动
+
+- ✅ 删除右侧圆点跳转，改为浮动左右箭头按钮
+- ✅ "MUSCLE" 章节词已换掉
+- ✅ 页面框架：frame grid (34px / 148px / 1fr / 52px) 统一保持
+
+---
+
+## 逐页执行记录
+
+### P01 封面
+- 标题「我如何搭了一个个人 AI 工作系统」不够吸引，待更新
+- 候选：「n8n + Skills + Agent OS：我搭的那套让 AI 正确工作的系统」
+- 状态：⚠️ 待定稿
+
+### P02 定位页
+- ✅ 左侧保留两个举手问题
+- ✅ 左侧下方新增深色卡片，提前亮出两个核心问题（Q1能力边界/Q2搭建方法）
+- ✅ 右侧保留 Live Poll iframe (poll.ciyuntu.com)
+- QR 码已存在 `qr-poll-wordcloud.png`，可替换 iframe
+
+### P03 展示页
+- 改成「应用和交付层」视角（待大改）
+- 内容：PPT / 视频 / 软件 / HTML / Agent框架+自动化管线 / 飞书自动报告 / AI Dashboard
+- 状态：⚠️ 待改版
+
+### P04 n8n 总机
+- ✅ 右侧图替换为真实 n8n workflow 列表截图 (`n8n-real-workflows-20260514.png`)
+
+### P05 为什么选 n8n
+- ✅ 保持不动
+
+### P06 RAG 案例
+- ✅ 布局改为：上方横向截图 + 下方5步横排 pill
+- ✅ 图片 `n8n-rag-chatbox-workflow.png` 替换为真实8节点RAG workflow截图
+
+### P07 为什么还在用 n8n
+- ✅ 保持不动
+
+### P08 Workflow 列表
+- ✅ 删除「踩过的坑」（用户无真实踩坑经验，AI代劳）
+- ✅ 改为：8条workflow表格 + 右侧n8n overview截图
+
+### P09 n8n 之后
+- ✅ 保持不动
+
+### P10 资产墙（PPT/HTML/Video/Book/TTS）
+- ✅ 3×2 tile grid
+- ✅ Row1: PPT / HTML Deck / AIPM产品页
+- ✅ Row2: 书(AI PO宝典) / 视频(15s自动播放) / TTS音频(alex-joke.mp3)
+- 生图 prompt：N/A（全用真实素材）
+
+### P11 Skill 单对话调用
+- ✅ 左：Skill定义 + 两种调用模式对比（单对话 vs PLO系统）
+- ✅ 右：grill-me 手机截图 (`skill-grill-me.png` = Desktop `grill me.png`)
+
+### P12 PLO 完整调度框架
+- ✅ 3路径流程图（B2B / ToC / Personal★）
+- ✅ 每个阶段标注对应 Skill 名称
+- ✅ Pre-flight Mode Detection 横幅
+
+### P13 Agent 生态位图（SAM + 4 Agent）
+- 当前：CSS/HTML 星形布局（已改，但用户想要更好看的图）
+- 🎨 待生图：SAM居中+4Agent环绕，透明背景PNG
+- 生图 prompt：见本文档末尾
+
+### P14 共享机制
+- ✅ 左：6项共享内容清单（memory/Tasks/ProjectState/Dashboard/Skill/升级规则）
+- ✅ 右：SVG 图（SAM中心+4个节点：memory/Tasks/Dashboard/Skills）
+- 🎨 可替换为生图版本（见末尾 prompt）
+
+### P15 系统可见性（多 tab 截图）
+- ✅ Dashboard tab → `dashboard-active.png`（HJN Command Center：70任务/4Doing/25ToDo/41Done）
+- ✅ 飞书 tab → `feishu-bots.png`（MAE-SAM + MAE-Andrew 飞书协作）
+- ✅ Discord tab → `discord-sam-1.png`
+- ✅ 微信 tab → `weixin-clawbot.png`（微信 OpenClaw）
+
+### P16-P24 方法层（n8n/Skill/Agent OS 三层讲解）
+- 保持不动，整体结构 OK
+
+### P25 Recap（两个核心问题）
+- ✅ 标题「三个问题」→「两个问题」
+- ✅ 副标题同步修改
+
+### P26 Agent 让学习变简单
+- 保持不动
+
+### P27 三个思考
+- ✅ 3张卡片内容大幅扩充：每张加大号编号 + 3个具体 bullet
+- ✅ 内容：01复盘不是终点 / 02判断力变稀缺 / 03内容生产资产化
+
+### P28 反过来搭
+- 保持不动（wow moments 待进一步丰富）
+
+### P29 资产生产线
+- 保持不动
+
+### P30 企业应用/CER架构
+- ✅ 改为「个人系统落地公司复杂项目」
+- ✅ 左：5步推进流程 / 右：CER Tech Path架构图 (`cer-ppt-main.png`)
+
+### P31 别人怎么开始
+- ✅ 已删除
+
+### P32 资源包
+- ✅ 已删除
+
+### P33 大家怎么开始
+- 保持不动（全面用AI，不是学AI）
+
+### Thank You（最终页）
+- ✅ 深色全屏，「Thank You for Your Time」
+- ✅ 右下：黄嘉楠 · Jianan / AI 产品经理 · AI Builder / HJN 圆形头像占位
+- ✅ 左下：Q & A 提示
+- ✅ slogan：「欢迎一起玩 AI，一起交流」
+- ⚠️ 待替换：用真实头像图替换 HJN 文字头像
+
+---
+
+## 待完成事项
+
+| # | 事项 | 优先级 |
+|---|------|--------|
+| 1 | P01 标题定稿 | 高 |
+| 2 | P03 改版（应用/交付层视角） | 高 |
+| 3 | P13 透明 PNG 生图 | 中 |
+| 4 | P14 透明 PNG 生图（可选） | 低 |
+| 5 | 头像图片替换 Thank You 页 | 中 |
+
+---
+
+## 生图 Prompts（透明背景 PNG）
+
+### P13 — Agent 生态位图
+```
+Flat minimalist tech illustration, transparent background. Center: dark circle node labeled "SAM" with subtle amber glow. Four surrounding white rounded-rectangle nodes connected by dashed lines: "Andrew" (top-left, book icon), "Rex" (top-right, wrench icon), "Lulu" (bottom-left, palette icon), "Alex" (bottom-right, leaf icon). Connection lines labeled with small monospace text: "Skills", "Memory", "Tasks", "State". Color palette: #141413 center, #D97706 amber accent, #0D9488 teal accent, white nodes. Clean vector style, no shadow, no texture, --ar 4:3 --style raw --no background
+```
+
+### P14 — 共享机制图（可选替换 SVG）
+```
+Minimalist flat tech diagram, transparent background. Central dark hexagon labeled "SAM". Four floating card elements around it connected by thin dashed lines: "memory/" (top), "Tasks" (right), "Dashboard" (bottom), "Skills" (left). Each card is white with rounded corners, monospace label, one icon. Lines show bidirectional arrows in amber #D97706 and teal #0D9488. Ultra clean, no gradients, no drop shadows, monospace typography throughout. White space heavy. --ar 1:1 --style raw --no background
+```
+
+---
+
+*最后更新：2026-05-14 23:30 by Claude Code*
