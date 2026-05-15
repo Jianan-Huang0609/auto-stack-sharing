@@ -32,7 +32,7 @@
   <div class="p3Q"><div class="p3No">01</div><div class="topline">Q1 · 能力边界</div><h3>AI 到底能做什么？<br>能做到多深？</h3></div>
   <div class="p3Q"><div class="p3No">02</div><div class="topline">Q2 · 搭建方法</div><h3>怎么搭一套<br>让 AI 正确工作的系统？</h3></div>
 </div>
-</main><footer class="cue reveal d3"><div class="key">这两个问题，我们会在最后一页回答。</div></footer></div></section><section class="slide" data-section="SHOWCASE"><div class="frame"><div class="meta"><span>MUSCLE</span><span>03</span></div><header><h2 class="title mid reveal">先看一个真实跑起来的例子</h2><p class="sub reveal d1" style="margin-inline:auto">先看全量真实产物：n8n 工作流、RAG 问答、Dashboard、Feishu Bot、PPT、MAE 架构。图片可切换查看。</p></header><main class="body reveal d2">
+</main><footer class="cue reveal d3"><div class="key">这两个问题，我们会在最后一页回答。</div></footer></div></section><section class="slide" data-section="SHOWCASE"><div class="frame"><div class="meta"><span>SHOWCASE</span><span>03</span></div><header><h2 class="title mid reveal">先看一个真实跑起来的例子</h2><p class="sub reveal d1" style="margin-inline:auto">先看全量真实产物：n8n 工作流、RAG 问答、Dashboard、Feishu Bot、PPT、MAE 架构。图片可切换查看。</p></header><main class="body reveal d2">
 <style>
 .p4Gallery{height:100%;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:22px;align-items:stretch}
 .p4Stage{position:relative;background:linear-gradient(135deg,#fffdf8,#f7efe2);border:1px solid rgba(146,64,14,.15);border-radius:34px;padding:16px;box-shadow:0 34px 90px rgba(96,54,13,.14);overflow:hidden;min-height:430px}
@@ -47,17 +47,15 @@
 <div class="p4Gallery">
   <div class="p4Stage">
     <div class="p4Tabs" id="p4Tabs">
-      <button class="p4Tab active" data-src="assets/dashboard-active.png" data-mode="cover">Dashboard</button>
-      <button class="p4Tab" data-src="assets/ppt-showcase.png" data-mode="cover" data-type="img">PPT</button>
-      <button class="p4Tab" data-src="assets/autostack-preview.mp4" data-mode="cover" data-type="video">视频</button>
+      <button class="p4Tab active" data-src="assets/ppt-showcase.png" data-mode="cover">PPT</button>
       <button class="p4Tab" data-src="assets/aipm-mystique-home.png" data-mode="cover">HTML</button>
       <button class="p4Tab" data-src="assets/feishu-report-20260515.png" data-mode="contain">飞书报告</button>
-      <button class="p4Tab" data-src="assets/agent-ecosystem.png" data-mode="cover">Agent</button>
-      <button class="p4Tab" data-src="assets/n8n-real-workflows-20260514.png" data-mode="cover">管线</button>
       <button class="p4Tab" data-src="assets/book-aipo-1.png" data-mode="cover" data-type="book">书</button>
+      <button class="p4Tab" data-src="assets/agent-ecosystem.png" data-mode="cover">Agent</button>
+      <button class="p4Tab" data-src="assets/dashboard-active.png" data-mode="contain">Dashboard</button>
     </div>
-    <div class="p4Frame" id="p4Frame"><img id="p4Img" src="assets/dashboard-active.png" alt="screenshot"></div>
-    <div class="p4Info"><div class="k">真实系统截图</div><h4 id="p4Title">Dashboard · 任务状态可观察</h4><p id="p4Desc">任务、证据链接、阻塞项、完成率——不再靠聊天记忆。</p></div>
+    <div class="p4Frame" id="p4Frame"><img id="p4Img" src="assets/ppt-showcase.png" alt="screenshot"></div>
+    <div class="p4Info"><div class="k">真实系统截图</div><h4 id="p4Title">PPT · 高审美演讲稿</h4><p id="p4Desc">用 AI 写的高审美演讲稿，结构清楚、信息密度高。</p></div>
   </div>
   <div class="p4Side">
     <div class="p4Cat">N8N · 流程层</div>
@@ -73,15 +71,13 @@
   var tabs=document.querySelectorAll('#p4Tabs .p4Tab');
   var img=document.getElementById('p4Img'),f=document.getElementById('p4Frame');
   var t=document.getElementById('p4Title'),d=document.getElementById('p4Desc');
-  var labels={dashboard:"Dashboard · HJN Command Center","ppt":"PPT · 高审美演讲稿","video":"视频 · 15s 自动化预览","html":"HTML · AIPM 产品页","feishu":"飞书报告 · 自动写报告","agent":"Agent OS · SAM + 4 子 Agent","pipeline":"自动化管线 · 8 条真实 Workflow","book":"书 · AI PO宝典"};
-  var descs={dashboard:"70 任务 · 4 Doing · 25 ToDo · 41 Done，任务状态实时可见。","ppt":"用 AI 写的高审美演讲稿，结构清楚、信息密度高。","video":"AI 辅助生成的 15 秒自动化预览视频。","html":"AIPM Mystique：AI 驱动的产品管理界面，用 Skill 快速交付。","feishu":"飞书 Bot 自动生成报告，推送到协作群，不用手动写。","agent":"SAM 主脑 + Andrew / Rex / Lulu / Alex，共享记忆和 Skill。","pipeline":"n8n 真实在跑的 8 条 workflow，Cron + Webhook 驱动。","book":"《AI PO宝典》：用 AI 写的一本关于 AI 产品方法论的书。"};
-  function keyOf(tb){var t=tb.textContent.trim();if(t==='Dashboard')return 'dashboard';if(t==='PPT')return 'ppt';if(t==='视频')return 'video';if(t==='HTML')return 'html';if(t==='飞书报告')return 'feishu';if(t==='Agent')return 'agent';if(t==='管线')return 'pipeline';if(t==='书')return 'book';return t.toLowerCase();}
+  var labels={ppt:"PPT · 高审美演讲稿",html:"HTML · AIPM 产品页",feishu:"飞书报告 · 自动写报告",book:"书 · AI PO宝典",agent:"Agent OS · SAM + 4 子 Agent",dashboard:"Dashboard · HJN Command Center"};
+  var descs={ppt:"用 AI 写的高审美演讲稿，结构清楚、信息密度高。",html:"AIPM Mystique：AI 驱动的产品管理界面，用 Skill 快速交付。",feishu:"飞书 Bot 自动生成报告，推送到协作群，不用手动写。",book:"《AI PO宝典》：用 AI 写的一本关于 AI 产品方法论的书。",agent:"SAM 主脑 + Andrew / Rex / Lulu / Alex，共享记忆和 Skill。",dashboard:"70 任务 · 4 Doing · 25 ToDo · 41 Done，任务状态实时可见。"};
+  function keyOf(tb){var t=tb.textContent.trim();if(t==='PPT')return'ppt';if(t==='HTML')return'html';if(t==='飞书报告')return'feishu';if(t==='书')return'book';if(t==='Agent')return'agent';if(t==='Dashboard')return'dashboard';return t.toLowerCase();}
   tabs.forEach(function(tb){tb.addEventListener('click',function(){
     tabs.forEach(function(b){b.classList.remove('active')});tb.classList.add('active');
-    var isVideo=tb.dataset.type==='video';var isBook=tb.dataset.type==='book';
-    if(isBook){f.innerHTML='<div style="height:100%;overflow-y:auto;scrollbar-width:thin"><img src="assets/book-aipo-1.png" style="width:100%;display:block"><img src="assets/book-aipo-2.png" style="width:100%;display:block"></div>';f.className='p4Frame';}else if(isVideo){
-      f.innerHTML='<video id="p4Vid" src="'+tb.dataset.src+'" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>';
-    } else {
+    var isBook=tb.dataset.type==='book';
+    if(isBook){f.innerHTML='<div style="height:100%;overflow-y:auto;scrollbar-width:thin;padding:8px"><img src="assets/book-aipo-1.png" style="width:100%;display:block;margin-bottom:8px;border-radius:14px"><img src="assets/book-aipo-2.png" style="width:100%;display:block;border-radius:14px"></div>';f.className='p4Frame';}else{
       f.innerHTML='<img id="p4Img" src="'+tb.dataset.src+'" alt="" style="width:100%;height:100%;object-fit:'+(tb.dataset.mode==='contain'?'contain':'cover')+';display:block">';
     }
     f.className='p4Frame'+(tb.dataset.mode==='contain'?' contain':'');
@@ -90,7 +86,7 @@
   })});
 })();
 </script>
-</main><footer class="cue reveal d3"><div class="key">先让大家看到“真的会动”，再解释 n8n / Skills / Agent OS 分别负责什么。</div></footer></div></section><section class="slide" data-section="N8N"><div class="frame"><div class="meta"><span>N8N</span><span>04</span></div><header><h2 class="title mid reveal">n8n 是自动化总机</h2><p class="sub reveal d1">它不一定负责所有思考，但负责在正确时间把正确信息送到正确系统。</p></header><main class="body reveal d2">
+</main><footer class="cue reveal d3"><div class="key">先让大家看到"真的会动"，再解释 n8n / Skills / Agent OS 分别负责什么。</div></footer></div></section><section class="slide" data-section="N8N"><div class="frame"><div class="meta"><span>N8N</span><span>04</span></div><header><h2 class="title mid reveal">n8n 是自动化总机</h2><p class="sub reveal d1">它不一定负责所有思考，但负责在正确时间把正确信息送到正确系统。</p></header><main class="body reveal d2">
 <style>.p04Overview{height:100%;display:grid;grid-template-columns:330px 1fr;gap:20px;align-items:stretch}
 .p04List{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:26px;padding:20px;box-shadow:var(--shadow2);display:flex;flex-direction:column;gap:6px;overflow-y:auto}
 .p04List .top{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.10em;color:var(--accent);margin-bottom:6px}
