@@ -48,6 +48,7 @@
   <div class="p4Stage">
     <div class="p4Tabs" id="p4Tabs">
       <button class="p4Tab active" data-src="assets/ppt-showcase.png" data-mode="cover">PPT</button>
+      <button class="p4Tab" data-src="assets/autostack-preview.mp4" data-mode="cover" data-type="video">视频</button>
       <button class="p4Tab" data-src="assets/aipm-mystique-home.png" data-mode="cover">HTML</button>
       <button class="p4Tab" data-src="assets/feishu-report-20260515.png" data-mode="contain">飞书报告</button>
       <button class="p4Tab" data-src="assets/book-aipo-1.png" data-mode="cover" data-type="book">书</button>
@@ -72,13 +73,15 @@
   var tabs=document.querySelectorAll('#p4Tabs .p4Tab');
   var img=document.getElementById('p4Img'),f=document.getElementById('p4Frame');
   var t=document.getElementById('p4Title'),d=document.getElementById('p4Desc');
-  var labels={ppt:"PPT · 高审美演讲稿",html:"HTML · AIPM 产品页",feishu:"飞书报告 · 自动写报告",book:"书 · AI PO宝典",agent:"Agent OS · SAM + 4 子 Agent",dashboard:"Dashboard · HJN Command Center",app:"App · AI 驱动产品开发"};
-  var descs={ppt:"用 AI 写的高审美演讲稿，结构清楚、信息密度高。",html:"AIPM Mystique：AI 驱动的产品管理界面，用 Skill 快速交付。",feishu:"飞书 Bot 自动生成报告，推送到协作群，不用手动写。",book:"《AI PO宝典》：用 AI 写的一本关于 AI 产品方法论的书。",agent:"SAM 主脑 + Andrew / Rex / Lulu / Alex，共享记忆和 Skill。",dashboard:"70 任务 · 4 Doing · 25 ToDo · 41 Done，任务状态实时可见。",app:"AI 辅助从需求到上线的 App 开发，Skill 加速全链路交付。"};
-  function keyOf(tb){var t=tb.textContent.trim();if(t==='PPT')return'ppt';if(t==='HTML')return'html';if(t==='飞书报告')return'feishu';if(t==='书')return'book';if(t==='Agent')return'agent';if(t==='Dashboard')return'dashboard';if(t==='App开发')return'app';return t.toLowerCase();}
+  var labels={ppt:"PPT · 高审美演讲稿",video:"视频 · 15s 自动化预览",html:"HTML · AIPM 产品页",feishu:"飞书报告 · 自动写报告",book:"书 · AI PO宝典",agent:"Agent OS · SAM + 4 子 Agent",dashboard:"Dashboard · HJN Command Center",app:"App · AI 驱动产品开发"};
+  var descs={ppt:"用 AI 写的高审美演讲稿，结构清楚、信息密度高。",video:"AI 辅助生成的 15 秒自动化预览视频。",html:"AIPM Mystique：AI 驱动的产品管理界面，用 Skill 快速交付。",feishu:"飞书 Bot 自动生成报告，推送到协作群，不用手动写。",book:"《AI PO宝典》：用 AI 写的一本关于 AI 产品方法论的书。",agent:"SAM 主脑 + Andrew / Rex / Lulu / Alex，共享记忆和 Skill。",dashboard:"70 任务 · 4 Doing · 25 ToDo · 41 Done，任务状态实时可见。",app:"AI 辅助从需求到上线的 App 开发，Skill 加速全链路交付。"};
+  function keyOf(tb){var t=tb.textContent.trim();if(t==='PPT')return'ppt';if(t==='视频')return'video';if(t==='HTML')return'html';if(t==='飞书报告')return'feishu';if(t==='书')return'book';if(t==='Agent')return'agent';if(t==='Dashboard')return'dashboard';if(t==='App开发')return'app';return t.toLowerCase();}
   tabs.forEach(function(tb){tb.addEventListener('click',function(){
     tabs.forEach(function(b){b.classList.remove('active')});tb.classList.add('active');
-    var isBook=tb.dataset.type==='book';
-    if(isBook){f.innerHTML='<div style="height:100%;overflow-y:auto;scrollbar-width:thin;padding:8px"><img src="assets/book-aipo-1.png" style="width:100%;display:block;margin-bottom:8px;border-radius:14px"><img src="assets/book-aipo-2.png" style="width:100%;display:block;border-radius:14px"></div>';f.className='p4Frame';}else{
+    var isVideo=tb.dataset.type==='video';var isBook=tb.dataset.type==='book';
+    if(isBook){f.innerHTML='<div style="height:100%;overflow-y:auto;scrollbar-width:thin;padding:8px"><img src="assets/book-aipo-1.png" style="width:100%;display:block;margin-bottom:8px;border-radius:14px"><img src="assets/book-aipo-2.png" style="width:100%;display:block;border-radius:14px"></div>';f.className='p4Frame';}else if(isVideo){
+      f.innerHTML='<video id="p4Vid" src="'+tb.dataset.src+'" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>';
+    }else{
       f.innerHTML='<img id="p4Img" src="'+tb.dataset.src+'" alt="" style="width:100%;height:100%;object-fit:'+(tb.dataset.mode==='contain'?'contain':'cover')+';display:block">';
     }
     f.className='p4Frame'+(tb.dataset.mode==='contain'?' contain':'');
