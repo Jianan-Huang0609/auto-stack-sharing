@@ -138,6 +138,52 @@ PVO 必须先判断意图类型，而不是直接动手。
 | “保持风格” | Visual Style | 延续当前 CSS tokens | 不换视觉系统 |
 | “别反复改” | PVO Safety | 先 brief + checklist | 不直接大改 |
 
+
+---
+
+## 4.5 Presentation Type Router / 分享类型分流
+
+PVO 不能只判断“页面怎么排版”，还要先判断这次表达属于哪种 presentation 类型。不同类型的审美、信息密度、证据形式、takeaway 完全不同。
+
+| 类型 | 核心目标 | 视觉/内容策略 | 常用 Skill | 不该做什么 |
+|---|---|---|---|---|
+| Codebase Hard-core Analysis / 代码基础硬核分析 | 证明技术深度、架构理解、实现可行性 | 架构图、模块边界、调用链、diff、Evals、benchmark | `codebase-analyzer`, `architecture-mapper`, `evals-proof-builder` | 不要包装成炫技产品广告 |
+| Product Promotion / 炫技产品推广 | 让人快速感到“这个东西厉害、想试” | Hero demo、before/after、亮点卡、视频、动效、用户价值 | `demo-storyteller`, `wow-moment-builder`, `product-landing-copy` | 不要堆底层代码细节 |
+| Knowledge Sharing / 知识分享 | 让观众学会并带走方法 | 概念框架、费曼解释、例子、练习路径、资源包 | `concept-explainer`, `learning-path-builder`, `resource-pack-builder` | 不要只有炫技截图，没有方法 |
+| Aesthetic Design / 美学设计展示 | 展示审美判断和视觉品味 | moodboard、style tokens、对比稿、组件 gallery、视觉系统 | `style-gallery-selector`, `visual-qa-checker`, `design-system-builder` | 不要把审美说成空洞形容词 |
+| Boss Decision Deck / 老板决策汇报 | 争取资源、授权、下一阶段决策 | ROI、timeline、risk、resource ask、option matrix | `decision-deck-architect`, `roi-analyst`, `roadmap-planner` | 不要做成社区分享或技术教程 |
+| Internal Execution Plan / 内部执行计划 | 让团队知道谁做什么、何时交付 | 甘特图、RACI、开发包、依赖、阻塞项 | `workpackage-planner`, `raci-mapper`, `timeline-builder` | 不要只讲愿景 |
+
+### 分流规则
+
+用户需求进入 PVO 后，先问：
+
+```text
+这次表达更像哪一种？
+1. 代码/架构硬核分析
+2. 产品推广/炫技 demo
+3. 知识分享/培训
+4. 美学设计展示
+5. 老板决策汇报
+6. 内部执行计划
+```
+
+如果用户没有明确说，PVO 根据关键词自动判断：
+
+| 关键词 | 默认类型 |
+|---|---|
+| codebase / 架构 / 技术细节 / 调用链 / Evals | Codebase Hard-core Analysis |
+| demo / wow / 产品效果 / 炫技 / 让人想试 | Product Promotion |
+| 学习 / 分享 / takeaway / 怎么开始 / 资源包 | Knowledge Sharing |
+| 画风 / 配色 / 审美 / 风格 / gallery | Aesthetic Design |
+| 老板 / ROI / 资源 / 授权 / 决策 | Boss Decision Deck |
+| timeline / 分工 / 开发包 / 甘特图 / 项目管理 | Internal Execution Plan |
+
+### 关键原则
+
+同一份素材可以被不同类型重组，但表达目标不能混。
+
+例如 codebase 分析页可以有好看的视觉，但它首先要证明技术判断；产品推广页可以有架构图，但它首先要让人理解价值和 wow moment。PVO 必须先锁类型，再选组件。
 ---
 
 ## 5. PVO 执行流程
