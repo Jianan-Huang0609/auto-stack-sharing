@@ -53,8 +53,8 @@
       <button class="p4Tab" data-src="assets/feishu-report-20260515.png" data-mode="contain">飞书报告</button>
       <button class="p4Tab" data-src="assets/book-aipo-1.png" data-mode="cover" data-type="book">书</button>
       <button class="p4Tab" data-src="assets/agent-ecosystem.png" data-mode="cover">Agent</button>
-      <button class="p4Tab" data-src="assets/dashboard-active.png" data-mode="contain">Dashboard</button>
-      <button class="p4Tab" data-src="assets/app-dev-showcase.jpg" data-mode="contain">App开发</button>
+      <button class="p4Tab" data-src="assets/dashboard-active.png" data-mode="scroll">Dashboard</button>
+      <button class="p4Tab" data-src="assets/app-dev-showcase.jpg" data-mode="scroll">App开发</button>
     </div>
     <div class="p4Frame" id="p4Frame"><img id="p4Img" src="assets/ppt-showcase.png" alt="screenshot"></div>
     <div class="p4Info"><div class="k">真实系统截图</div><h4 id="p4Title">PPT · 高审美演讲稿</h4><p id="p4Desc">用 AI 写的高审美演讲稿，结构清楚、信息密度高。</p></div>
@@ -79,7 +79,8 @@
   tabs.forEach(function(tb){tb.addEventListener('click',function(){
     tabs.forEach(function(b){b.classList.remove('active')});tb.classList.add('active');
     var isVideo=tb.dataset.type==='video';var isBook=tb.dataset.type==='book';
-    if(isBook){f.innerHTML='<div style="height:100%;overflow-y:auto;scrollbar-width:thin;padding:8px"><img src="assets/book-aipo-1.png" style="width:100%;display:block;margin-bottom:8px;border-radius:14px"><img src="assets/book-aipo-2.png" style="width:100%;display:block;border-radius:14px"></div>';f.className='p4Frame';}else if(isVideo){
+    var isScroll=tb.dataset.mode==='scroll';
+    if(isBook){f.innerHTML='<div style="height:100%;overflow-y:auto;scrollbar-width:thin;padding:8px"><img src="assets/book-aipo-1.png" style="width:100%;display:block;margin-bottom:8px;border-radius:14px"><img src="assets/book-aipo-2.png" style="width:100%;display:block;border-radius:14px"></div>';f.className='p4Frame';}else if(isScroll){f.innerHTML='<div style="height:100%;overflow-y:auto;scrollbar-width:thin;padding:8px"><img src="'+tb.dataset.src+'" style="width:100%;display:block;border-radius:14px"></div>';f.className='p4Frame';}else if(isVideo){
       f.innerHTML='<video id="p4Vid" src="'+tb.dataset.src+'" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>';
     }else{
       f.innerHTML='<img id="p4Img" src="'+tb.dataset.src+'" alt="" style="width:100%;height:100%;object-fit:'+(tb.dataset.mode==='contain'?'contain':'cover')+';display:block">';
